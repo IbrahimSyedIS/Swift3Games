@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4C841DDF48C19F16B56323 /* Pods_Aliens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4C9FD2EF43A2500276558 /* Pods_Aliens.framework */; };
+		0F0E77D61F2CAFDF00AAA248 /* laserHit.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77D51F2CAFDF00AAA248 /* laserHit.sks */; };
+		0F0E77D91F2CBBB900AAA248 /* GalaxyForce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77D71F2CBBB900AAA248 /* GalaxyForce.wav */; };
+		0F0E77DA1F2CBBB900AAA248 /* StealthMode.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77D81F2CBBB900AAA248 /* StealthMode.wav */; };
+		0F0E77DC1F2CBE0F00AAA248 /* SKEnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0E77DB1F2CBE0F00AAA248 /* SKEnemyNode.swift */; };
+		0F0E77DE1F2CC03600AAA248 /* laserBlast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */; };
+		0F0E77E01F2CC3CA00AAA248 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */; };
 		0F80BCE71F29C18D00C981E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */; };
 		0F80BCE91F29C18D00C981E1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCE81F29C18D00C981E1 /* GameScene.sks */; };
-		0F80BCEB1F29C18D00C981E1 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCEA1F29C18D00C981E1 /* Actions.sks */; };
 		0F80BCED1F29C18D00C981E1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCEC1F29C18D00C981E1 /* GameScene.swift */; };
 		0F80BCEF1F29C18D00C981E1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */; };
 		0F80BCF21F29C18D00C981E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCF01F29C18D00C981E1 /* Main.storyboard */; };
@@ -17,6 +23,22 @@
 		0F80BCF71F29C18D00C981E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCF51F29C18D00C981E1 /* LaunchScreen.storyboard */; };
 		0F80BD021F29C18E00C981E1 /* AliensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BD011F29C18E00C981E1 /* AliensTests.swift */; };
 		0F80BD0D1F29C18E00C981E1 /* AliensUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BD0C1F29C18E00C981E1 /* AliensUITests.swift */; };
+		0F95792C1F31A2950032AE2B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95792B1F31A2950032AE2B /* Global.swift */; };
+		0F95792E1F31CD2A0032AE2B /* SKPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */; };
+		0F9579301F31CF360032AE2B /* playerExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F95792F1F31CF360032AE2B /* playerExplosion.sks */; };
+		0FC0BB7F1F2F034100AEA135 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FC0BB7E1F2F034100AEA135 /* GoogleMobileAds.framework */; };
+		0FC0BB811F2F0B7200AEA135 /* BannerADViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC0BB801F2F0B7200AEA135 /* BannerADViewDelegate.swift */; };
+		0FC4C2861F2B52BA006D3BEC /* Laser_Shoot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0FC4C2851F2B52BA006D3BEC /* Laser_Shoot.mp3 */; };
+		0FC4C2881F2B5357006D3BEC /* Alchemy.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FC4C2871F2B5357006D3BEC /* Alchemy.wav */; };
+		0FC4C28B1F2C4488006D3BEC /* kenvector_future.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FC4C28A1F2C4488006D3BEC /* kenvector_future.ttf */; };
+		0FDBE1531F2F361A00627783 /* UpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */; };
+		0FDBE1551F2F393200627783 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBE1541F2F393200627783 /* CreditsViewController.swift */; };
+		0FDBE1571F2F49D700627783 /* SKCoinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBE1561F2F49D700627783 /* SKCoinNode.swift */; };
+		0FF8D8B01F30B701003F8419 /* SKSpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF8D8AF1F30B701003F8419 /* SKSpriteSheet.swift */; };
+		0FFC17EC1F2E112900342E8A /* GameSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */; };
+		0FFC17EE1F2E20D400342E8A /* GamePhysicsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC17ED1F2E20D400342E8A /* GamePhysicsDelegate.swift */; };
+		67520AB55096923433DB8459 /* Pods_AliensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F090B8056BF8BD31A6D41B6D /* Pods_AliensTests.framework */; };
+		EE664524F323FD208FB43259 /* Pods_AliensUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D266BA4A60BBEFF5CC693910 /* Pods_AliensUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +59,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F0E77D51F2CAFDF00AAA248 /* laserHit.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = laserHit.sks; sourceTree = "<group>"; };
+		0F0E77D71F2CBBB900AAA248 /* GalaxyForce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GalaxyForce.wav; sourceTree = "<group>"; };
+		0F0E77D81F2CBBB900AAA248 /* StealthMode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StealthMode.wav; sourceTree = "<group>"; };
+		0F0E77DB1F2CBE0F00AAA248 /* SKEnemyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKEnemyNode.swift; sourceTree = "<group>"; };
+		0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laserBlast.mp3; sourceTree = "<group>"; };
+		0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		0F80BCE31F29C18D00C981E1 /* Aliens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aliens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F80BCE81F29C18D00C981E1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		0F80BCEA1F29C18D00C981E1 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		0F80BCEC1F29C18D00C981E1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		0F80BCF11F29C18D00C981E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +80,29 @@
 		0F80BD081F29C18E00C981E1 /* AliensUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliensUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F80BD0C1F29C18E00C981E1 /* AliensUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliensUITests.swift; sourceTree = "<group>"; };
 		0F80BD0E1F29C18E00C981E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F95792B1F31A2950032AE2B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerNode.swift; sourceTree = "<group>"; };
+		0F95792F1F31CF360032AE2B /* playerExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = playerExplosion.sks; sourceTree = "<group>"; };
+		0FC0BB7E1F2F034100AEA135 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/frameworks/GoogleMobileAds.framework"; sourceTree = "<group>"; };
+		0FC0BB801F2F0B7200AEA135 /* BannerADViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerADViewDelegate.swift; sourceTree = "<group>"; };
+		0FC4C2851F2B52BA006D3BEC /* Laser_Shoot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Laser_Shoot.mp3; sourceTree = "<group>"; };
+		0FC4C2871F2B5357006D3BEC /* Alchemy.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alchemy.wav; sourceTree = "<group>"; };
+		0FC4C28A1F2C4488006D3BEC /* kenvector_future.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenvector_future.ttf; sourceTree = "<group>"; };
+		0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeViewController.swift; sourceTree = "<group>"; };
+		0FDBE1541F2F393200627783 /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
+		0FDBE1561F2F49D700627783 /* SKCoinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKCoinNode.swift; sourceTree = "<group>"; };
+		0FF8D8AF1F30B701003F8419 /* SKSpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSpriteSheet.swift; sourceTree = "<group>"; };
+		0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneViewController.swift; sourceTree = "<group>"; };
+		0FFC17ED1F2E20D400342E8A /* GamePhysicsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePhysicsDelegate.swift; sourceTree = "<group>"; };
+		2E584B4A39FE0D172DB3EE69 /* Pods-AliensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AliensTests/Pods-AliensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		524E7B15439ABD71D04FB0D3 /* Pods-Aliens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aliens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aliens/Pods-Aliens.debug.xcconfig"; sourceTree = "<group>"; };
+		ADC14E7A6C34A4E008BAA533 /* Pods-Aliens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aliens.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aliens/Pods-Aliens.release.xcconfig"; sourceTree = "<group>"; };
+		B5FC81B234D6365861366722 /* Pods-AliensUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliensUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AliensUITests/Pods-AliensUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D266BA4A60BBEFF5CC693910 /* Pods_AliensUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliensUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2C85FE14EA69815DFF42689 /* Pods-AliensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AliensTests/Pods-AliensTests.release.xcconfig"; sourceTree = "<group>"; };
+		F090B8056BF8BD31A6D41B6D /* Pods_AliensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38701E48C165021F8DB5CFB /* Pods-AliensUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliensUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AliensUITests/Pods-AliensUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FEA4C9FD2EF43A2500276558 /* Pods_Aliens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aliens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FC0BB7F1F2F034100AEA135 /* GoogleMobileAds.framework in Frameworks */,
+				0D4C841DDF48C19F16B56323 /* Pods_Aliens.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67520AB55096923433DB8459 /* Pods_AliensTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE664524F323FD208FB43259 /* Pods_AliensUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +141,8 @@
 				0F80BD001F29C18E00C981E1 /* AliensTests */,
 				0F80BD0B1F29C18E00C981E1 /* AliensUITests */,
 				0F80BCE41F29C18D00C981E1 /* Products */,
+				B1739564186978F399F67D40 /* Pods */,
+				D66BB57D30CC7F7C2322198B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,15 +159,29 @@
 		0F80BCE51F29C18D00C981E1 /* Aliens */ = {
 			isa = PBXGroup;
 			children = (
-				0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */,
 				0F80BCE81F29C18D00C981E1 /* GameScene.sks */,
-				0F80BCEA1F29C18D00C981E1 /* Actions.sks */,
+				0F0E77D51F2CAFDF00AAA248 /* laserHit.sks */,
+				0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */,
+				0F95792F1F31CF360032AE2B /* playerExplosion.sks */,
+				0F95792B1F31A2950032AE2B /* Global.swift */,
+				0FF8D8AF1F30B701003F8419 /* SKSpriteSheet.swift */,
+				0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */,
+				0F0E77DB1F2CBE0F00AAA248 /* SKEnemyNode.swift */,
+				0FDBE1561F2F49D700627783 /* SKCoinNode.swift */,
+				0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */,
+				0FFC17ED1F2E20D400342E8A /* GamePhysicsDelegate.swift */,
+				0FC0BB801F2F0B7200AEA135 /* BannerADViewDelegate.swift */,
 				0F80BCEC1F29C18D00C981E1 /* GameScene.swift */,
+				0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */,
 				0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */,
+				0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */,
+				0FDBE1541F2F393200627783 /* CreditsViewController.swift */,
 				0F80BCF01F29C18D00C981E1 /* Main.storyboard */,
-				0F80BCF31F29C18D00C981E1 /* Assets.xcassets */,
 				0F80BCF51F29C18D00C981E1 /* LaunchScreen.storyboard */,
+				0F80BCF31F29C18D00C981E1 /* Assets.xcassets */,
 				0F80BCF81F29C18D00C981E1 /* Info.plist */,
+				0FC4C2841F2B5293006D3BEC /* Sounds */,
+				0FC4C2891F2C4488006D3BEC /* kenvector_future */,
 			);
 			path = Aliens;
 			sourceTree = "<group>";
@@ -134,6 +204,50 @@
 			path = AliensUITests;
 			sourceTree = "<group>";
 		};
+		0FC4C2841F2B5293006D3BEC /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */,
+				0F0E77D71F2CBBB900AAA248 /* GalaxyForce.wav */,
+				0F0E77D81F2CBBB900AAA248 /* StealthMode.wav */,
+				0FC4C2871F2B5357006D3BEC /* Alchemy.wav */,
+				0FC4C2851F2B52BA006D3BEC /* Laser_Shoot.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		0FC4C2891F2C4488006D3BEC /* kenvector_future */ = {
+			isa = PBXGroup;
+			children = (
+				0FC4C28A1F2C4488006D3BEC /* kenvector_future.ttf */,
+			);
+			path = kenvector_future;
+			sourceTree = "<group>";
+		};
+		B1739564186978F399F67D40 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				524E7B15439ABD71D04FB0D3 /* Pods-Aliens.debug.xcconfig */,
+				ADC14E7A6C34A4E008BAA533 /* Pods-Aliens.release.xcconfig */,
+				2E584B4A39FE0D172DB3EE69 /* Pods-AliensTests.debug.xcconfig */,
+				D2C85FE14EA69815DFF42689 /* Pods-AliensTests.release.xcconfig */,
+				B5FC81B234D6365861366722 /* Pods-AliensUITests.debug.xcconfig */,
+				F38701E48C165021F8DB5CFB /* Pods-AliensUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D66BB57D30CC7F7C2322198B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FC0BB7E1F2F034100AEA135 /* GoogleMobileAds.framework */,
+				FEA4C9FD2EF43A2500276558 /* Pods_Aliens.framework */,
+				F090B8056BF8BD31A6D41B6D /* Pods_AliensTests.framework */,
+				D266BA4A60BBEFF5CC693910 /* Pods_AliensUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,9 +255,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F80BD111F29C18E00C981E1 /* Build configuration list for PBXNativeTarget "Aliens" */;
 			buildPhases = (
+				65AFDCD64E284E525DF47291 /* [CP] Check Pods Manifest.lock */,
 				0F80BCDF1F29C18D00C981E1 /* Sources */,
 				0F80BCE01F29C18D00C981E1 /* Frameworks */,
 				0F80BCE11F29C18D00C981E1 /* Resources */,
+				8166695D5ED9126D797CF41E /* [CP] Embed Pods Frameworks */,
+				6F49A72FF34000B79F98A7BA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,9 +275,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F80BD141F29C18E00C981E1 /* Build configuration list for PBXNativeTarget "AliensTests" */;
 			buildPhases = (
+				F9C5046B913B35A560C90B0E /* [CP] Check Pods Manifest.lock */,
 				0F80BCF91F29C18D00C981E1 /* Sources */,
 				0F80BCFA1F29C18D00C981E1 /* Frameworks */,
 				0F80BCFB1F29C18D00C981E1 /* Resources */,
+				81316CB8F7C06728486F0316 /* [CP] Embed Pods Frameworks */,
+				82E34968BBF698765921E1FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,9 +296,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F80BD171F29C18E00C981E1 /* Build configuration list for PBXNativeTarget "AliensUITests" */;
 			buildPhases = (
+				7D5E25409EBED014CA10BB00 /* [CP] Check Pods Manifest.lock */,
 				0F80BD041F29C18E00C981E1 /* Sources */,
 				0F80BD051F29C18E00C981E1 /* Frameworks */,
 				0F80BD061F29C18E00C981E1 /* Resources */,
+				ECC709F48190D0AAFC6EAAE7 /* [CP] Embed Pods Frameworks */,
+				FEB143FCA01C41436713A1FD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,7 +325,7 @@
 				TargetAttributes = {
 					0F80BCE21F29C18D00C981E1 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 724KU24X6Q;
+						DevelopmentTeam = 2A57D34J33;
 						ProvisioningStyle = Automatic;
 					};
 					0F80BCFC1F29C18D00C981E1 = {
@@ -244,11 +367,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F0E77D61F2CAFDF00AAA248 /* laserHit.sks in Resources */,
+				0FC4C2881F2B5357006D3BEC /* Alchemy.wav in Resources */,
+				0F0E77D91F2CBBB900AAA248 /* GalaxyForce.wav in Resources */,
+				0F9579301F31CF360032AE2B /* playerExplosion.sks in Resources */,
 				0F80BCF21F29C18D00C981E1 /* Main.storyboard in Resources */,
+				0F0E77E01F2CC3CA00AAA248 /* Explosion.sks in Resources */,
+				0F0E77DE1F2CC03600AAA248 /* laserBlast.mp3 in Resources */,
+				0FC4C28B1F2C4488006D3BEC /* kenvector_future.ttf in Resources */,
+				0FC4C2861F2B52BA006D3BEC /* Laser_Shoot.mp3 in Resources */,
 				0F80BCE91F29C18D00C981E1 /* GameScene.sks in Resources */,
+				0F0E77DA1F2CBBB900AAA248 /* StealthMode.wav in Resources */,
 				0F80BCF41F29C18D00C981E1 /* Assets.xcassets in Resources */,
 				0F80BCF71F29C18D00C981E1 /* LaunchScreen.storyboard in Resources */,
-				0F80BCEB1F29C18D00C981E1 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,13 +399,161 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		65AFDCD64E284E525DF47291 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6F49A72FF34000B79F98A7BA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aliens/Pods-Aliens-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D5E25409EBED014CA10BB00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		81316CB8F7C06728486F0316 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AliensTests/Pods-AliensTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8166695D5ED9126D797CF41E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aliens/Pods-Aliens-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82E34968BBF698765921E1FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AliensTests/Pods-AliensTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECC709F48190D0AAFC6EAAE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AliensUITests/Pods-AliensUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9C5046B913B35A560C90B0E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FEB143FCA01C41436713A1FD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AliensUITests/Pods-AliensUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0F80BCDF1F29C18D00C981E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FDBE1571F2F49D700627783 /* SKCoinNode.swift in Sources */,
 				0F80BCED1F29C18D00C981E1 /* GameScene.swift in Sources */,
 				0F80BCEF1F29C18D00C981E1 /* GameViewController.swift in Sources */,
+				0FF8D8B01F30B701003F8419 /* SKSpriteSheet.swift in Sources */,
+				0F95792E1F31CD2A0032AE2B /* SKPlayerNode.swift in Sources */,
+				0F95792C1F31A2950032AE2B /* Global.swift in Sources */,
+				0FC0BB811F2F0B7200AEA135 /* BannerADViewDelegate.swift in Sources */,
+				0F0E77DC1F2CBE0F00AAA248 /* SKEnemyNode.swift in Sources */,
+				0FDBE1551F2F393200627783 /* CreditsViewController.swift in Sources */,
+				0FFC17EC1F2E112900342E8A /* GameSceneViewController.swift in Sources */,
+				0FDBE1531F2F361A00627783 /* UpgradeViewController.swift in Sources */,
+				0FFC17EE1F2E20D400342E8A /* GamePhysicsDelegate.swift in Sources */,
 				0F80BCE71F29C18D00C981E1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +633,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
+				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -372,7 +653,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -405,6 +685,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -417,7 +698,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -427,12 +707,17 @@
 		};
 		0F80BD121F29C18E00C981E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 524E7B15439ABD71D04FB0D3 /* Pods-Aliens.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 724KU24X6Q;
+				DEVELOPMENT_TEAM = 2A57D34J33;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Google-Mobile-Ads-SDK/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = Aliens/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.ibrame.Aliens;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.tysoninfinite.Aliens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -440,12 +725,17 @@
 		};
 		0F80BD131F29C18E00C981E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADC14E7A6C34A4E008BAA533 /* Pods-Aliens.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 724KU24X6Q;
+				DEVELOPMENT_TEAM = 2A57D34J33;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Google-Mobile-Ads-SDK/Frameworks/frameworks",
+				);
 				INFOPLIST_FILE = Aliens/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.ibrame.Aliens;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.tysoninfinite.Aliens;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -453,6 +743,7 @@
 		};
 		0F80BD151F29C18E00C981E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E584B4A39FE0D172DB3EE69 /* Pods-AliensTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -468,6 +759,7 @@
 		};
 		0F80BD161F29C18E00C981E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2C85FE14EA69815DFF42689 /* Pods-AliensTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -483,6 +775,7 @@
 		};
 		0F80BD181F29C18E00C981E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5FC81B234D6365861366722 /* Pods-AliensUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 724KU24X6Q;
@@ -497,6 +790,7 @@
 		};
 		0F80BD191F29C18E00C981E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F38701E48C165021F8DB5CFB /* Pods-AliensUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 724KU24X6Q;
@@ -528,6 +822,7 @@
 				0F80BD131F29C18E00C981E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F80BD141F29C18E00C981E1 /* Build configuration list for PBXNativeTarget "AliensTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +831,7 @@
 				0F80BD161F29C18E00C981E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F80BD171F29C18E00C981E1 /* Build configuration list for PBXNativeTarget "AliensUITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +840,7 @@
 				0F80BD191F29C18E00C981E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

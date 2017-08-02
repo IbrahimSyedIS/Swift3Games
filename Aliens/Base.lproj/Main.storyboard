@@ -1,14 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A315i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="kenvector_future.ttf">
+            <string>KenVector-Future</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Game View Controller-->
+        <!--gameViewController-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main View" title="gameViewController" id="BV1-FR-VrT" customClass="GameViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
@@ -16,11 +26,372 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue" translatesAutoresizingMaskIntoConstraints="NO" id="zjG-l7-c8p">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title TBD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4g-L5-PpF">
+                                <rect key="frame" x="16" y="28" width="343" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="awG-Tp-Q3w"/>
+                                    <constraint firstAttribute="height" constant="77" id="x0E-Y7-duy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playerShip2_blue" translatesAutoresizingMaskIntoConstraints="NO" id="Ro9-D9-ItY">
+                                <rect key="frame" x="131" y="286" width="112" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="3WX-XU-YRX"/>
+                                    <constraint firstAttribute="width" constant="112" id="dM6-IE-Bj1"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Laser" translatesAutoresizingMaskIntoConstraints="NO" id="F8A-Br-NnU">
+                                <rect key="frame" x="183" y="209" width="9" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Ewm-OX-Ocd"/>
+                                    <constraint firstAttribute="width" constant="9" id="NpT-3J-ezs"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enemyShip1" translatesAutoresizingMaskIntoConstraints="NO" id="UlG-lr-MkH">
+                                <rect key="frame" x="138" y="110" width="99" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="al2-Zh-ApH"/>
+                                    <constraint firstAttribute="width" constant="99" id="waU-3O-iW4"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7C-dE-0tc">
+                                <rect key="frame" x="109" y="382" width="157" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="IvF-gG-2yF"/>
+                                    <constraint firstAttribute="width" constant="157" id="zCc-ER-lzJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="15"/>
+                                <state key="normal" title="Play" backgroundImage="buttonGreen">
+                                    <color key="titleColor" red="0.44377654790878296" green="0.7872278094291687" blue="0.21468701958656311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="3Df-8x-vOX"/>
+                                    <segue destination="SY1-uW-4OO" kind="show" id="XAP-WQ-kKy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYv-di-bme">
+                                <rect key="frame" x="109" y="427" width="157" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="PB0-JL-Ejk"/>
+                                    <constraint firstAttribute="width" constant="157" id="cvc-rl-EOO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="15"/>
+                                <state key="normal" title="Upgrades" backgroundImage="buttonBlue">
+                                    <color key="titleColor" red="0.21039971709251404" green="0.73378819227218628" blue="0.95882409811019897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="NMf-V0-MW6" kind="show" id="DBe-eT-6HK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAJ-Bc-7L1">
+                                <rect key="frame" x="109" y="474" width="157" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="PVw-oy-rc6"/>
+                                    <constraint firstAttribute="width" constant="157" id="j0T-GJ-App"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="15"/>
+                                <state key="normal" title="Credits" backgroundImage="buttonYellow">
+                                    <color key="titleColor" red="1" green="0.80144375562667847" blue="0.004643389955163002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="tU1-ta-CN0" kind="show" id="YgB-kL-N5K"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ro9-D9-ItY" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="0p6-rF-tT0"/>
+                            <constraint firstItem="hYv-di-bme" firstAttribute="top" secondItem="A7C-dE-0tc" secondAttribute="bottom" constant="8" id="5Xq-2x-4Bs"/>
+                            <constraint firstItem="F8A-Br-NnU" firstAttribute="top" secondItem="UlG-lr-MkH" secondAttribute="bottom" constant="24" id="6Hi-rz-nsc"/>
+                            <constraint firstItem="y4g-L5-PpF" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-267" id="6Y5-Nu-o5M"/>
+                            <constraint firstItem="UlG-lr-MkH" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="B25-ez-xpP"/>
+                            <constraint firstItem="nAJ-Bc-7L1" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="160" id="VyS-YO-MWP"/>
+                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="zjG-l7-c8p" secondAttribute="bottom" id="WhL-4V-HHw"/>
+                            <constraint firstItem="Ro9-D9-ItY" firstAttribute="top" secondItem="F8A-Br-NnU" secondAttribute="bottom" constant="23" id="Zcq-eL-qU7"/>
+                            <constraint firstItem="UlG-lr-MkH" firstAttribute="top" secondItem="y4g-L5-PpF" secondAttribute="bottom" constant="5" id="cXs-3e-Ynu"/>
+                            <constraint firstItem="zjG-l7-c8p" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="eE8-om-7hP"/>
+                            <constraint firstItem="hYv-di-bme" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="fj1-pW-lHC"/>
+                            <constraint firstItem="zjG-l7-c8p" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="gdS-xo-0ax"/>
+                            <constraint firstItem="nAJ-Bc-7L1" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="io4-99-a1R"/>
+                            <constraint firstAttribute="trailing" secondItem="zjG-l7-c8p" secondAttribute="trailing" id="kse-iF-XGz"/>
+                            <constraint firstItem="y4g-L5-PpF" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="lhb-lp-4T0"/>
+                            <constraint firstItem="nAJ-Bc-7L1" firstAttribute="top" secondItem="hYv-di-bme" secondAttribute="bottom" constant="8" id="mwp-zj-AtP"/>
+                            <constraint firstItem="A7C-dE-0tc" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="sUn-Pm-c7q"/>
+                            <constraint firstItem="F8A-Br-NnU" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="vAd-Ah-ksE"/>
+                            <constraint firstItem="A7C-dE-0tc" firstAttribute="top" secondItem="Ro9-D9-ItY" secondAttribute="bottom" constant="21" id="ywY-Wo-sVG"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="zjG-l7-c8p" id="R0d-6w-xPc"/>
+                        <outlet property="creditsButton" destination="nAJ-Bc-7L1" id="bKN-yk-LVx"/>
+                        <outlet property="enemyShipImage" destination="UlG-lr-MkH" id="kiL-eD-fWt"/>
+                        <outlet property="laserImage" destination="F8A-Br-NnU" id="8nx-IY-HO2"/>
+                        <outlet property="playButton" destination="A7C-dE-0tc" id="Xw9-jH-LwW"/>
+                        <outlet property="playerShipImage" destination="Ro9-D9-ItY" id="qH6-P3-dzm"/>
+                        <outlet property="settingsButton" destination="hYv-di-bme" id="mhg-IS-4X3"/>
+                        <outlet property="titleText" destination="y4g-L5-PpF" id="sWI-gL-dcq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-42.399999999999999" y="111.99400299850076"/>
+        </scene>
+        <!--Upgrade View Controller-->
+        <scene sceneID="tER-y1-aed">
+            <objects>
+                <viewController id="NMf-V0-MW6" customClass="UpgradeViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GIb-Zf-TFn"/>
+                        <viewControllerLayoutGuide type="bottom" id="T7y-Hn-MGu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uTA-ow-DkY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue" translatesAutoresizingMaskIntoConstraints="NO" id="Kin-rG-dUG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8L-Uc-llv">
+                                <rect key="frame" x="16" y="36" width="149" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Tue-Aj-sku"/>
+                                    <constraint firstAttribute="width" constant="149" id="cms-XV-AeV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="15"/>
+                                <state key="normal" title="Go Back" backgroundImage="buttonRed">
+                                    <color key="titleColor" red="0.67764514679999999" green="0.22721138599999999" blue="0.22794574500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBackPressed:" destination="NMf-V0-MW6" eventType="touchUpInside" id="JTc-mz-EZv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMING SOON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDw-h1-9j7">
+                                <rect key="frame" x="85" y="244" width="204" height="178"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="204" id="2HZ-G3-kVh"/>
+                                    <constraint firstAttribute="height" constant="178" id="GGw-wj-m5O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="43"/>
+                                <color key="textColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="dLk-cF-XVb">
+                                <rect key="frame" x="112" y="123" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="4y8-MK-5C8"/>
+                                </constraints>
+                                <color key="progressTintColor" red="0.38075186291380703" green="0.9623149037361145" blue="0.37313698802523138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="trackTintColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-7o-CnL">
+                                <rect key="frame" x="112" y="137" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="9ks-NW-8Kq"/>
+                                    <constraint firstAttribute="height" constant="34" id="ODu-dA-ZIb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="13"/>
+                                <state key="normal" title="Upgrade Speed" backgroundImage="green_button00"/>
+                                <state key="highlighted" title="Button" backgroundImage="green_button01"/>
+                                <connections>
+                                    <action selector="upgradeSpeed:" destination="NMf-V0-MW6" eventType="touchUpInside" id="OrP-oM-6Jz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="P8L-Uc-llv" firstAttribute="leading" secondItem="uTA-ow-DkY" secondAttribute="leadingMargin" id="3mH-LV-4c6"/>
+                            <constraint firstItem="YDw-h1-9j7" firstAttribute="centerX" secondItem="uTA-ow-DkY" secondAttribute="centerX" id="6Ek-6U-OJf"/>
+                            <constraint firstAttribute="trailing" secondItem="Kin-rG-dUG" secondAttribute="trailing" id="Kcv-Pc-sF0"/>
+                            <constraint firstItem="dLk-cF-XVb" firstAttribute="centerX" secondItem="uTA-ow-DkY" secondAttribute="centerX" id="Kyc-xj-lBy"/>
+                            <constraint firstItem="Kin-rG-dUG" firstAttribute="top" secondItem="uTA-ow-DkY" secondAttribute="top" id="Mfz-lh-Ahv"/>
+                            <constraint firstItem="YDw-h1-9j7" firstAttribute="centerY" secondItem="uTA-ow-DkY" secondAttribute="centerY" id="QIc-yP-ieM"/>
+                            <constraint firstItem="P8L-Uc-llv" firstAttribute="top" secondItem="GIb-Zf-TFn" secondAttribute="bottom" constant="16" id="RBm-F3-beH"/>
+                            <constraint firstItem="NLb-7o-CnL" firstAttribute="centerX" secondItem="uTA-ow-DkY" secondAttribute="centerX" id="Vh4-8A-tFJ"/>
+                            <constraint firstItem="NLb-7o-CnL" firstAttribute="top" secondItem="dLk-cF-XVb" secondAttribute="bottom" constant="12" id="ioi-tu-ELV"/>
+                            <constraint firstItem="T7y-Hn-MGu" firstAttribute="top" secondItem="Kin-rG-dUG" secondAttribute="bottom" id="j5a-x5-w7B"/>
+                            <constraint firstItem="Kin-rG-dUG" firstAttribute="leading" secondItem="uTA-ow-DkY" secondAttribute="leading" id="v4k-Mr-stG"/>
+                            <constraint firstItem="NLb-7o-CnL" firstAttribute="centerY" secondItem="uTA-ow-DkY" secondAttribute="centerY" constant="-179.5" id="zFo-kz-Zb0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="speedButton" destination="NLb-7o-CnL" id="nqg-BR-NXs"/>
+                        <outlet property="speedProgressBar" destination="dLk-cF-XVb" id="XVz-aD-Mm9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mw7-HT-FgV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2636" y="-496.10194902548727"/>
+        </scene>
+        <!--gameSceneViewController-->
+        <scene sceneID="nfX-Ia-kSc">
+            <objects>
+                <viewController title="gameSceneViewController" modalTransitionStyle="crossDissolve" id="SY1-uW-4OO" customClass="GameSceneViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b4f-g2-OVl"/>
+                        <viewControllerLayoutGuide type="bottom" id="07T-HG-dyk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XO6-yT-wkO" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0                                        High Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uK-i9-iLM">
+                                <rect key="frame" x="24" y="60" width="240" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="3zS-3t-ynX"/>
+                                    <constraint firstAttribute="height" constant="44" id="d94-wJ-5IV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w34-jh-NJY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="czX-XF-e5w">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwW-q1-Qha">
+                                <rect key="frame" x="16" y="28" width="343" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="aAw-ws-YMK"/>
+                                    <constraint firstAttribute="width" constant="343" id="o0V-T5-qbz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lm-ng-kQh">
+                                <rect key="frame" x="24" y="36" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5WJ-p2-pOA"/>
+                                    <constraint firstAttribute="width" constant="30" id="lOc-75-Mtk"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="PauseButton"/>
+                                <connections>
+                                    <action selector="pauseButtonPressed:" destination="SY1-uW-4OO" eventType="touchUpInside" id="olk-6o-8Ao"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCq-Ru-1us">
+                                <rect key="frame" x="108.5" y="313.5" width="157" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="CcT-kQ-Dgd"/>
+                                    <constraint firstAttribute="width" constant="157" id="Rxi-p0-B2r"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="15"/>
+                                <state key="normal" title="Home" backgroundImage="buttonBlue">
+                                    <color key="titleColor" red="0.2690930962562561" green="0.75379747152328491" blue="0.9623149037361145" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonPressed:" destination="SY1-uW-4OO" eventType="touchUpInside" id="8px-Ps-hUn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="07T-HG-dyk" firstAttribute="top" secondItem="w34-jh-NJY" secondAttribute="bottom" id="01H-BV-VvC"/>
+                            <constraint firstItem="0lm-ng-kQh" firstAttribute="leading" secondItem="XO6-yT-wkO" secondAttribute="leadingMargin" constant="8" id="0nG-au-eCE"/>
+                            <constraint firstItem="0lm-ng-kQh" firstAttribute="top" secondItem="b4f-g2-OVl" secondAttribute="bottom" constant="16" id="7CG-ht-dRf"/>
+                            <constraint firstItem="w34-jh-NJY" firstAttribute="top" secondItem="XO6-yT-wkO" secondAttribute="top" id="8Bz-tr-phQ"/>
+                            <constraint firstItem="tCq-Ru-1us" firstAttribute="centerY" secondItem="XO6-yT-wkO" secondAttribute="centerY" id="IBp-Ee-NV4"/>
+                            <constraint firstItem="IwW-q1-Qha" firstAttribute="centerX" secondItem="XO6-yT-wkO" secondAttribute="centerX" id="KEU-UJ-jgp"/>
+                            <constraint firstItem="IwW-q1-Qha" firstAttribute="centerY" secondItem="XO6-yT-wkO" secondAttribute="centerY" constant="-267" id="NHV-N2-Vtu"/>
+                            <constraint firstItem="1uK-i9-iLM" firstAttribute="leading" secondItem="XO6-yT-wkO" secondAttribute="leadingMargin" constant="8" id="YhH-JP-kss"/>
+                            <constraint firstAttribute="trailing" secondItem="w34-jh-NJY" secondAttribute="trailing" id="aOW-08-hDe"/>
+                            <constraint firstItem="w34-jh-NJY" firstAttribute="leading" secondItem="XO6-yT-wkO" secondAttribute="leading" id="kLH-09-ggc"/>
+                            <constraint firstItem="tCq-Ru-1us" firstAttribute="centerX" secondItem="XO6-yT-wkO" secondAttribute="centerX" id="qJs-Wu-gRq"/>
+                            <constraint firstItem="1uK-i9-iLM" firstAttribute="top" secondItem="b4f-g2-OVl" secondAttribute="bottom" constant="40" id="yNT-qx-4st"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="blurEffect" destination="w34-jh-NJY" id="sSZ-l2-0up"/>
+                        <outlet property="homeButton" destination="tCq-Ru-1us" id="BfZ-Pf-TEv"/>
+                        <outlet property="pauseButton" destination="0lm-ng-kQh" id="O8v-h4-XUC"/>
+                        <outlet property="pauseScoreLabel" destination="IwW-q1-Qha" id="GDT-IF-fmu"/>
+                        <outlet property="scoreLabel" destination="1uK-i9-iLM" id="Yol-Dd-kBC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rE0-HP-a8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1953" y="-496"/>
+        </scene>
+        <!--Credits View Controller-->
+        <scene sceneID="XVy-Yi-OkR">
+            <objects>
+                <viewController id="tU1-ta-CN0" customClass="CreditsViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NDg-5f-883"/>
+                        <viewControllerLayoutGuide type="bottom" id="WY5-9b-Ue2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uva-fK-Ge1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue" translatesAutoresizingMaskIntoConstraints="NO" id="qY2-XB-HvS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TY-cH-58s">
+                                <rect key="frame" x="16" y="28" width="343" height="619"/>
+                                <string key="text">Background Music by PlayOnLoop.com 
+Licensed under Creative Commons By Attribution 4.0</string>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="14"/>
+                                <color key="textColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rjb-qz-8Qq">
+                                <rect key="frame" x="16" y="36" width="150" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Wuo-6E-4Go"/>
+                                    <constraint firstAttribute="height" constant="40" id="kYh-nj-5k1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="15"/>
+                                <state key="normal" title="Go Back" backgroundImage="buttonRed">
+                                    <color key="titleColor" red="0.70097428560256958" green="0.29097545146942139" blue="0.28914570808410645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBack:" destination="tU1-ta-CN0" eventType="touchUpInside" id="GVk-y1-3pX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8TY-cH-58s" firstAttribute="top" secondItem="NDg-5f-883" secondAttribute="bottom" constant="8" id="4sj-x2-f7G"/>
+                            <constraint firstItem="Rjb-qz-8Qq" firstAttribute="top" secondItem="NDg-5f-883" secondAttribute="bottom" constant="16" id="9dq-ha-qDX"/>
+                            <constraint firstItem="qY2-XB-HvS" firstAttribute="leading" secondItem="uva-fK-Ge1" secondAttribute="leadingMargin" constant="-16" id="EPr-OA-ikC"/>
+                            <constraint firstItem="8TY-cH-58s" firstAttribute="trailing" secondItem="uva-fK-Ge1" secondAttribute="trailingMargin" id="LVT-DO-S0a"/>
+                            <constraint firstItem="WY5-9b-Ue2" firstAttribute="top" secondItem="qY2-XB-HvS" secondAttribute="bottom" id="V3p-tq-i2O"/>
+                            <constraint firstItem="qY2-XB-HvS" firstAttribute="top" secondItem="uva-fK-Ge1" secondAttribute="topMargin" id="Z9h-vU-GPh"/>
+                            <constraint firstItem="8TY-cH-58s" firstAttribute="leading" secondItem="uva-fK-Ge1" secondAttribute="leadingMargin" id="frK-6c-pID"/>
+                            <constraint firstItem="WY5-9b-Ue2" firstAttribute="top" secondItem="8TY-cH-58s" secondAttribute="bottom" constant="20" id="obe-Ew-hYW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qY2-XB-HvS" secondAttribute="trailing" constant="-16" id="saX-IJ-Tb9"/>
+                            <constraint firstItem="Rjb-qz-8Qq" firstAttribute="leading" secondItem="uva-fK-Ge1" secondAttribute="leadingMargin" id="xuq-Vv-m6O"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HyA-lo-UaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3317.5999999999999" y="-496.10194902548727"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Laser" width="9" height="54"/>
+        <image name="PauseButton" width="48" height="48"/>
+        <image name="blue" width="256" height="256"/>
+        <image name="buttonBlue" width="222" height="39"/>
+        <image name="buttonGreen" width="222" height="39"/>
+        <image name="buttonRed" width="222" height="39"/>
+        <image name="buttonYellow" width="222" height="39"/>
+        <image name="enemyShip1" width="99" height="75"/>
+        <image name="green_button00" width="190" height="49"/>
+        <image name="green_button01" width="190" height="45"/>
+        <image name="playerShip2_blue" width="112" height="75"/>
+    </resources>
 </document>
