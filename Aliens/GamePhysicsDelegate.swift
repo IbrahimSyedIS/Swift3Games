@@ -198,6 +198,8 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                 
                 if playerNode.health > 0 {
                     playerNode.health -= 5
+                } else {
+                    playerNode.die()
                 }
             }
         }
