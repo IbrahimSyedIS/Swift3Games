@@ -22,7 +22,7 @@ class SKEnemyNode: SKSpriteNode {
     // This is the variable that holds the health value of the SKEnemyNode at hand
     public var health: Int = 100
     
-    public var fireRate = Double(arc4random_uniform(32) + 8) / Double(10)
+    public var fireRate = Double(arc4random_uniform(17) + 15) / Double(10)
     
     // Just overriding two initializer functions in order to satisfy the superclass
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -31,7 +31,7 @@ class SKEnemyNode: SKSpriteNode {
     
     // See above
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     // Function for creating the health bar of the SKEnemyNode

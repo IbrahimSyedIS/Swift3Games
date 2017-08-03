@@ -220,43 +220,35 @@ class GameScene: SKScene {
         if levels.count > 0 {
             var level = levels.first!
             
-            let waves = Int(level.count / 3)
+            Global.currentWave += 1
             
-            for wave in 0..<waves {
-                if wave == 0 {
+            let waveLabel = SKLabelNode(text: "Wave \(Global.currentWave)")
+            waveLabel.position = CGPoint(x: 0, y: 450)
+            waveLabel.fontSize = 50
+            waveLabel.alpha = 0
+            let fadeIn = SKAction.fadeIn(withDuration: 1)
+            let wait = SKAction.wait(forDuration: 3)
+            let fadeOut = SKAction.fadeOut(withDuration: 1)
+            let disappear = SKAction.removeFromParent()
+            let labelSequence = SKAction.sequence([fadeIn, wait, fadeOut, disappear])
+            waveLabel.move(toParent: self)
+            waveLabel.run(labelSequence)
+            
+            for wave in 0..<Int(level.count / 3) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + TimeInterval(wave * 14), execute: {
                     let separation = self.size.width / CGFloat(3)
                     let firstX = 0 - separation
-                    for enemy in 1...3 {
-                        switch level[enemy] {
-                        case 1:
-                            spawnEnemy(at: CGPoint(x: firstX + (separation * CGFloat(enemy-1)), y: 750), ofType: 1)
-                            Global.currentMaxScore += level[enemy] * 100
-                        default:
-                            print("Enemy Spawn Failed")
-                        }
+                    for enemy in 0..<3 {
+                        self.spawnEnemy(at: CGPoint(x: firstX + (separation * CGFloat(enemy)), y: 750), ofType: level[enemy])
+                        Global.currentMaxScore += level[enemy] * 100
                     }
                     level.removeFirst(3)
-                } else {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 14, execute: {
-                        let separation = self.size.width / CGFloat(3)
-                        let firstX = 0 - separation
-                        for enemy in 1...3 {
-                            switch level[enemy] {
-                            case 1:
-                                self.spawnEnemy(at: CGPoint(x: firstX + (separation * CGFloat(enemy-1)), y: 750), ofType: 1)
-                                Global.currentMaxScore += level[enemy] * 100
-                            default:
-                                print("Enemy Spawn Failed")
-                            }
-                        }
-                        level.removeFirst(3)
-                    })
-                }
+                })
             }
             
             
             
-            levels.remove(at: 0)
+            levels.removeFirst()
         } else {
             endlessMode()
         }
