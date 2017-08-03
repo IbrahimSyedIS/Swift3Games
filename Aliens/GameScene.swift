@@ -52,6 +52,8 @@ class GameScene: SKScene {
     // gameViewController: A reference to the GameViewController that called this GameScene
     public var gameViewController: GameSceneViewController!
     
+    private var timer: Timer!
+    
     // physicsContactDelegate: A variable that holds the delegate for the contact 
     var physicsContactDelegate: GamePhysicsDelegate!
     
@@ -86,7 +88,9 @@ class GameScene: SKScene {
     /* The levels array is special. It tells the program how to start the levels. When a "WAIT" is present, the game waits for the previous enemies to be killed. I still have to think of a way to check for that. Anyways, I'll have 10 different types of enemies.  */
     
     // 2 Dimensional Array of Integer Arrays that represents the order of the levels
-    var levels: [[Int]] = [[1, 1, 1, 1, 1, 1, 1, 1, 1]]
+    var levels: [[Int]] = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
     
     // Private Int that represents the speed of the player in pixels per second
     private var playerSpeed = 625
@@ -207,18 +211,14 @@ class GameScene: SKScene {
     // Beginning the game, will be revamped later
     func beginGame() {
         
-        // Timer to make an enemy spawn once every 2.5 seconds
-        _ = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true, block: { (nil) in
-            
-            // Making sure the game isn't paused that'd be weird
-            if (!self.gamePaused) {
-                
-                // Spawning the enemy
-//                self.spawnEnemy()
+        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (nil) in
+            if self.levels.count > 0 {
+                self.nextLevel()
+            } else {
+                self.timer.invalidate()
+                return
             }
         })
-        
-        nextLevel()
     }
     
     private func nextLevel() {
