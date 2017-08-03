@@ -294,6 +294,30 @@
                                     <action selector="homeButtonPressed:" destination="SY1-uW-4OO" eventType="touchUpInside" id="8px-Ps-hUn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmW-pI-Afc">
+                                <rect key="frame" x="203" y="24" width="79" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="7WW-M3-QGE"/>
+                                    <constraint firstAttribute="width" constant="79" id="t7n-uj-oUn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="numeralX" translatesAutoresizingMaskIntoConstraints="NO" id="Ldt-bc-Imr">
+                                <rect key="frame" x="178.5" y="25" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="QYu-du-TF9"/>
+                                    <constraint firstAttribute="height" constant="18" id="h1q-IS-Tsi"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gold_21" translatesAutoresizingMaskIntoConstraints="NO" id="UqQ-CU-cGW">
+                                <rect key="frame" x="145" y="20" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="2Vi-cL-aGh"/>
+                                    <constraint firstAttribute="height" constant="28" id="4lA-ne-Rvg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -301,19 +325,28 @@
                             <constraint firstItem="0lm-ng-kQh" firstAttribute="leading" secondItem="XO6-yT-wkO" secondAttribute="leadingMargin" constant="8" id="0nG-au-eCE"/>
                             <constraint firstItem="0lm-ng-kQh" firstAttribute="top" secondItem="b4f-g2-OVl" secondAttribute="bottom" constant="16" id="7CG-ht-dRf"/>
                             <constraint firstItem="w34-jh-NJY" firstAttribute="top" secondItem="XO6-yT-wkO" secondAttribute="top" id="8Bz-tr-phQ"/>
+                            <constraint firstItem="Ldt-bc-Imr" firstAttribute="centerX" secondItem="XO6-yT-wkO" secondAttribute="centerX" id="8Rz-sW-xYQ"/>
+                            <constraint firstItem="bmW-pI-Afc" firstAttribute="top" secondItem="b4f-g2-OVl" secondAttribute="bottom" constant="4" id="CZE-R5-Pmz"/>
+                            <constraint firstItem="bmW-pI-Afc" firstAttribute="centerX" secondItem="XO6-yT-wkO" secondAttribute="centerX" constant="55" id="HfD-HJ-Xte"/>
                             <constraint firstItem="tCq-Ru-1us" firstAttribute="centerY" secondItem="XO6-yT-wkO" secondAttribute="centerY" id="IBp-Ee-NV4"/>
                             <constraint firstItem="IwW-q1-Qha" firstAttribute="centerX" secondItem="XO6-yT-wkO" secondAttribute="centerX" id="KEU-UJ-jgp"/>
                             <constraint firstItem="IwW-q1-Qha" firstAttribute="centerY" secondItem="XO6-yT-wkO" secondAttribute="centerY" constant="-267" id="NHV-N2-Vtu"/>
+                            <constraint firstItem="UqQ-CU-cGW" firstAttribute="top" secondItem="b4f-g2-OVl" secondAttribute="bottom" id="NfB-9W-wGC"/>
                             <constraint firstItem="1uK-i9-iLM" firstAttribute="leading" secondItem="XO6-yT-wkO" secondAttribute="leadingMargin" constant="8" id="YhH-JP-kss"/>
                             <constraint firstAttribute="trailing" secondItem="w34-jh-NJY" secondAttribute="trailing" id="aOW-08-hDe"/>
+                            <constraint firstItem="Ldt-bc-Imr" firstAttribute="top" secondItem="b4f-g2-OVl" secondAttribute="bottom" constant="5" id="dbq-cQ-Sic"/>
                             <constraint firstItem="w34-jh-NJY" firstAttribute="leading" secondItem="XO6-yT-wkO" secondAttribute="leading" id="kLH-09-ggc"/>
+                            <constraint firstItem="UqQ-CU-cGW" firstAttribute="centerX" secondItem="XO6-yT-wkO" secondAttribute="centerX" constant="-28.5" id="mlA-e7-OR0"/>
                             <constraint firstItem="tCq-Ru-1us" firstAttribute="centerX" secondItem="XO6-yT-wkO" secondAttribute="centerX" id="qJs-Wu-gRq"/>
                             <constraint firstItem="1uK-i9-iLM" firstAttribute="top" secondItem="b4f-g2-OVl" secondAttribute="bottom" constant="40" id="yNT-qx-4st"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="blurEffect" destination="w34-jh-NJY" id="sSZ-l2-0up"/>
+                        <outlet property="coinImage" destination="UqQ-CU-cGW" id="4YD-af-dOz"/>
+                        <outlet property="coinXImage" destination="Ldt-bc-Imr" id="P1E-Wc-Rpm"/>
                         <outlet property="homeButton" destination="tCq-Ru-1us" id="BfZ-Pf-TEv"/>
+                        <outlet property="moneyLabel" destination="bmW-pI-Afc" id="CSz-c4-8Rc"/>
                         <outlet property="pauseButton" destination="0lm-ng-kQh" id="O8v-h4-XUC"/>
                         <outlet property="pauseScoreLabel" destination="IwW-q1-Qha" id="GDT-IF-fmu"/>
                         <outlet property="scoreLabel" destination="1uK-i9-iLM" id="Yol-Dd-kBC"/>
@@ -321,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rE0-HP-a8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1953" y="-496"/>
+            <point key="canvasLocation" x="1922.4000000000001" y="-496.10194902548727"/>
         </scene>
         <!--Credits View Controller-->
         <scene sceneID="XVy-Yi-OkR">
@@ -382,6 +415,7 @@ Licensed under Creative Commons By Attribution 4.0</string>
         </scene>
     </scenes>
     <resources>
+        <image name="Gold_21" width="564" height="564"/>
         <image name="Laser" width="9" height="54"/>
         <image name="PauseButton" width="48" height="48"/>
         <image name="blue" width="256" height="256"/>
@@ -392,6 +426,7 @@ Licensed under Creative Commons By Attribution 4.0</string>
         <image name="enemyShip1" width="99" height="75"/>
         <image name="green_button00" width="190" height="49"/>
         <image name="green_button01" width="190" height="45"/>
+        <image name="numeralX" width="17" height="17"/>
         <image name="playerShip2_blue" width="112" height="75"/>
     </resources>
 </document>

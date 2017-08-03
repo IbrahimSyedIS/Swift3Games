@@ -26,6 +26,7 @@
 		0F95792C1F31A2950032AE2B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95792B1F31A2950032AE2B /* Global.swift */; };
 		0F95792E1F31CD2A0032AE2B /* SKPlayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */; };
 		0F9579301F31CF360032AE2B /* playerExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F95792F1F31CF360032AE2B /* playerExplosion.sks */; };
+		0F9DC2361F334D6A00335057 /* coinCollect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F9DC2351F334D6A00335057 /* coinCollect.mp3 */; };
 		0FC0BB7F1F2F034100AEA135 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FC0BB7E1F2F034100AEA135 /* GoogleMobileAds.framework */; };
 		0FC0BB811F2F0B7200AEA135 /* BannerADViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC0BB801F2F0B7200AEA135 /* BannerADViewDelegate.swift */; };
 		0FC4C2861F2B52BA006D3BEC /* Laser_Shoot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0FC4C2851F2B52BA006D3BEC /* Laser_Shoot.mp3 */; };
@@ -82,6 +83,7 @@
 		0F95792B1F31A2950032AE2B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPlayerNode.swift; sourceTree = "<group>"; };
 		0F95792F1F31CF360032AE2B /* playerExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = playerExplosion.sks; sourceTree = "<group>"; };
+		0F9DC2351F334D6A00335057 /* coinCollect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coinCollect.mp3; sourceTree = "<group>"; };
 		0FC0BB7E1F2F034100AEA135 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/frameworks/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		0FC0BB801F2F0B7200AEA135 /* BannerADViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerADViewDelegate.swift; sourceTree = "<group>"; };
 		0FC4C2851F2B52BA006D3BEC /* Laser_Shoot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Laser_Shoot.mp3; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		0FC4C2841F2B5293006D3BEC /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				0F9DC2351F334D6A00335057 /* coinCollect.mp3 */,
 				0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */,
 				0F0E77D71F2CBBB900AAA248 /* GalaxyForce.wav */,
 				0F0E77D81F2CBBB900AAA248 /* StealthMode.wav */,
@@ -366,6 +369,7 @@
 			files = (
 				0F0E77D61F2CAFDF00AAA248 /* laserHit.sks in Resources */,
 				0FC4C2881F2B5357006D3BEC /* Alchemy.wav in Resources */,
+				0F9DC2361F334D6A00335057 /* coinCollect.mp3 in Resources */,
 				0F0E77D91F2CBBB900AAA248 /* GalaxyForce.wav in Resources */,
 				0F9579301F31CF360032AE2B /* playerExplosion.sks in Resources */,
 				0F80BCF21F29C18D00C981E1 /* Main.storyboard in Resources */,

@@ -13,5 +13,6 @@ class Global {
     
     public static var currentMaxScore: Int = 0
     public static var currentWave: Int = 0
+    public static var money: Int = 0
     
 }

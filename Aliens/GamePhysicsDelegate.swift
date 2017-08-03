@@ -158,7 +158,15 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         
         if contact.bodyA.categoryBitMask == itemCat || contact.bodyB.categoryBitMask == itemCat {
             let itemNode = contact.bodyA.categoryBitMask == itemCat ? contact.bodyA.node : contact.bodyB.node
+            let playerNode = contact.bodyA.categoryBitMask == itemCat ? contact.bodyB.node as! SKPlayerNode : contact.bodyA.node as! SKPlayerNode
             if itemNode?.parent != nil {
+                if let coinNode = itemNode as? SKCoinNode {
+                    let coinSound = SKAction.playSoundFileNamed("coinCollect.mp3", waitForCompletion: false)
+                    Global.money += coinNode.value
+                    let gameScene = playerNode.parent as! GameScene
+                    gameScene.updateMoney(with: coinNode.value)
+                    gameScene.run(coinSound)
+                }
                 itemNode?.removeFromParent()
             }
         }

@@ -208,6 +208,10 @@ class GameScene: SKScene {
         // Called once every frame
     }
     
+    public func updateMoney(with add: Int) {
+        gameViewController.updateMoney(with: add)
+    }
+    
     // Beginning the game, will be revamped later
     func beginGame() {
         nextLevel()

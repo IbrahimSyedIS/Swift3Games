@@ -19,6 +19,10 @@ class GameSceneViewController: UIViewController {
     @IBOutlet var blurEffect: UIVisualEffectView!
     @IBOutlet var homeButton: UIButton!
     
+    @IBOutlet var coinImage: UIImageView!
+    @IBOutlet var coinXImage: UIImageView!
+    @IBOutlet var moneyLabel: UILabel!
+    
     var gameScene: SKScene? = nil
     var mainView: SKView? = nil
     
@@ -83,6 +87,10 @@ class GameSceneViewController: UIViewController {
         scoreLabel.text = "Score: \(newScene.score)                                        High Score: \(highScore!)"
     }
     
+    public func updateMoney(with add: Int) {
+        moneyLabel.text = String(Int(moneyLabel.text!)! + add)
+    }
+    
     @IBAction func homeButtonPressed(_ sender: Any) {
         let newGameScene = gameScene as! GameScene
         newGameScene.pause()
@@ -110,6 +118,7 @@ class GameSceneViewController: UIViewController {
                 
                 // We show the relevant buttons
                 self.pauseScoreLabel.isHidden = false
+                self.homeButton.isHidden = false
             })
             
             // Then we make the pause button a return button
@@ -117,7 +126,10 @@ class GameSceneViewController: UIViewController {
             
             // We hide the irrelevant stuff label
             scoreLabel.isHidden = true
-            homeButton.isHidden = false
+            coinImage.isHidden = true
+            coinXImage.isHidden = true
+            moneyLabel.isHidden = true
+            
             
             // We stop the autofire by invalidating the timer that automatically fires
             timer.invalidate()
@@ -145,6 +157,9 @@ class GameSceneViewController: UIViewController {
             
             // We show the relevant items again
             scoreLabel.isHidden = false
+            coinImage.isHidden = false
+            coinXImage.isHidden = false
+            moneyLabel.isHidden = false
             homeButton.isHidden = true
             
             // We hide the buttons from the pause screen
