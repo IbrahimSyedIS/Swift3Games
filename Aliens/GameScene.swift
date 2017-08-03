@@ -210,7 +210,7 @@ class GameScene: SKScene {
     
     // Beginning the game, will be revamped later
     func beginGame() {
-        
+        nextLevel()
         timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (nil) in
             if self.levels.count > 0 {
                 self.nextLevel()
@@ -222,42 +222,39 @@ class GameScene: SKScene {
     }
     
     private func nextLevel() {
-        if levels.count > 0 {
-            var level = levels.first!
-            
-            Global.currentWave += 1
-            
-            let waveLabel = SKLabelNode(text: "Wave \(Global.currentWave)")
-            waveLabel.position = CGPoint(x: 0, y: 450)
-            waveLabel.fontSize = 50
-            waveLabel.alpha = 0
-            waveLabel.fontName = "kenvector_future"
-            let fadeIn = SKAction.fadeIn(withDuration: 1)
-            let wait = SKAction.wait(forDuration: 4)
-            let fadeOut = SKAction.fadeOut(withDuration: 1)
-            let disappear = SKAction.removeFromParent()
-            let labelSequence = SKAction.sequence([fadeIn, wait, fadeOut, disappear])
-            waveLabel.move(toParent: self)
-            waveLabel.run(labelSequence)
-            
-            for wave in 0..<Int(level.count / 3) {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + TimeInterval(wave * 14), execute: {
-                    let separation = self.size.width / CGFloat(3)
-                    let firstX = 0 - separation
-                    for enemy in 0..<3 {
-                        self.spawnEnemy(at: CGPoint(x: firstX + (separation * CGFloat(enemy)), y: 750), ofType: level[enemy])
-                        Global.currentMaxScore += level[enemy] * 100
-                    }
-                    level.removeFirst(3)
-                })
-            }
-            
-            
-            
-            levels.removeFirst()
-        } else {
-            endlessMode()
+        var level = levels.first!
+        
+        Global.currentWave += 1
+        
+        let waveLabel = SKLabelNode(text: "Wave \(Global.currentWave)")
+        waveLabel.position = CGPoint(x: 0, y: 450)
+        waveLabel.fontSize = 50
+        waveLabel.alpha = 0
+        waveLabel.fontName = "kenvector_future"
+        let fadeIn = SKAction.fadeIn(withDuration: 1)
+        let wait = SKAction.wait(forDuration: 4)
+        let fadeOut = SKAction.fadeOut(withDuration: 1)
+        let disappear = SKAction.removeFromParent()
+        let labelSequence = SKAction.sequence([fadeIn, wait, fadeOut, disappear])
+        waveLabel.move(toParent: self)
+        waveLabel.run(labelSequence)
+        
+        for wave in 0..<Int(level.count / 3) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + TimeInterval(wave * 14), execute: {
+                let separation = self.size.width / CGFloat(3)
+                let firstX = 0 - separation
+                for enemy in 0..<3 {
+                    self.spawnEnemy(at: CGPoint(x: firstX + (separation * CGFloat(enemy)), y: 750), ofType: level[enemy])
+                    Global.currentMaxScore += level[enemy] * 100
+                }
+                level.removeFirst(3)
+            })
         }
+        
+        
+        
+        levels.removeFirst()
+         
     }
     
     private func endlessMode() {
