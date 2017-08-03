@@ -211,7 +211,7 @@ class GameScene: SKScene {
     // Beginning the game, will be revamped later
     func beginGame() {
         nextLevel()
-        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { (nil) in
+        timer = Timer.scheduledTimer(withTimeInterval: 56, repeats: true, block: { (nil) in
             if self.levels.count > 0 {
                 self.nextLevel()
             } else {
