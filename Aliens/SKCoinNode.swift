@@ -16,11 +16,12 @@ class SKCoinNode: SKSpriteNode {
     public func initCoin() {
         value = Int(arc4random_uniform(12))
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
-        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = GamePhysicsDelegate.ITEM_CAT
         self.physicsBody?.collisionBitMask = GamePhysicsDelegate.PLAYER_CAT
         self.physicsBody?.contactTestBitMask = GamePhysicsDelegate.PLAYER_CAT
+        self.physicsBody?.fieldBitMask = 0b1 << 6
     }
     
     // Just overriding two initializer functions in order to satisfy the superclass

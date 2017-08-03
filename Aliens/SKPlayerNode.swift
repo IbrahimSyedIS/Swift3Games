@@ -23,6 +23,13 @@ class SKPlayerNode: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
+    public func coinGravity() {
+        let gravityNode = SKFieldNode.radialGravityField()
+        gravityNode.categoryBitMask = 0b1 << 6
+        addChild(gravityNode)
+        physicsBody?.fieldBitMask = 0
+    }
+    
     public func die() {
         if health > 0  {
             return

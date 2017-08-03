@@ -112,6 +112,7 @@ class SKEnemyNode: SKSpriteNode {
             laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.ENEMY_LASER_CAT
             laser.physicsBody?.collisionBitMask = 0
             laser.physicsBody?.contactTestBitMask = GamePhysicsDelegate.PLAYER_CAT
+            laser.physicsBody?.fieldBitMask = 0
             self.parent?.addChild(laser)
             let distance = laser.position.y > 0 ? laser.position.y + 750 : 750 - abs(laser.position.y)
             let laserActionSequence = SKAction.sequence([SKAction.move(to: CGPoint(x: laser.position.x, y: -750), duration: TimeInterval(distance / 250)), SKAction.removeFromParent()])

@@ -137,6 +137,11 @@ class GameScene: SKScene {
         
         spaceship.physicsBody?.allowsRotation = false
         
+        
+        
+        let specialShip = spaceship as! SKPlayerNode
+        specialShip.coinGravity()
+        
         // Creating an array that holds the textures for the spaceship animations (rocket fire)
         let spaceshipAnimations = [SKTexture(imageNamed: "Spaceship1.png"), SKTexture(imageNamed: "Spaceship2.png"),
                                    SKTexture(imageNamed: "Spaceship3.png"), SKTexture(imageNamed: "Spaceship4.png"),
@@ -226,8 +231,9 @@ class GameScene: SKScene {
             waveLabel.position = CGPoint(x: 0, y: 450)
             waveLabel.fontSize = 50
             waveLabel.alpha = 0
+            waveLabel.fontName = "kenvector_future"
             let fadeIn = SKAction.fadeIn(withDuration: 1)
-            let wait = SKAction.wait(forDuration: 3)
+            let wait = SKAction.wait(forDuration: 4)
             let fadeOut = SKAction.fadeOut(withDuration: 1)
             let disappear = SKAction.removeFromParent()
             let labelSequence = SKAction.sequence([fadeIn, wait, fadeOut, disappear])
@@ -295,6 +301,7 @@ class GameScene: SKScene {
         enemy.physicsBody?.categoryBitMask = enemyCat
         enemy.physicsBody?.collisionBitMask = enemyMask
         enemy.physicsBody?.contactTestBitMask = enemyMask
+        enemy.physicsBody?.fieldBitMask = 0
         
         let enemyAnimation = SKAction.repeatForever(SKAction.animate(with: enemyAnimations, timePerFrame: 0.1))
         enemy.run(enemyAnimation)
@@ -380,6 +387,7 @@ class GameScene: SKScene {
         laser.physicsBody?.categoryBitMask = laserCat
         laser.physicsBody?.collisionBitMask = laserMask
         laser.physicsBody?.contactTestBitMask = laserMask
+        laser.physicsBody?.fieldBitMask = 0
         
         // Adding the laser to the scene
         laser.move(toParent: self)
