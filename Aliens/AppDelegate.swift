@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        Global.money = UserDefaults.standard.integer(forKey: "money")
+        
         // Initialize the Google Mobile Ads SDK
         // Sample App Id for now
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3480761636950180~8001860098")
@@ -44,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        UserDefaults.standard.set(Global.money, forKey: "money")
     }
 
 
