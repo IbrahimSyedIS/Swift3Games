@@ -134,10 +134,10 @@ class GameScene: SKScene {
         spaceship.physicsBody?.categoryBitMask = playerCat
         
         // Assigning the colision bit mask to 0 so that the ship physically collides with nothing, but...
-        spaceship.physicsBody?.collisionBitMask = playerMask
+        spaceship.physicsBody?.collisionBitMask = playerMask | enemyCat
         
         // ...Assigning the contact bit mask to the playerMask from before so that it calls the collision function when it collides with items/powerups
-        spaceship.physicsBody?.contactTestBitMask = playerMask
+        spaceship.physicsBody?.contactTestBitMask = playerMask | enemyCat
         
         spaceship.physicsBody?.allowsRotation = false
         
@@ -341,6 +341,9 @@ class GameScene: SKScene {
                 
                 // ...Pause their movements
                 action.speed = 0
+                if let subChild = child.children.first {
+                    subChild.action(forKey: "laserShoot")?.speed = 0
+                }
             }
         }
     }

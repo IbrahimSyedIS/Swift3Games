@@ -116,7 +116,7 @@ class SKEnemyNode: SKSpriteNode {
             self.parent?.addChild(laser)
             let distance = laser.position.y > 0 ? laser.position.y + 750 : 750 - abs(laser.position.y)
             let laserActionSequence = SKAction.sequence([SKAction.move(to: CGPoint(x: laser.position.x, y: -750), duration: TimeInterval(distance / 250)), SKAction.removeFromParent()])
-            laser.run(laserActionSequence)
+            laser.run(laserActionSequence, withKey: "laserShoot")
         }
     }
     

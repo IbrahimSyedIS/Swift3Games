@@ -211,6 +211,44 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                 }
             }
         }
+        
+        if contact.bodyA.categoryBitMask == enemyCat || contact.bodyB.categoryBitMask == enemyCat {
+            let enemyNode = contact.bodyA.categoryBitMask == enemyCat ? contact.bodyA.node : contact.bodyB.node
+            let otherNode = contact.bodyB.categoryBitMask == enemyCat ? contact.bodyA.node : contact.bodyB.node
+            
+            if enemyNode?.parent == nil {
+                return
+            }
+            
+            enemyNode?.removeAllActions()
+            enemyNode?.removeFromParent()
+            
+            // If it is then we move the explosion to the enemy position
+            enemyDie.position = (enemyNode?.position)!
+            
+            let emitterAction = SKAction.run({
+                self.gameScene.addChild(enemyDie)
+            })
+            
+            let emitterDuration = CGFloat(enemyDie.numParticlesToEmit) * enemyDie.particleLifetime
+            
+            let wait = SKAction.wait(forDuration: TimeInterval(emitterDuration))
+            
+            let remove = SKAction.run({
+                enemyDie.removeFromParent()
+            })
+            
+            let sequence = SKAction.sequence([emitterAction, wait, remove])
+            
+            // Then we add it to the scene
+            gameScene.run(sequence)
+            
+            if let playerNode = otherNode as? SKPlayerNode {
+                if playerNode.health > 0 {
+                    playerNode.health -= 12
+                }
+            }
+        }
     }
     
 }
