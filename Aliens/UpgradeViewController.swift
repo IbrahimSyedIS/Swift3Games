@@ -8,11 +8,21 @@
 
 import SpriteKit
 import GameplayKit
+import GoogleMobileAds
 
-class UpgradeViewController: UIViewController {
+class UpgradeViewController: UIViewController, GADInterstitialDelegate {
     
     @IBOutlet var speedButton: UIButton!
     @IBOutlet var speedProgressBar: UIProgressView!
+    var interstitial: GADInterstitial!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if interstitial != nil && interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        }
+        
+    }
     
     override func viewDidLoad() {
         
@@ -22,6 +32,21 @@ class UpgradeViewController: UIViewController {
         speedProgressBar.progress = 0.1
         speedButton.adjustsImageWhenDisabled = false
         speedButton.setTitle("upgrade speed", for: .highlighted)
+        
+        interstitial = createAndLoadInterstitial()
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitialT = GADInterstitial(adUnitID: "ca-app-pub-3480761636950180/7107542838")
+        interstitialT.delegate = self
+        let requestT = GADRequest()
+        requestT.testDevices = [ kGADSimulatorID ]
+        interstitialT.load(requestT)
+        return interstitialT
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
     }
     
     @IBAction func goBackPressed(_ sender: UIButton) {
