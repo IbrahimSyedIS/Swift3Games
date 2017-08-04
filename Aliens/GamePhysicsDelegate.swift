@@ -205,7 +205,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                 laserNode?.removeFromParent()
                 
                 if playerNode.health > 0 {
-                    playerNode.takeDamage(5)
+                    playerNode.takeDamage(2)
                 } else {
                     playerNode.die()
                 }
@@ -246,7 +246,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                 gameScene.run(sequence)
                 
                 if playerNode.health > 0 {
-                    playerNode.takeDamage(12)
+                    playerNode.takeDamage(10)
                 }
             }
         }
