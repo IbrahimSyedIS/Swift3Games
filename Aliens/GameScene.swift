@@ -125,6 +125,10 @@ class GameScene: SKScene {
         // Assigning the spaceship reference to the player ship sprite in the GameScene
         spaceship = self.childNode(withName: "spaceship") as! SKSpriteNode
         
+        if let test = spaceship as? SKPlayerNode {
+            test.createHealthBar()
+        }
+        
         // Assigning the starParticleEffect reference to the Emitter Node in the GameScene
         starParticleEffect = self.childNode(withName: "Stars") as! SKEmitterNode
         
