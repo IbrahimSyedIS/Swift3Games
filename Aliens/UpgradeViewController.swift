@@ -25,7 +25,6 @@ class UpgradeViewController: UIViewController, GADInterstitialDelegate {
     }
     
     override func viewDidLoad() {
-        
         speedButton.isHidden = true
         speedProgressBar.isHidden = true
         
