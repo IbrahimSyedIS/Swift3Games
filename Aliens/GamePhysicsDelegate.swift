@@ -220,30 +220,31 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                 return
             }
             
-            enemyNode?.removeAllActions()
-            enemyNode?.removeFromParent()
-            
-            // If it is then we move the explosion to the enemy position
-            enemyDie.position = (enemyNode?.position)!
-            
-            let emitterAction = SKAction.run({
-                self.gameScene.addChild(enemyDie)
-            })
-            
-            let emitterDuration = CGFloat(enemyDie.numParticlesToEmit) * enemyDie.particleLifetime
-            
-            let wait = SKAction.wait(forDuration: TimeInterval(emitterDuration))
-            
-            let remove = SKAction.run({
-                enemyDie.removeFromParent()
-            })
-            
-            let sequence = SKAction.sequence([emitterAction, wait, remove])
-            
-            // Then we add it to the scene
-            gameScene.run(sequence)
-            
             if let playerNode = otherNode as? SKPlayerNode {
+                
+                enemyNode?.removeAllActions()
+                enemyNode?.removeFromParent()
+                
+                // If it is then we move the explosion to the enemy position
+                enemyDie.position = (enemyNode?.position)!
+                
+                let emitterAction = SKAction.run({
+                    self.gameScene.addChild(enemyDie)
+                })
+                
+                let emitterDuration = CGFloat(enemyDie.numParticlesToEmit) * enemyDie.particleLifetime
+                
+                let wait = SKAction.wait(forDuration: TimeInterval(emitterDuration))
+                
+                let remove = SKAction.run({
+                    enemyDie.removeFromParent()
+                })
+                
+                let sequence = SKAction.sequence([emitterAction, wait, remove])
+                
+                // Then we add it to the scene
+                gameScene.run(sequence)
+                
                 if playerNode.health > 0 {
                     playerNode.health -= 12
                 }
