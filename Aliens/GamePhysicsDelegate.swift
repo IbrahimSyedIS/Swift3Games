@@ -215,6 +215,8 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                 playerNode.takeDamage(2)
             } else {
                 playerNode.die()
+                Global.gameSceneViewController.gameOver()
+                Global.gameScene.pause()
             }
             
         }
@@ -256,6 +258,8 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                     playerNode.takeDamage(10)
                 } else {
                     playerNode.die()
+                    Global.gameSceneViewController.gameOver()
+                    Global.gameScene.pause()
                 }
             }
         }

@@ -13,6 +13,9 @@ class SKPlayerNode: SKSpriteNode {
     
     public var health: Int = 100
     private var healthBar: SKShapeNode!
+    
+    public var gameScene: GameScene!
+    public var gameSceneViewController: UIViewController!
 
     // Just overriding two initializer functions in order to satisfy the superclass
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -35,7 +38,6 @@ class SKPlayerNode: SKSpriteNode {
         removeAllChildren()
         removeAllActions()
         isPaused = true
-        
     }
     
     // Function for creating the health bar of the SKEnemyNode

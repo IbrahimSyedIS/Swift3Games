@@ -65,6 +65,8 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Global.gameViewController = self
+        
         // Plays background music
         backgroundMusic?.play()
         

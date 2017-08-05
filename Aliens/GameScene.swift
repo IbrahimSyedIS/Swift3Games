@@ -52,7 +52,7 @@ class GameScene: SKScene {
     // gameViewController: A reference to the GameViewController that called this GameScene
     public var gameViewController: GameSceneViewController!
     
-    private var timer: Timer!
+    public var timer: Timer!
     
     // physicsContactDelegate: A variable that holds the delegate for the contact 
     var physicsContactDelegate: GamePhysicsDelegate!
@@ -104,6 +104,8 @@ class GameScene: SKScene {
     // Function that is called when the GameScene is presented
     override func didMove(to view: SKView) {
         
+        Global.gameScene = self
+        
         // Assigning the instance variable for the contact delegate to a new instance of the Game Physics Delegate
         physicsContactDelegate = GamePhysicsDelegate()
         
@@ -149,6 +151,9 @@ class GameScene: SKScene {
         
         let specialShip = spaceship as! SKPlayerNode
         specialShip.coinGravity()
+        specialShip.health -= 95
+        specialShip.gameScene = self
+        specialShip.gameSceneViewController = gameViewController
         
         // Creating an array that holds the textures for the spaceship animations (rocket fire)
         let spaceshipAnimations = [SKTexture(imageNamed: "Spaceship1.png"), SKTexture(imageNamed: "Spaceship2.png"),
@@ -337,6 +342,14 @@ class GameScene: SKScene {
         // Pausing the star particles
         starParticleEffect.isPaused = true
         
+        timer.invalidate()
+        
+        for child in children {
+            if let enemy = child as? SKEnemyNode {
+                enemy.pauseEnemy()
+            }
+        }
+        
         // Looping through all the children of the GameScene
         for child in self.children {
             
@@ -363,6 +376,8 @@ class GameScene: SKScene {
         
         // Replaying the star particles
         starParticleEffect.isPaused = false
+        
+        beginGame()
         
         // Looping through the children and...
         for child in self.children {

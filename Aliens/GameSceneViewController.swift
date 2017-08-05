@@ -39,6 +39,8 @@ class GameSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Global.gameSceneViewController = self
+        
         highScore = userDefaults.integer(forKey: "highScore")
         
         scoreLabel.text = "Score: 0                                        High Score: \(highScore!)"
@@ -100,25 +102,30 @@ class GameSceneViewController: UIViewController {
     }
     
     public func gameOver() {
-        let newGameScene = gameScene as! GameScene
-        if (newGameScene.gamePaused) {
-            return
+        if let newGameScene = gameScene as? GameScene {
+            if (newGameScene.gamePaused) {
+                return
+            }
+            newGameScene.pause()
+            homeButton.isHidden = false
+            pauseScoreLabel.isHidden = false
+            
+            scoreLabel.isHidden = true
+            pauseButton.isHidden = true
+            coinImage.isHidden = true
+            coinXImage.isHidden = true
+            moneyLabel.isHidden = true
+            
+            timer.invalidate()
+            newGameScene.timer.invalidate()
+            
+            gameOverLabel = UILabel()
+            gameOverLabel.text = "Game Over"
+            gameOverLabel.font = UIFont(name: "kenvector_future", size: CGFloat(50))
+            gameOverLabel.textAlignment = .center
+            self.view.addSubview(gameOverLabel)
         }
-        newGameScene.pause()
-        homeButton.isHidden = false
-        pauseScoreLabel.isHidden = false
         
-        scoreLabel.isHidden = true
-        pauseButton.isHidden = true
-        coinImage.isHidden = true
-        coinXImage.isHidden = true
-        moneyLabel.isHidden = true
-        
-        gameOverLabel = UILabel()
-        gameOverLabel.text = "Game Over"
-        gameOverLabel.font = UIFont(name: "kenvector_future", size: CGFloat(50))
-        gameOverLabel.textAlignment = .center
-        self.view.addSubview(gameOverLabel)
     }
     
     @IBAction func homeButtonPressed(_ sender: Any) {
