@@ -32,9 +32,10 @@ class SKPlayerNode: SKSpriteNode {
     }
     
     public func die() {
-        if health > 0  {
-            return
-        }
+        removeAllChildren()
+        removeAllActions()
+        isPaused = true
+        
     }
     
     // Function for creating the health bar of the SKEnemyNode

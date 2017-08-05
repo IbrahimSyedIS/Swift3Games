@@ -23,6 +23,8 @@ class GameSceneViewController: UIViewController {
     @IBOutlet var coinXImage: UIImageView!
     @IBOutlet var moneyLabel: UILabel!
     
+    var gameOverLabel: UILabel!
+    
     var gameScene: SKScene? = nil
     var mainView: SKView? = nil
     
@@ -45,6 +47,12 @@ class GameSceneViewController: UIViewController {
         
         pauseScoreLabel.isHidden = true
         homeButton.isHidden = true
+        
+        pauseButton.isHidden = false
+        scoreLabel.isHidden = false
+        coinImage.isHidden = false
+        coinXImage.isHidden = false
+        moneyLabel.isHidden = false
         
         if let view = self.view as! SKView? {
             self.mainView = view
@@ -89,6 +97,28 @@ class GameSceneViewController: UIViewController {
     
     public func updateMoney(with add: Int) {
         moneyLabel.text = String(Int(moneyLabel.text!)! + add)
+    }
+    
+    public func gameOver() {
+        let newGameScene = gameScene as! GameScene
+        if (newGameScene.gamePaused) {
+            return
+        }
+        newGameScene.pause()
+        homeButton.isHidden = false
+        pauseScoreLabel.isHidden = false
+        
+        scoreLabel.isHidden = true
+        pauseButton.isHidden = true
+        coinImage.isHidden = true
+        coinXImage.isHidden = true
+        moneyLabel.isHidden = true
+        
+        gameOverLabel = UILabel()
+        gameOverLabel.text = "Game Over"
+        gameOverLabel.font = UIFont(name: "kenvector_future", size: CGFloat(50))
+        gameOverLabel.textAlignment = .center
+        self.view.addSubview(gameOverLabel)
     }
     
     @IBAction func homeButtonPressed(_ sender: Any) {
