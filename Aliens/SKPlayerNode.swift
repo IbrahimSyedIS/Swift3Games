@@ -46,7 +46,7 @@ class SKPlayerNode: SKSpriteNode {
         healthBar.fillColor = UIColor.green
         
         // Putting the health bar at the position of the enemys
-        healthBar.position = CGPoint(x: 0, y: -275)
+        healthBar.position = CGPoint(x: 0, y: -175)
         
         // Adding the health bar as a child of the enemy
         addChild(healthBar)
@@ -61,7 +61,7 @@ class SKPlayerNode: SKSpriteNode {
         newHealthBar.fillColor = UIColor.green
         
         // Putting the health bar at the position of the enemys
-        newHealthBar.position = CGPoint(x: 0, y: -275)
+        newHealthBar.position = CGPoint(x: 0, y: -175)
         
         // Adding the health bar as a child of the enemy
         addChild(newHealthBar)

@@ -159,28 +159,17 @@
 		0F80BCE51F29C18D00C981E1 /* Aliens */ = {
 			isa = PBXGroup;
 			children = (
-				0F80BCE81F29C18D00C981E1 /* GameScene.sks */,
-				0F0E77D51F2CAFDF00AAA248 /* laserHit.sks */,
-				0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */,
-				0F95792F1F31CF360032AE2B /* playerExplosion.sks */,
-				0F95792B1F31A2950032AE2B /* Global.swift */,
-				0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */,
-				0F0E77DB1F2CBE0F00AAA248 /* SKEnemyNode.swift */,
-				0FDBE1561F2F49D700627783 /* SKCoinNode.swift */,
-				0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */,
-				0FFC17ED1F2E20D400342E8A /* GamePhysicsDelegate.swift */,
-				0FC0BB801F2F0B7200AEA135 /* BannerADViewDelegate.swift */,
-				0F80BCEC1F29C18D00C981E1 /* GameScene.swift */,
-				0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */,
-				0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */,
-				0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */,
-				0FDBE1541F2F393200627783 /* CreditsViewController.swift */,
-				0F80BCF01F29C18D00C981E1 /* Main.storyboard */,
-				0F80BCF51F29C18D00C981E1 /* LaunchScreen.storyboard */,
-				0F80BCF31F29C18D00C981E1 /* Assets.xcassets */,
-				0F80BCF81F29C18D00C981E1 /* Info.plist */,
+				0FED0FA51F35B96E00343DF9 /* Global */,
+				0FED0FA41F34A00F00343DF9 /* Scenes */,
+				0FED0FA11F349FB100343DF9 /* Effects */,
+				0FED0FA01F349F8300343DF9 /* SKNodes */,
+				0FED0F9F1F349F6F00343DF9 /* Delegates */,
+				0FED0FA21F349FE300343DF9 /* ViewControllers */,
+				0FED0FA31F349FEE00343DF9 /* Storyboards */,
 				0FC4C2841F2B5293006D3BEC /* Sounds */,
 				0FC4C2891F2C4488006D3BEC /* kenvector_future */,
+				0F80BCF31F29C18D00C981E1 /* Assets.xcassets */,
+				0F80BCF81F29C18D00C981E1 /* Info.plist */,
 			);
 			path = Aliens;
 			sourceTree = "<group>";
@@ -222,6 +211,73 @@
 				0FC4C28A1F2C4488006D3BEC /* kenvector_future.ttf */,
 			);
 			path = kenvector_future;
+			sourceTree = "<group>";
+		};
+		0FED0F9F1F349F6F00343DF9 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */,
+				0FFC17ED1F2E20D400342E8A /* GamePhysicsDelegate.swift */,
+				0FC0BB801F2F0B7200AEA135 /* BannerADViewDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		0FED0FA01F349F8300343DF9 /* SKNodes */ = {
+			isa = PBXGroup;
+			children = (
+				0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */,
+				0F0E77DB1F2CBE0F00AAA248 /* SKEnemyNode.swift */,
+				0FDBE1561F2F49D700627783 /* SKCoinNode.swift */,
+			);
+			name = SKNodes;
+			sourceTree = "<group>";
+		};
+		0FED0FA11F349FB100343DF9 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				0F0E77D51F2CAFDF00AAA248 /* laserHit.sks */,
+				0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */,
+				0F95792F1F31CF360032AE2B /* playerExplosion.sks */,
+			);
+			name = Effects;
+			sourceTree = "<group>";
+		};
+		0FED0FA21F349FE300343DF9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */,
+				0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */,
+				0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */,
+				0FDBE1541F2F393200627783 /* CreditsViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0FED0FA31F349FEE00343DF9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0F80BCF01F29C18D00C981E1 /* Main.storyboard */,
+				0F80BCF51F29C18D00C981E1 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		0FED0FA41F34A00F00343DF9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				0F80BCEC1F29C18D00C981E1 /* GameScene.swift */,
+				0F80BCE81F29C18D00C981E1 /* GameScene.sks */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		0FED0FA51F35B96E00343DF9 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				0F95792B1F31A2950032AE2B /* Global.swift */,
+			);
+			name = Global;
 			sourceTree = "<group>";
 		};
 		B1739564186978F399F67D40 /* Pods */ = {
