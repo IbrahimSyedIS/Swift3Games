@@ -63,7 +63,7 @@ class SKPlayerNode: SKSpriteNode {
         // Filling it green **COME BACK HERE TO UPDATE HEALTH BAR SIZE WHEN HEALTH GOES DOWN**
         newHealthBar.fillColor = UIColor.green
         
-        // Putting the health bar at the position of the enemys
+        // Putting the health bar at the position of the enemies
         newHealthBar.position = CGPoint(x: 0, y: -175)
         
         // Adding the health bar as a child of the enemy
