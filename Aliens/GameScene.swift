@@ -23,11 +23,20 @@
  Journal:
  
  First Entry, Mon Jul 31st:
-    So today I managed to make all the buttons work and added in some coins. I separated the physics delegate and moved the gamescene to a different view controller. I also managed to add in Google Ads but since I'm too afraid to use anything other than the test id, I won't know if it works until release. Coins are still a work in progress, I need to get them to spin and add noises for their collection. As of today, the Aliens folder files are as follows: [GameScene.sks, laserHit.sks, SKEnemyNode.swift, SKCoinNode.swift, AppDelegate.swift, GamePhysicsDelegate.swift, BannerADViewDelegate.swift, GameScene.swift, GameSceneViewController.swift, GameViewController.swift, UpgradeViewController.swift, CreditsViewController.swift, Main.storyboard, LaunchScreen.storyboard, Assets.xcassets, Info.plist, Sounds, kenvector_future]. Targetted release date is sometime before school starts. I still need to fully document all the code in the new files for later reference. Finally, I have to make the enemies shoot back and add in different enemies soon. If all goes well, I should be able to request the developer account while in Kolkata and submit the app for review before we leave India.
- 
- Tue August 1st:
- 
- 
+    So today I managed to make all the buttons work and added in some coins.
+    I separated the physics delegate and moved the gamescene to a different view controller.
+    I also managed to add in Google Ads but since I'm too afraid to use anything other than the test id,
+    I won't know if it works until release.
+    Coins are still a work in progress, I need to get them to spin and add noises for their collection.
+    As of today, the Aliens folder files are as follows:
+    [GameScene.sks, laserHit.sks, SKEnemyNode.swift, SKCoinNode.swift,
+    AppDelegate.swift, GamePhysicsDelegate.swift, BannerADViewDelegate.swift,
+    GameScene.swift, GameSceneViewController.swift, GameViewController.swift,
+    UpgradeViewController.swift, CreditsViewController.swift, Main.storyboard,
+    LaunchScreen.storyboard, Assets.xcassets, Info.plist, Sounds, kenvector_future].
+    I still need to fully document all the code in the new files for later reference.
+    Finally, I have to make the enemies shoot back and add in different enemies soon.
+
 */
  
 // Importing the essentials
@@ -183,7 +192,9 @@ class GameScene: SKScene {
         self.addChild(backgroundMusic)
         
         // Beginning the game
-        beginGame()
+        if (enemiesLeft() == 0) {
+            beginGame()
+        }
     }
 
     // Function for when the user touches the screen
@@ -211,10 +222,29 @@ class GameScene: SKScene {
             spaceship.run(actionMove)
         }
     }
+
+    private var numSinceLastLevelPush: Int = 0
     
     // Function called every frame
     override func update(_ currentTime: TimeInterval) {
         // Called once every frame
+        numSinceLastLevelPush += 1
+        if (enemiesLeft() == 0 && numSinceLastLevelPush >= 25) {
+            nextLevel()
+            numSinceLastLevelPush = 0
+        }
+    }
+
+    private func enemiesLeft() -> Int {
+        var count = 0;
+        for child in children {
+            if let enemy = child as? SKEnemyNode {
+                if (enemy.parent != nil) {
+                    count += 1
+                }
+            }
+        }
+        return count
     }
     
     public func updateMoney(with add: Int) {
@@ -224,14 +254,14 @@ class GameScene: SKScene {
     // Beginning the game, will be revamped later
     func beginGame() {
         nextLevel()
-        timer = Timer.scheduledTimer(withTimeInterval: 56, repeats: true, block: { (nil) in
-            if self.levels.count > 0 {
-                self.nextLevel()
-            } else {
-                self.timer.invalidate()
-                return
-            }
-        })
+//        timer = Timer.scheduledTimer(withTimeInterval: 56, repeats: true, block: { (nil) in
+//            if self.levels.count > 0 {
+//                self.nextLevel()
+//            } else {
+//                self.timer.invalidate()
+//                return
+//            }
+//        })
     }
     
     private func nextLevel() {
@@ -342,7 +372,7 @@ class GameScene: SKScene {
         // Pausing the star particles
         starParticleEffect.isPaused = true
         
-        timer.invalidate()
+//        timer.invalidate()
         
         for child in children {
             if let enemy = child as? SKEnemyNode {
@@ -365,7 +395,7 @@ class GameScene: SKScene {
         }
     }
     
-    // Function for unpausing the game
+    // Function for un-pausing the game
     func unPause() {
         
         // Updating the instance Bool
@@ -377,7 +407,7 @@ class GameScene: SKScene {
         // Replaying the star particles
         starParticleEffect.isPaused = false
         
-        beginGame()
+//        beginGame()
         
         // Looping through the children and...
         for child in self.children {
@@ -388,7 +418,6 @@ class GameScene: SKScene {
             }
         }
     }
-    
     
     // Function for firing the spaceship, primarily used in the GameViewController
     public func spaceshipFire() {
