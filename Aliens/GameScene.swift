@@ -100,6 +100,8 @@ class GameScene: SKScene {
     var levels: [[Int]] = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+
+    private var testLevel: [Int] = [1, 1, 1, 1, 1, 1]
     
     // Private Int that represents the speed of the player in pixels per second
     private var playerSpeed = 625
@@ -229,7 +231,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called once every frame
         numSinceLastLevelPush += 1
-        if (enemiesLeft() == 0 && numSinceLastLevelPush >= 25) {
+        if (enemiesLeft() == 0 && numSinceLastLevelPush >= 25 && !self.gamePaused) {
             nextLevel()
             numSinceLastLevelPush = 0
         }
@@ -265,8 +267,14 @@ class GameScene: SKScene {
     }
     
     private func nextLevel() {
-        var level = levels.first!
-        
+        print("INIT NEXT LEVEL")
+//        var level = levels.first!
+
+        if (testLevel.count <= 0) {
+            print("Enemy Buffer -> Empty")
+            return
+        }
+
         Global.currentWave += 1
         
         let waveLabel = SKLabelNode(text: "Wave \(Global.currentWave)")
@@ -281,23 +289,27 @@ class GameScene: SKScene {
         let labelSequence = SKAction.sequence([fadeIn, wait, fadeOut, disappear])
         waveLabel.move(toParent: self)
         waveLabel.run(labelSequence)
-        
-        for wave in 0..<Int(level.count / 3) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + TimeInterval(wave * 14), execute: {
-                let separation = self.size.width / CGFloat(3)
-                let firstX = 0 - separation
-                for enemy in 0..<3 {
-                    self.spawnEnemy(at: CGPoint(x: firstX + (separation * CGFloat(enemy)), y: 750), ofType: level[enemy])
-                    Global.currentMaxScore += level[enemy] * 100
-                }
-                level.removeFirst(3)
-            })
+
+        let sep = self.size.width / CGFloat(3)
+        let firstX = 0 - sep
+        for enemy in 0..<3 {
+            self.spawnEnemy(at: CGPoint(x: firstX + (sep * CGFloat(enemy)), y : 750), ofType: testLevel[0])
+            Global.currentMaxScore += testLevel.remove(at: 0) * 100
         }
+
+//        for wave in 0..<Int(level.count / 3) {
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + TimeInterval(wave * 14), execute: {
+//                let separation = self.size.width / CGFloat(3)
+//                let firstX = 0 - separation
+//                for enemy in 0..<3 {
+//                    self.spawnEnemy(at: CGPoint(x: firstX + (separation * CGFloat(enemy)), y: 750), ofType: level[enemy])
+//                    Global.currentMaxScore += level[enemy] * 100
+//                }
+//                level.removeFirst(3)
+//            })
+//        }
         
-        
-        
-        levels.removeFirst()
-         
+//        levels.removeFirst()
     }
     
     private func endlessMode() {

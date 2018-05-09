@@ -66,6 +66,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         Global.gameViewController = self
+        Global.currentWave = 0
         
         // Plays background music
         backgroundMusic?.play()
