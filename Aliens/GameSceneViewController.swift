@@ -106,7 +106,7 @@ class GameSceneViewController: UIViewController {
             if (newGameScene.gamePaused) {
                 return
             }
-            newGameScene.pause()
+            newGameScene.pauseGame()
             homeButton.isHidden = false
             pauseScoreLabel.isHidden = false
             
@@ -130,7 +130,7 @@ class GameSceneViewController: UIViewController {
     
     @IBAction func homeButtonPressed(_ sender: Any) {
         let newGameScene = gameScene as! GameScene
-        newGameScene.pause()
+        newGameScene.pauseGame()
         dismiss(animated: true, completion: nil)
         let mainViewController = self.storyboard?.instantiateInitialViewController()
         let mainGameViewController = mainViewController as! GameViewController
@@ -172,7 +172,7 @@ class GameSceneViewController: UIViewController {
             timer.invalidate()
             
             // We pause the GameScene
-            newGameScene.pause()
+            newGameScene.pauseGame()
             
             // We make the title text a score text
             pauseScoreLabel.text = "Score: \(newGameScene.score)"
@@ -190,7 +190,7 @@ class GameSceneViewController: UIViewController {
             autoFire()
             
             // Unpause the GameScene
-            newGameScene.unPause()
+            newGameScene.resumeGame()
             
             // We show the relevant items again
             scoreLabel.isHidden = false

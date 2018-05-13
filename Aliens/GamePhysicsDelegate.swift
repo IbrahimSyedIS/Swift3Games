@@ -216,7 +216,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
             } else {
                 playerNode.die()
                 Global.gameSceneViewController.gameOver()
-                Global.gameScene.pause()
+                Global.gameScene.pauseGame()
             }
             
         }
@@ -259,7 +259,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                 } else {
                     playerNode.die()
                     Global.gameSceneViewController.gameOver()
-                    Global.gameScene.pause()
+                    Global.gameScene.pauseGame()
                 }
             }
         }
