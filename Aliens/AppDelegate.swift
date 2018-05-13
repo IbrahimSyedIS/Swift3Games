@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Global.money = UserDefaults.standard.integer(forKey: "money")
         
-        // Initialize the Google Mobile Ads SDK
-        // Sample App Id for now
+        // initalizing adds with sample ID for now
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3480761636950180~8001860098")
         return true
     }
