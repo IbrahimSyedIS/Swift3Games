@@ -24,7 +24,7 @@ class SKCoinNode: SKSpriteNode {
         self.physicsBody?.fieldBitMask = 0b1 << 6
     }
     
-    // Just overriding two initializer functions in order to satisfy the superclass
+    // Required by Swift
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
