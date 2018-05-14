@@ -14,7 +14,6 @@ class CreditsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    // Function to tell the device we want to hide the status bar
     override var prefersStatusBarHidden: Bool {
         return true
     }

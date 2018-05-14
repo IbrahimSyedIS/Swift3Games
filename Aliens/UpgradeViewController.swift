@@ -21,17 +21,14 @@ class UpgradeViewController: UIViewController, GADInterstitialDelegate {
         if interstitial != nil && interstitial.isReady {
             interstitial.present(fromRootViewController: self)
         }
-        
     }
     
     override func viewDidLoad() {
         speedButton.isHidden = true
         speedProgressBar.isHidden = true
-        
         speedProgressBar.progress = 0.1
         speedButton.adjustsImageWhenDisabled = false
         speedButton.setTitle("upgrade speed", for: .highlighted)
-        
         interstitial = createAndLoadInterstitial()
     }
     
