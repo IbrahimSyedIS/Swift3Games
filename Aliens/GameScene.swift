@@ -74,8 +74,27 @@ class GameScene: SKScene {
         enemyMask = laserCat | enemyCat
         
         spaceship = self.childNode(withName: "spaceship") as! SKPlayerNode
-        spaceship.createHealthBar()
+        prepareSpaceship()
         starParticleEffect = self.childNode(withName: "Stars") as! SKEmitterNode
+        
+        backgroundMusicNode = getBackgroundMusic(fileName: "GalaxyForce.wav")
+        backgroundMusicNode.run(SKAction.changeVolume(to: 5, duration: 0))
+        self.addChild(backgroundMusicNode)
+        
+        // Beginning the game
+        if (enemiesLeft() == 0) {
+            beginGame()
+        }
+    }
+    
+    private func getBackgroundMusic(fileName: String) -> SKAudioNode {
+        let backgroundMusic = SKAudioNode(fileNamed: fileName)
+        backgroundMusic.autoplayLooped = true
+        return backgroundMusic
+    }
+    
+    private func prepareSpaceship() {
+        spaceship.createHealthBar()
         spaceship.physicsBody?.categoryBitMask = playerCat
         
         // Collision bitmask -> physically collides + interacts with
@@ -96,16 +115,6 @@ class GameScene: SKScene {
                                    SKTexture(imageNamed: "Spaceship7.png"), SKTexture(imageNamed: "Spaceship8.png")]
         let spaceshipAnimation = SKAction.repeatForever(SKAction.animate(with: spaceshipAnimations, timePerFrame: 0.05))
         spaceship.run(spaceshipAnimation)
-        let backgroundMusic = SKAudioNode(fileNamed: "GalaxyForce.wav")
-        backgroundMusic.autoplayLooped = true
-        backgroundMusicNode = backgroundMusic
-        backgroundMusicNode.run(SKAction.changeVolume(to: 5, duration: 0))
-        self.addChild(backgroundMusic)
-        
-        // Beginning the game
-        if (enemiesLeft() == 0) {
-            beginGame()
-        }
     }
 
     // Called on user Touch
@@ -159,24 +168,31 @@ class GameScene: SKScene {
             return
         }
         Global.currentWave += 1
-        let waveLabel = SKLabelNode(text: "Wave \(Global.currentWave)")
-        waveLabel.position = CGPoint(x: 0, y: 450)
-        waveLabel.fontSize = 50
-        waveLabel.alpha = 0
-        waveLabel.fontName = "kenvector_future"
+        let waveLabel = createWaveLabel(wave: Global.currentWave)
         let fadeIn = SKAction.fadeIn(withDuration: 1)
         let wait = SKAction.wait(forDuration: 4)
         let fadeOut = SKAction.fadeOut(withDuration: 1)
         let disappear = SKAction.removeFromParent()
         let labelSequence = SKAction.sequence([fadeIn, wait, fadeOut, disappear])
         waveLabel.move(toParent: self)
-        waveLabel.run(labelSequence)
+        waveLabel.run(labelSequence) {
+            waveLabel.removeFromParent()
+        }
         let sep = self.size.width / CGFloat(3)
         let firstX = 0 - sep
         for enemy in 0..<3 {
             self.spawnEnemy(at: CGPoint(x: firstX + (sep * CGFloat(enemy)), y : 750), ofType: testLevel[0])
             Global.currentMaxScore += testLevel.remove(at: 0) * 100
         }
+    }
+    
+    private func createWaveLabel(wave: Int) -> SKLabelNode {
+        let waveLabel = SKLabelNode(text: "Wave \(wave)")
+        waveLabel.position = CGPoint(x: 0, y: 450)
+        waveLabel.fontSize = 50
+        waveLabel.alpha = 0
+        waveLabel.fontName = "kenvector_future"
+        return waveLabel
     }
     
     private func endlessMode() {
@@ -203,7 +219,16 @@ class GameScene: SKScene {
             enemy = SKEnemyNode(imageNamed: "enemy")
             enemyAnimations = []
         }
-        
+        enemy = prepareEnemy(enemy: enemy)
+        enemy.run(SKAction.repeatForever(SKAction.animate(with: enemyAnimations, timePerFrame: 0.1)))
+        enemy.move(toParent: self)
+        enemy.position = position
+        let enemyMove = SKAction.move(to: CGPoint(x: enemy.position.x, y: CGFloat(-750)), duration: 23)
+        enemy.run(SKAction.sequence([enemyMove, SKAction.removeFromParent()]), withKey: "enemyMove")
+        enemy.autoFire()
+    }
+    
+    private func prepareEnemy(enemy: SKEnemyNode) -> SKEnemyNode {
         enemy.createHealthBar()
         enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
         enemy.physicsBody?.affectedByGravity = false
@@ -211,12 +236,7 @@ class GameScene: SKScene {
         enemy.physicsBody?.collisionBitMask = enemyMask
         enemy.physicsBody?.contactTestBitMask = enemyMask
         enemy.physicsBody?.fieldBitMask = 0
-        enemy.run(SKAction.repeatForever(SKAction.animate(with: enemyAnimations, timePerFrame: 0.1)))
-        enemy.move(toParent: self)
-        enemy.position = position
-        let enemyMove = SKAction.move(to: CGPoint(x: enemy.position.x, y: CGFloat(-750)), duration: 23)
-        enemy.run(SKAction.sequence([enemyMove, SKAction.removeFromParent()]), withKey: "enemyMove")
-        enemy.autoFire()
+        return enemy
     }
     
     public func pauseGame() {
@@ -249,6 +269,16 @@ class GameScene: SKScene {
     }
     
     public func spaceshipFire() {
+        let laser = getLaser()
+        laser.move(toParent: self)
+        laser.position = CGPoint(x: spaceship.position.x, y: spaceship.position.y + 100)
+        run(laserFireSound)
+        let laserAction = SKAction.moveBy(x: CGFloat(0), y: CGFloat(1200), duration: 1)
+        let laserActions = SKAction.sequence([laserAction, SKAction.removeFromParent()])
+        laser.run(laserActions, withKey: "enemyMove")
+    }
+    
+    private func getLaser() -> SKSpriteNode {
         let laser: SKSpriteNode = SKSpriteNode(imageNamed: "Laser")
         laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
         laser.physicsBody?.affectedByGravity = false
@@ -256,11 +286,6 @@ class GameScene: SKScene {
         laser.physicsBody?.collisionBitMask = laserMask
         laser.physicsBody?.contactTestBitMask = laserMask
         laser.physicsBody?.fieldBitMask = 0
-        laser.move(toParent: self)
-        laser.position = CGPoint(x: spaceship.position.x, y: spaceship.position.y + 100)
-        run(laserFireSound)
-        let laserAction = SKAction.moveBy(x: CGFloat(0), y: CGFloat(1200), duration: 1)
-        let laserActions = SKAction.sequence([laserAction, SKAction.removeFromParent()])
-        laser.run(laserActions, withKey: "enemyMove")
+        return laser
     }
 }
