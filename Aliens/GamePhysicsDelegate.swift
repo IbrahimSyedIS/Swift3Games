@@ -29,32 +29,53 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
     
     public var gameScene: GameScene!
     
+    /**
+     # Collisions
+     
+     Called when something in the game collides with something else
+     - Parameter contact: SKPhysicsContact object that provides info about the collision such as position, force, and the nodes involved
+     */
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        // Checking to make sure that both of the nodes are still in the scene
         if (contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil) {
             return
         }
         
+        // Handling a collision between an item and player
         if (contact.bodyA.categoryBitMask == itemCat || contact.bodyB.categoryBitMask == itemCat) &&
             (contact.bodyA.categoryBitMask == playerCat || contact.bodyB.categoryBitMask == playerCat) {
             handleItemCollision(playerNodeO: contact.bodyA.categoryBitMask == playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, itemNodeO: contact.bodyA.categoryBitMask == itemCat ? contact.bodyA.node as? SKCoinNode : contact.bodyB.node as? SKCoinNode)
         }
         
+        // Handling a collision between an enemy's laser and a player
         if (contact.bodyA.categoryBitMask == enemyLaserCat || contact.bodyB.categoryBitMask == enemyLaserCat) &&
             (contact.bodyA.categoryBitMask == playerCat || contact.bodyB.categoryBitMask == playerCat) {
             handleLaserOfEnemyPlayerCollison(playerNodeO: contact.bodyA.categoryBitMask == playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, laserNodeO: contact.bodyA.categoryBitMask == enemyLaserCat ? contact.bodyA.node as? SKSpriteNode: contact.bodyB.node as? SKSpriteNode)
         }
         
+        // Handling a colission between an enemy and a player
         if (contact.bodyA.categoryBitMask == enemyCat || contact.bodyB.categoryBitMask == enemyCat) &&
             (contact.bodyA.categoryBitMask == playerCat || contact.bodyB.categoryBitMask == playerCat) {
             handleEnemyPlayerCollision(playerNodeO: contact.bodyA.categoryBitMask == playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, enemyNodeO: contact.bodyA.categoryBitMask == enemyCat ? contact.bodyA.node as? SKEnemyNode: contact.bodyB.node as? SKEnemyNode)
         }
         
+        // Handling a collision between an enemy and a laser
         if (contact.bodyA.categoryBitMask == enemyCat || contact.bodyB.categoryBitMask == enemyCat) &&
             (contact.bodyA.categoryBitMask == laserCat || contact.bodyB.categoryBitMask == laserCat) {
             handleLaserEnemyColision(enemyNodeO: contact.bodyA.categoryBitMask == enemyCat ? contact.bodyA.node as? SKEnemyNode : contact.bodyB.node as? SKEnemyNode, laserNodeO: contact.bodyA.categoryBitMask == laserCat ? contact.bodyA.node as? SKSpriteNode: contact.bodyB.node as? SKSpriteNode)
         }
     }
     
+    /**
+     # Enemy Laser Colission
+     
+     Handles enemies being hit by lasers. Enemy takes damage and laser is removed.
+     If the enemy dies in this collision, the enemy death method is called.
+     
+     - Parameter enemyNodeO: The enemy being hit
+     - Parameter laserNodeO: The laser hitting the enemy
+     */
     private func handleLaserEnemyColision(enemyNodeO: SKEnemyNode?, laserNodeO: SKSpriteNode?) {
         guard let laserNode = laserNodeO, let enemyNode = enemyNodeO else {
             return
