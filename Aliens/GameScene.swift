@@ -105,8 +105,6 @@ class GameScene: SKScene {
         spaceship.physicsBody?.allowsRotation = false
         spaceship.coinGravity()
         spaceship.health -= 95
-        spaceship.gameScene = self
-        spaceship.gameSceneViewController = gameViewController
         
         // rockets at bottom of ship
         let spaceshipAnimations = [SKTexture(imageNamed: "Spaceship1.png"), SKTexture(imageNamed: "Spaceship2.png"),

@@ -71,6 +71,7 @@ class GameSceneViewController: UIViewController {
             userDefaults.set(newScene.score, forKey: "highScore")
         }
         scoreLabel.text = "Score: \(newScene.score)                                        High Score: \(highScore!)"
+        pauseScoreLabel.text = "Score: \(newScene.score)"
     }
     
     public func updateMoney(with add: Int) {
@@ -91,7 +92,6 @@ class GameSceneViewController: UIViewController {
             coinXImage.isHidden = true
             moneyLabel.isHidden = true
             timer.invalidate()
-            newGameScene.timer.invalidate()
             gameOverLabel = UILabel()
             gameOverLabel.text = "Game Over"
             gameOverLabel.font = UIFont(name: "kenvector_future", size: CGFloat(50))

@@ -15,6 +15,8 @@
 		0F0E77DE1F2CC03600AAA248 /* laserBlast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */; };
 		0F0E77E01F2CC3CA00AAA248 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */; };
 		0F1E90591F33529800630A98 /* coinCollect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F1E90581F33529800630A98 /* coinCollect.mp3 */; };
+		0F57C18720B8899E00631DE6 /* SKCharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */; };
+		0F7C714C20C0442200169780 /* SKWeaponNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7C714B20C0442200169780 /* SKWeaponNode.swift */; };
 		0F80BCE71F29C18D00C981E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */; };
 		0F80BCE91F29C18D00C981E1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCE81F29C18D00C981E1 /* GameScene.sks */; };
 		0F80BCED1F29C18D00C981E1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCEC1F29C18D00C981E1 /* GameScene.swift */; };
@@ -66,6 +68,8 @@
 		0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laserBlast.mp3; sourceTree = "<group>"; };
 		0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		0F1E90581F33529800630A98 /* coinCollect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coinCollect.mp3; sourceTree = "<group>"; };
+		0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCharacterNode.swift; sourceTree = "<group>"; };
+		0F7C714B20C0442200169780 /* SKWeaponNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKWeaponNode.swift; sourceTree = "<group>"; };
 		0F80BCE31F29C18D00C981E1 /* Aliens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aliens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F80BCE81F29C18D00C981E1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 				0F95792D1F31CD2A0032AE2B /* SKPlayerNode.swift */,
 				0F0E77DB1F2CBE0F00AAA248 /* SKEnemyNode.swift */,
 				0FDBE1561F2F49D700627783 /* SKCoinNode.swift */,
+				0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */,
+				0F7C714B20C0442200169780 /* SKWeaponNode.swift */,
 			);
 			name = SKNodes;
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F57C18720B8899E00631DE6 /* SKCharacterNode.swift in Sources */,
 				0FDBE1571F2F49D700627783 /* SKCoinNode.swift in Sources */,
 				0F80BCED1F29C18D00C981E1 /* GameScene.swift in Sources */,
 				0F80BCEF1F29C18D00C981E1 /* GameViewController.swift in Sources */,
@@ -610,6 +617,7 @@
 				0FC0BB811F2F0B7200AEA135 /* BannerADViewDelegate.swift in Sources */,
 				0F0E77DC1F2CBE0F00AAA248 /* SKEnemyNode.swift in Sources */,
 				0FDBE1551F2F393200627783 /* CreditsViewController.swift in Sources */,
+				0F7C714C20C0442200169780 /* SKWeaponNode.swift in Sources */,
 				0FFC17EC1F2E112900342E8A /* GameSceneViewController.swift in Sources */,
 				0FDBE1531F2F361A00627783 /* UpgradeViewController.swift in Sources */,
 				0FFC17EE1F2E20D400342E8A /* GamePhysicsDelegate.swift in Sources */,
