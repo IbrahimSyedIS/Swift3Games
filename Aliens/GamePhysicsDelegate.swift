@@ -102,6 +102,14 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         }
     }
     
+    /**
+     # Enemy Death
+     
+     Handles the death of an enemy by placing an explosion as well as removing them from the scene.
+     The score is also updated and a coin is added.
+     
+     - Parameter enemyNode: The enemy node itself to be removed
+     */
     private func enemyHasDied(enemyNode: SKEnemyNode) {
         let enemyDie = SKEmitterNode(fileNamed: "Explosion")!
         enemyDie.position = enemyNode.position
@@ -120,6 +128,15 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         gameScene.gameViewController.updateScoreLabel()
     }
     
+    /**
+     # Create Coin
+     
+     This method takes a position and returns a new coin pre-set to be placed in the given position. Animations are applied as well
+     
+     - Parameter position: The CGPoint that represents the position that the coin should be placed
+     
+     - Returns: A Coin node that is set to be in the given position
+     */
     private func createCoin(position: CGPoint) -> SKCoinNode {
         let newCoin: SKCoinNode = SKCoinNode(imageNamed: "Gold_21")
         let coinAnimationTextures = [SKTexture(imageNamed: "Gold_21"), SKTexture(imageNamed: "Gold_22"), SKTexture(imageNamed: "Gold_23"),
@@ -135,6 +152,14 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         return newCoin
     }
     
+    /**
+     # Item Collision
+     
+     Handles the collision of an item with a player.
+     
+     - Parameter playerNodeO: The player
+     - Parameter itemNodeO: The node representing the item
+     */
     private func handleItemCollision(playerNodeO: SKPlayerNode?, itemNodeO: SKCoinNode?) {
         guard let itemNode = itemNodeO, let playerNode = playerNodeO else {
             return
@@ -148,6 +173,14 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         itemNode.removeFromParent()
     }
     
+    /**
+     # Player Collides with Enemy Laser
+     
+     Handles the collision of a player with the laser of an enemy
+     
+     - Parameter playerNodeO: The player
+     - Parameter laserNodeO: The node representing the laser
+     */
     private func handleLaserOfEnemyPlayerCollison(playerNodeO: SKPlayerNode?, laserNodeO: SKSpriteNode?) {
         let laserHit = SKEmitterNode(fileNamed: "laserHit")!
         let laserHitSound = SKAction.playSoundFileNamed("laserBlast.mp3", waitForCompletion: false)
@@ -176,6 +209,14 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         }
     }
     
+    /**
+     # Enemy and Player Collide
+     
+     Handles the collision of the player and an enemy
+     
+     - Parameter playerNodeO: The player
+     - Parameter enemyNodeO: The enemy
+     */
     private func handleEnemyPlayerCollision(playerNodeO: SKPlayerNode?, enemyNodeO: SKEnemyNode?) {
         let enemyDie = SKEmitterNode(fileNamed: "Explosion")!
         guard let enemyNode = enemyNodeO, let playerNode = playerNodeO else {
