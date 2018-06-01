@@ -42,9 +42,9 @@ class SKEnemyNode: SKCharacterNode {
         laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
         laser.physicsBody?.affectedByGravity = false
         laser.physicsBody?.allowsRotation = false
-        laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.ENEMY_LASER_CAT
+        laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyLaserCat
         laser.physicsBody?.collisionBitMask = 0
-        laser.physicsBody?.contactTestBitMask = GamePhysicsDelegate.PLAYER_CAT
+        laser.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerCat
         laser.physicsBody?.fieldBitMask = 0
         return laser
     }

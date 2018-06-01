@@ -18,9 +18,9 @@ class SKCoinNode: SKSpriteNode {
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
-        self.physicsBody?.categoryBitMask = GamePhysicsDelegate.ITEM_CAT
-        self.physicsBody?.collisionBitMask = GamePhysicsDelegate.PLAYER_CAT
-        self.physicsBody?.contactTestBitMask = GamePhysicsDelegate.PLAYER_CAT
+        self.physicsBody?.categoryBitMask = GamePhysicsDelegate.itemCat
+        self.physicsBody?.collisionBitMask = GamePhysicsDelegate.playerCat
+        self.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerCat
         self.physicsBody?.fieldBitMask = 0b1 << 6
     }
     

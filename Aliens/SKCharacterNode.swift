@@ -34,18 +34,18 @@ class SKCharacterNode: SKSpriteNode {
         let newHealthBar = SKShapeNode(rectOf: CGSize(width: CGFloat(width), height: 10))
         newHealthBar.fillColor = UIColor.green
         newHealthBar.position = CGPoint(x: 0, y: -175)
-        addChild(newHealthBar)
         healthBar.removeFromParent()
         healthBar = newHealthBar
+        addChild(healthBar)
     }
     
     public func takeDamage(_ damage: Int) {
         health -= damage
-        if health > 0 {
-            let percent = Float(health) / 100
-            createHealthBar(width: Float(200) * percent)
-        } else if health <= 0 {
+        if health <= 0 {
             healthBar.removeFromParent()
+        } else {
+            let percent = Float(health) / 100.0
+            createHealthBar(width: 200.0 * percent)
         }
     }
 }
