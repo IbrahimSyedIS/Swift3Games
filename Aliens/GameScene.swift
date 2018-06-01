@@ -37,9 +37,6 @@ class GameScene: SKScene {
     private var numSinceLastLevelPush: Int = 0
     
     /** BitMask values that represent what categories and object will physically collide with in \(UInt32) form **/
-    var playerMask: UInt32 = 0
-    var laserMask: UInt32 = 0
-    var enemyMask: UInt32 = 0
     
     // 2D Levels array represents all enemies as ints and each row is a level. [1, 1, 1] -> one level with three type 1 enemies
     var levels: [[Int]] = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -60,9 +57,6 @@ class GameScene: SKScene {
         self.physicsWorld.contactDelegate = physicsContactDelegate
         
         // Modifying masks to control what collides with what e.g. laserMask = enemyCat | playerCat -> lasers collide with enemies and players
-        playerMask = GamePhysicsDelegate.itemCat
-        laserMask = GamePhysicsDelegate.enemyCat | GamePhysicsDelegate.playerCat
-        enemyMask = GamePhysicsDelegate.laserCat | GamePhysicsDelegate.enemyCat
         
         spaceship = self.childNode(withName: "spaceship") as! SKPlayerNode
         prepareSpaceship()
@@ -90,10 +84,10 @@ class GameScene: SKScene {
         spaceship.physicsBody?.categoryBitMask = GamePhysicsDelegate.playerCat
         
         // Collision bitmask -> physically collides + interacts with
-        spaceship.physicsBody?.collisionBitMask = playerMask | GamePhysicsDelegate.enemyCat
+        spaceship.physicsBody?.collisionBitMask = GamePhysicsDelegate.playerMask | GamePhysicsDelegate.enemyCat
         
         // Contact bitmask -> Calls collision method on contact
-        spaceship.physicsBody?.contactTestBitMask = playerMask | GamePhysicsDelegate.enemyCat
+        spaceship.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerMask | GamePhysicsDelegate.enemyCat
         spaceship.physicsBody?.allowsRotation = false
         spaceship.coinGravity()
         spaceship.health -= 95
@@ -230,8 +224,8 @@ class GameScene: SKScene {
         enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
         enemy.physicsBody?.affectedByGravity = false
         enemy.physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyCat
-        enemy.physicsBody?.collisionBitMask = enemyMask
-        enemy.physicsBody?.contactTestBitMask = enemyMask
+        enemy.physicsBody?.collisionBitMask = GamePhysicsDelegate.enemyMask
+        enemy.physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
         enemy.physicsBody?.fieldBitMask = 0
         return enemy
     }
@@ -266,23 +260,12 @@ class GameScene: SKScene {
     }
     
     public func spaceshipFire() {
-        let laser = getLaser()
+        let laser = spaceship.createLaser()
         laser.move(toParent: self)
         laser.position = CGPoint(x: spaceship.position.x, y: spaceship.position.y + 100)
         run(laserFireSound)
         let laserAction = SKAction.moveBy(x: CGFloat(0), y: CGFloat(1200), duration: 1)
         let laserActions = SKAction.sequence([laserAction, SKAction.removeFromParent()])
         laser.run(laserActions, withKey: "enemyMove")
-    }
-    
-    private func getLaser() -> SKWeaponNode {
-        let laser: SKWeaponNode = SKWeaponNode(imageNamed: "Laser", damage: 25)
-        laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
-        laser.physicsBody?.affectedByGravity = false
-        laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.laserCat
-        laser.physicsBody?.collisionBitMask = laserMask
-        laser.physicsBody?.contactTestBitMask = laserMask
-        laser.physicsBody?.fieldBitMask = 0
-        return laser
     }
 }

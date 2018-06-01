@@ -48,4 +48,40 @@ class SKCharacterNode: SKSpriteNode {
             createHealthBar(width: 200.0 * percent)
         }
     }
+    
+    internal func createLaser() -> SKWeaponNode {
+        let laser = SKWeaponNode(imageNamed: "LaserDown", damage: 2)
+        laser.position = CGPoint(x: self.position.x, y: self.position.y - 100)
+        laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
+        laser.physicsBody?.affectedByGravity = false
+        laser.physicsBody?.allowsRotation = false
+        laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyLaserCat
+        laser.physicsBody?.collisionBitMask = 0
+        laser.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerCat
+        laser.physicsBody?.fieldBitMask = 0
+        return laser
+    }
+    
+    public func die() {
+        
+        // Make an explosion
+        let explosion = SKEmitterNode(fileNamed: "Explosion")!
+        explosion.position = position
+        let sequence = SKAction.sequence([SKAction.run({ self.parent?.addChild(explosion) }),
+                                          SKAction.wait(forDuration: TimeInterval(CGFloat(explosion.numParticlesToEmit) * explosion.particleLifetime)),
+                                          SKAction.run({ explosion.removeFromParent() })])
+        self.parent?.run(sequence)
+        
+        // Remove all the actions + parent
+        removeAllActions()
+        removeFromParent()
+        
+        // Make sure its a game scene
+        if let gameScene = self.parent as? GameScene {
+            
+            // Update score
+            gameScene.score += 100
+            gameScene.gameViewController.updateScoreLabel()
+        }
+    }
 }

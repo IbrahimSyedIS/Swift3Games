@@ -37,4 +37,5 @@ class SKWeaponNode: SKSpriteNode {
     public func getDamage() -> Int {
         return damage
     }
+    
 }

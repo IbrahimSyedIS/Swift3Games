@@ -20,6 +20,10 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
     public static let itemCat: UInt32 = 0b1 << 4
     public static let enemyLaserCat: UInt32 = 0b1 << 5
     
+    public static let playerMask: UInt32 = GamePhysicsDelegate.itemCat
+    public static let laserMask: UInt32 = GamePhysicsDelegate.enemyCat | GamePhysicsDelegate.playerCat
+    public static let enemyMask: UInt32 = GamePhysicsDelegate.laserCat | GamePhysicsDelegate.enemyCat
+    
     // Represents the SKScene that the game is being played in
     public var gameScene: GameScene!
     
@@ -31,48 +35,55 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      */
     func didBegin(_ contact: SKPhysicsContact) {
         
+        let nodeA = contact.bodyA.node
+        let nodeB = contact.bodyB.node
+        
         // Checking to make sure that both of the nodes are still in the scene
-        if (contact.bodyA.node?.parent == nil || contact.bodyB.node?.parent == nil) {
+        if (nodeA?.parent == nil || nodeB?.parent == nil) {
             return
         }
         
         // Handling a collision between an item and player
-        if (contact.bodyA.categoryBitMask == GamePhysicsDelegate.itemCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.itemCat) &&
-            (contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.playerCat) {
-            handleItemCollision(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, itemNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.itemCat ? contact.bodyA.node as? SKCoinNode : contact.bodyB.node as? SKCoinNode)
+        if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.itemCat)) && (containsCatMask(contact: contact, mask: GamePhysicsDelegate.playerCat)) {
+            handleItemCollision(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? nodeA as? SKPlayerNode : nodeB as? SKPlayerNode, itemNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.itemCat ? nodeA as? SKCoinNode : nodeB as? SKCoinNode)
         }
         
-        // Handling a collision between an enemy's laser and a player
-        if (contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyLaserCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.enemyLaserCat) &&
-            (contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.playerCat) {
-            handleLaserOfEnemyPlayerCollison(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyLaserCat ? contact.bodyA.node as? SKWeaponNode: contact.bodyB.node as? SKWeaponNode)
+        // Handling a collision between a laser and a character
+        if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.enemyLaserCat)) &&
+           (nodeA is SKCharacterNode || nodeB is SKCharacterNode) {
+            handleLaserCharacterCollision(laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat ? nodeA as? SKWeaponNode : nodeB as? SKWeaponNode, otherNodeO: nodeA is SKCharacterNode ? nodeA as? SKCharacterNode: nodeB as? SKCharacterNode)
         }
         
         // Handling a colission between an enemy and a player
-        if (contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.enemyCat) &&
-            (contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.playerCat) {
-            handleEnemyPlayerCollision(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, enemyNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat ? contact.bodyA.node as? SKEnemyNode: contact.bodyB.node as? SKEnemyNode)
-        }
-        
-        // Handling a collision between an enemy and a laser
-        if (contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.enemyCat) &&
-            (contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.laserCat) {
-            handleLaserEnemyColision(enemyNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat ? contact.bodyA.node as? SKEnemyNode : contact.bodyB.node as? SKEnemyNode, laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat ? contact.bodyA.node as? SKWeaponNode: contact.bodyB.node as? SKWeaponNode)
+        if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.enemyCat)) && (containsCatMask(contact: contact, mask: GamePhysicsDelegate.playerCat)) {
+            handleEnemyPlayerCollision(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? nodeA as? SKPlayerNode : nodeB as? SKPlayerNode, enemyNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat ? nodeA as? SKEnemyNode: nodeB as? SKEnemyNode)
         }
     }
     
     /**
-     # Enemy Laser Colission
+     # Mask in Contact
      
-     Handles enemies being hit by lasers. Enemy takes damage and laser is removed.
+     Determines whether either of the two nodes in the contact event had the given Category Bit Mask
      
-     If the enemy dies in this collision, the enemy death method is called.
+     - Parameter contact: The contact physics event
+     - Parameter mask: The mask to check
      
-     - Parameter enemyNodeO: The enemy being hit
-     - Parameter laserNodeO: The laser hitting the enemy
+     - Returns: Whether the mask is in the contact nodes
      */
-    private func handleLaserEnemyColision(enemyNodeO: SKEnemyNode?, laserNodeO: SKWeaponNode?) {
-        guard let laserNode = laserNodeO, let enemyNode = enemyNodeO else {
+    private func containsCatMask(contact: SKPhysicsContact, mask: UInt32) -> Bool {
+        return (contact.bodyA.categoryBitMask == mask || contact.bodyB.categoryBitMask == mask)
+    }
+    
+    /**
+     # Laser Character Collision
+     
+     Handles the collision between a laser and any character on the screen.
+     
+     - Parameter laserNodeO: The laser node
+     - Parameter otherNodeO: The character node
+     */
+    private func handleLaserCharacterCollision(laserNodeO: SKWeaponNode?, otherNodeO: SKCharacterNode?) {
+        guard let laserNode = laserNodeO, let otherNode = otherNodeO else {
             return
         }
         let laserHit = SKEmitterNode(fileNamed: "laserHit")!
@@ -84,43 +95,24 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                                                SKAction.run({ laserHit.removeFromParent() })])
         gameScene.run(laserSequence)
         laserNode.removeFromParent()
-        enemyNode.takeDamage(laserNode.getDamage())
-        if enemyNode.health <= 0 {
-            enemyHasDied(enemyNode: enemyNode)
-            let newCoin = createCoin(position: enemyNode.position)
-            gameScene.addChild(newCoin)
-            let distance = abs(newCoin.position.y - (gameScene.childNode(withName: "spaceship")?.position.y)!)
-            let coinMove = SKAction.move(to: CGPoint(x: newCoin.position.x, y:(gameScene.childNode(withName: "spaceship")?.position.y)! - 250),
-                                         duration: Double(distance / CGFloat(350)))
-            let coinActions = SKAction.sequence([coinMove, SKAction.removeFromParent()])
-            newCoin.run(coinActions, withKey: "enemyMove")
+        otherNode.takeDamage(laserNode.getDamage())
+        if otherNode.health <= 0 {
+            if let playerNode = otherNode as? SKPlayerNode {
+                playerNode.die()
+                Global.gameSceneViewController.gameOver()
+                Global.gameScene.pauseGame()
+            } else if let enemyNode = otherNode as? SKEnemyNode {
+                enemyNode.die()
+                let newCoin = createCoin(position: enemyNode.position)
+                gameScene.addChild(newCoin)
+                let distance = abs(newCoin.position.y - (gameScene.childNode(withName: "spaceship")?.position.y)!)
+                let coinMove = SKAction.move(to: CGPoint(x: newCoin.position.x,
+                                                         y:(gameScene.childNode(withName: "spaceship")?.position.y)! - 250),
+                                             duration: Double(distance / CGFloat(350)))
+                let coinActions = SKAction.sequence([coinMove, SKAction.removeFromParent()])
+                newCoin.run(coinActions, withKey: "enemyMove")
+            }
         }
-    }
-    
-    /**
-     # Enemy Death
-     
-     Handles the death of an enemy by placing an explosion as well as removing them from the scene.
-     The score is also updated and a coin is added.
-     
-     - Parameter enemyNode: The enemy node itself to be removed
-     */
-    private func enemyHasDied(enemyNode: SKEnemyNode) {
-        let enemyDie = SKEmitterNode(fileNamed: "Explosion")!
-        enemyDie.position = enemyNode.position
-        let emitterAction = SKAction.run({
-            self.gameScene.addChild(enemyDie)
-        })
-        let emitterDuration = CGFloat(enemyDie.numParticlesToEmit) * enemyDie.particleLifetime
-        let remove = SKAction.run({
-            enemyDie.removeFromParent()
-        })
-        let sequence = SKAction.sequence([emitterAction, SKAction.wait(forDuration: TimeInterval(emitterDuration)), remove])
-        gameScene.run(sequence)
-        enemyNode.removeAllActions()
-        enemyNode.removeFromParent()
-        gameScene.score += 100
-        gameScene.gameViewController.updateScoreLabel()
     }
     
     /**
@@ -134,13 +126,6 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      */
     private func createCoin(position: CGPoint) -> SKCoinNode {
         let newCoin: SKCoinNode = SKCoinNode(imageNamed: "Gold_21")
-        let coinAnimationTextures = [SKTexture(imageNamed: "Gold_21"), SKTexture(imageNamed: "Gold_22"), SKTexture(imageNamed: "Gold_23"),
-                                     SKTexture(imageNamed: "Gold_24"), SKTexture(imageNamed: "Gold_25"), SKTexture(imageNamed: "Gold_26"),
-                                     SKTexture(imageNamed: "Gold_27"), SKTexture(imageNamed: "Gold_28"), SKTexture(imageNamed: "Gold_29"),
-                                     SKTexture(imageNamed: "Gold_30")]
-        let coinAnimation = SKAction.repeatForever(SKAction.animate(with: coinAnimationTextures, timePerFrame: 0.1))
-        newCoin.run(coinAnimation)
-        newCoin.initCoin()
         newCoin.position = position
         newCoin.xScale = 0.12
         newCoin.yScale = 0.12
@@ -166,42 +151,6 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         gameScene.updateMoney(with: itemNode.value)
         gameScene.run(coinSound)
         itemNode.removeFromParent()
-    }
-    
-    /**
-     # Player Collides with Enemy Laser
-     
-     Handles the collision of a player with the laser of an enemy
-     
-     - Parameter playerNodeO: The player
-     - Parameter laserNodeO: The node representing the laser
-     */
-    private func handleLaserOfEnemyPlayerCollison(playerNodeO: SKPlayerNode?, laserNodeO: SKWeaponNode?) {
-        let laserHit = SKEmitterNode(fileNamed: "laserHit")!
-        let laserHitSound = SKAction.playSoundFileNamed("laserBlast.mp3", waitForCompletion: false)
-        guard let laserNode = laserNodeO, let playerNode = playerNodeO else {
-            return
-        }
-        gameScene.run(laserHitSound)
-        laserHit.position = laserNode.position
-        let laserAction = SKAction.run({
-            self.gameScene.addChild(laserHit)
-        })
-        let laserDuration = CGFloat(laserHit.numParticlesToEmit) * laserHit.particleLifetime
-        let laserWait = SKAction.wait(forDuration: TimeInterval(laserDuration))
-        let laserRemove = SKAction.run({
-            laserHit.removeFromParent()
-        })
-        let laserSequence = SKAction.sequence([laserAction, laserWait, laserRemove])
-        gameScene.run(laserSequence)
-        laserNode.removeFromParent()
-        if playerNode.health > 0 {
-            playerNode.takeDamage(laserNode.getDamage())
-        } else {
-            playerNode.die()
-            Global.gameSceneViewController.gameOver()
-            Global.gameScene.pauseGame()
-        }
     }
     
     /**
