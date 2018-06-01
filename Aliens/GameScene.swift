@@ -132,6 +132,13 @@ class GameScene: SKScene {
         }
     }
 
+    /**
+     # Number of Enemies Left
+     
+     Tells you how many enemies are left at any given moment.
+     
+     - Returns: The number of remaining enemies
+     */
     private func enemiesLeft() -> Int {
         var count = 0;
         for child in children {
@@ -268,8 +275,8 @@ class GameScene: SKScene {
         laser.run(laserActions, withKey: "enemyMove")
     }
     
-    private func getLaser() -> SKSpriteNode {
-        let laser: SKSpriteNode = SKSpriteNode(imageNamed: "Laser")
+    private func getLaser() -> SKWeaponNode {
+        let laser: SKWeaponNode = SKWeaponNode(imageNamed: "Laser", damage: 25)
         laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
         laser.physicsBody?.affectedByGravity = false
         laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.laserCat

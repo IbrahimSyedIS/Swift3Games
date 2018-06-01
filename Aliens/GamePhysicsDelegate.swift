@@ -45,7 +45,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         // Handling a collision between an enemy's laser and a player
         if (contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyLaserCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.enemyLaserCat) &&
             (contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.playerCat) {
-            handleLaserOfEnemyPlayerCollison(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyLaserCat ? contact.bodyA.node as? SKSpriteNode: contact.bodyB.node as? SKSpriteNode)
+            handleLaserOfEnemyPlayerCollison(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? contact.bodyA.node as? SKPlayerNode : contact.bodyB.node as? SKPlayerNode, laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyLaserCat ? contact.bodyA.node as? SKWeaponNode: contact.bodyB.node as? SKWeaponNode)
         }
         
         // Handling a colission between an enemy and a player
@@ -57,7 +57,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         // Handling a collision between an enemy and a laser
         if (contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.enemyCat) &&
             (contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat || contact.bodyB.categoryBitMask == GamePhysicsDelegate.laserCat) {
-            handleLaserEnemyColision(enemyNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat ? contact.bodyA.node as? SKEnemyNode : contact.bodyB.node as? SKEnemyNode, laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat ? contact.bodyA.node as? SKSpriteNode: contact.bodyB.node as? SKSpriteNode)
+            handleLaserEnemyColision(enemyNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat ? contact.bodyA.node as? SKEnemyNode : contact.bodyB.node as? SKEnemyNode, laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat ? contact.bodyA.node as? SKWeaponNode: contact.bodyB.node as? SKWeaponNode)
         }
     }
     
@@ -71,7 +71,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      - Parameter enemyNodeO: The enemy being hit
      - Parameter laserNodeO: The laser hitting the enemy
      */
-    private func handleLaserEnemyColision(enemyNodeO: SKEnemyNode?, laserNodeO: SKSpriteNode?) {
+    private func handleLaserEnemyColision(enemyNodeO: SKEnemyNode?, laserNodeO: SKWeaponNode?) {
         guard let laserNode = laserNodeO, let enemyNode = enemyNodeO else {
             return
         }
@@ -84,7 +84,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
                                                SKAction.run({ laserHit.removeFromParent() })])
         gameScene.run(laserSequence)
         laserNode.removeFromParent()
-        enemyNode.takeDamage(25)
+        enemyNode.takeDamage(laserNode.getDamage())
         if enemyNode.health <= 0 {
             enemyHasDied(enemyNode: enemyNode)
             let newCoin = createCoin(position: enemyNode.position)
@@ -176,7 +176,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      - Parameter playerNodeO: The player
      - Parameter laserNodeO: The node representing the laser
      */
-    private func handleLaserOfEnemyPlayerCollison(playerNodeO: SKPlayerNode?, laserNodeO: SKSpriteNode?) {
+    private func handleLaserOfEnemyPlayerCollison(playerNodeO: SKPlayerNode?, laserNodeO: SKWeaponNode?) {
         let laserHit = SKEmitterNode(fileNamed: "laserHit")!
         let laserHitSound = SKAction.playSoundFileNamed("laserBlast.mp3", waitForCompletion: false)
         guard let laserNode = laserNodeO, let playerNode = playerNodeO else {
@@ -196,7 +196,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         gameScene.run(laserSequence)
         laserNode.removeFromParent()
         if playerNode.health > 0 {
-            playerNode.takeDamage(2)
+            playerNode.takeDamage(laserNode.getDamage())
         } else {
             playerNode.die()
             Global.gameSceneViewController.gameOver()

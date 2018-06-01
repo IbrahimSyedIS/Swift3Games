@@ -36,8 +36,8 @@ class SKEnemyNode: SKCharacterNode {
         }
     }
     
-    private func createLaser() -> SKSpriteNode {
-        let laser = SKSpriteNode(imageNamed: "LaserDown")
+    private func createLaser() -> SKWeaponNode {
+        let laser = SKWeaponNode(imageNamed: "LaserDown", damage: 2)
         laser.position = CGPoint(x: self.position.x, y: self.position.y - 100)
         laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
         laser.physicsBody?.affectedByGravity = false
