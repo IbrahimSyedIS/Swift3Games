@@ -65,7 +65,7 @@ class SKCharacterNode: SKSpriteNode {
     
     internal func fireLaser() {
         if self.parent != nil && self.health > 0 {
-            let laser = createLaser()
+            let laser = createLaser(imageNamed: "LaserDown")
             self.parent?.addChild(laser)
             let distance = laser.position.y > 0 ? laser.position.y + 750 : 750 - abs(laser.position.y)
             let laserActionSequence = SKAction.sequence([SKAction.move(to: CGPoint(x: laser.position.x, y: -750), duration: TimeInterval(distance / 250)), SKAction.removeFromParent()])
@@ -77,8 +77,8 @@ class SKCharacterNode: SKSpriteNode {
         return health
     }
     
-    internal func createLaser() -> SKWeaponNode {
-        let laser = SKWeaponNode(imageNamed: "LaserDown")
+    internal func createLaser(imageNamed: String) -> SKWeaponNode {
+        let laser = SKWeaponNode(imageNamed: imageNamed)
         laser.setDamage(to: 2)
         laser.position = CGPoint(x: position.x, y: position.y - 100)
         laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)

@@ -52,7 +52,7 @@ class SKPlayerNode: SKCharacterNode {
     }
     
     internal override func fireLaser() {
-        let laser = createLaser()
+        let laser = createLaser(imageNamed: "Laser")
         self.parent?.addChild(laser)
         run(SKAction.playSoundFileNamed("Laser_Shoot.mp3", waitForCompletion: false))
         laser.run(SKAction.sequence([SKAction.moveBy(x: CGFloat(0), y: CGFloat(1200), duration: 1),
@@ -65,8 +65,8 @@ class SKPlayerNode: SKCharacterNode {
         })
     }
     
-    internal override func createLaser() -> SKWeaponNode {
-        let laser = super.createLaser()
+    internal override func createLaser(imageNamed: String) -> SKWeaponNode {
+        let laser = super.createLaser(imageNamed: imageNamed)
         laser.setDamage(to: 25)
         laser.position = CGPoint(x: position.x, y: position.y + 100)
         return laser

@@ -43,21 +43,20 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         }
         
         // Handling a collision between an item and player
-        if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.itemCat)) && (containsCatMask(contact: contact, mask: GamePhysicsDelegate.playerCat)) {
-            print("Collision between item + player")
+        if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.itemCat)) &&
+           (containsCatMask(contact: contact, mask: GamePhysicsDelegate.playerCat)) {
             handleItemCollision(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? nodeA as? SKPlayerNode : nodeB as? SKPlayerNode, itemNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.itemCat ? nodeA as? SKCoinNode : nodeB as? SKCoinNode)
         }
         
         // Handling a collision between a laser and a character
         if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.laserCat)) &&
            (nodeA is SKCharacterNode || nodeB is SKCharacterNode) {
-            print("Collision between laser + anything")
             handleLaserCharacterCollision(laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat ? nodeA as? SKWeaponNode : nodeB as? SKWeaponNode, otherNodeO: nodeA is SKCharacterNode ? nodeA as? SKCharacterNode: nodeB as? SKCharacterNode)
         }
         
         // Handling a colission between an enemy and a player
-        if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.enemyCat)) && (containsCatMask(contact: contact, mask: GamePhysicsDelegate.playerCat)) {
-            print("Collision between enemy + player")
+        if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.enemyCat)) &&
+           (containsCatMask(contact: contact, mask: GamePhysicsDelegate.playerCat)) {
             handleEnemyPlayerCollision(playerNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.playerCat ? nodeA as? SKPlayerNode : nodeB as? SKPlayerNode, enemyNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.enemyCat ? nodeA as? SKEnemyNode: nodeB as? SKEnemyNode)
         }
     }
@@ -85,9 +84,6 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      - Parameter otherNodeO: The character node
      */
     private func handleLaserCharacterCollision(laserNodeO: SKWeaponNode?, otherNodeO: SKCharacterNode?) {
-        if laserNodeO?.parent == nil {
-            return
-        }
         guard let laserNode = laserNodeO, let otherNode = otherNodeO else {
             return
         }
