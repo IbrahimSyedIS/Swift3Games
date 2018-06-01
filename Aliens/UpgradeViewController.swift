@@ -33,7 +33,7 @@ class UpgradeViewController: UIViewController, GADInterstitialDelegate {
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitialT = GADInterstitial(adUnitID: "ca-app-pub-3480761636950180/7107542838")
+        let interstitialT = GADInterstitial(adUnitID: "ca-app-pub-8218224422686435/1842825281")
         interstitialT.delegate = self
         let requestT = GADRequest()
         requestT.testDevices = [ kGADSimulatorID ]

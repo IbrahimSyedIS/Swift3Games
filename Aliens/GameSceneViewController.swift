@@ -25,7 +25,6 @@ class GameSceneViewController: UIViewController {
     var gameOverLabel: UILabel!
     var gameScene: SKScene? = nil
     var mainView: SKView? = nil
-    var timer: Timer!
     let userDefaults = UserDefaults.standard
     var highScore: Int!
     private var fireRate = 0.4
@@ -59,7 +58,7 @@ class GameSceneViewController: UIViewController {
             if fileName == "GameScene" {
                 let newScene = scene as! GameScene
                 newScene.gameViewController = self
-                autoFire()
+                newScene.spaceship.autoFire()
             }
         }
     }
@@ -91,10 +90,9 @@ class GameSceneViewController: UIViewController {
             coinImage.isHidden = true
             coinXImage.isHidden = true
             moneyLabel.isHidden = true
-            timer.invalidate()
             gameOverLabel = UILabel()
             gameOverLabel.text = "Game Over"
-            gameOverLabel.font = UIFont(name: "kenvector_future", size: CGFloat(50))
+            gameOverLabel.font = UIFont(name: "kenvector_future.ttf", size: CGFloat(50))
             gameOverLabel.textAlignment = .center
             self.view.addSubview(gameOverLabel)
         }
@@ -124,7 +122,6 @@ class GameSceneViewController: UIViewController {
             coinImage.isHidden = true
             coinXImage.isHidden = true
             moneyLabel.isHidden = true
-            timer.invalidate()
             newGameScene.pauseGame()
             pauseScoreLabel.text = "Score: \(newGameScene.score)"
         } else {
@@ -132,7 +129,7 @@ class GameSceneViewController: UIViewController {
                 self.blurEffect.alpha = 0
             }
             pauseButton.setImage(UIImage(named: "PauseButton.png"), for: .normal)
-            autoFire()
+            newGameScene.spaceship.autoFire()
             newGameScene.resumeGame()
             scoreLabel.isHidden = false
             coinImage.isHidden = false
@@ -141,17 +138,6 @@ class GameSceneViewController: UIViewController {
             homeButton.isHidden = true
             pauseScoreLabel.isHidden = true
         }
-    }
-    
-    func autoFire() {
-        timer = Timer.scheduledTimer(withTimeInterval: fireRate, repeats: true, block: { (nil) in
-            self.fireLaser()
-        })
-    }
-    
-    func fireLaser() {
-        let newGameScene = gameScene as! GameScene
-        newGameScene.spaceshipFire()
     }
     
     override var shouldAutorotate: Bool {

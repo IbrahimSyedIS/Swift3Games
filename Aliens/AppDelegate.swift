@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Global.money = UserDefaults.standard.integer(forKey: "money")
         
         // initalizing adds with sample ID for now
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-3480761636950180~8001860098")
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-8218224422686435~5618418769")
         return true
     }
 

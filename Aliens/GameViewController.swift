@@ -49,7 +49,7 @@ class GameViewController: UIViewController {
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         bannerView.isAutoloadEnabled = true
         self.view.addSubview(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3480761636950180/7011555517"
+        bannerView.adUnitID = "ca-app-pub-8218224422686435/7478295344"
         bannerView.rootViewController = self
         let request = GADRequest()
         request.testDevices = [ kGADSimulatorID ]

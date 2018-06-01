@@ -13,27 +13,34 @@ import simd
 
 class SKEnemyNode: SKCharacterNode {
     
-    private var timer: Timer!
-    public var fireRate = Double(arc4random_uniform(17) + 15) / Double(10)
-    
-    public func autoFire() {
-        timer = Timer.scheduledTimer(withTimeInterval: fireRate, repeats: true, block: { (nil) in
-            self.fireLaser()
-        })
+    public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+        self.fireRate = Double(arc4random_uniform(17) + 15) / Double(10)
     }
     
-    public func pauseEnemy() {
-        timer.invalidate()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.fireRate = Double(arc4random_uniform(17) + 15) / Double(10)
     }
     
-    private func fireLaser() {
-        if self.parent != nil && self.health > 0 {
-            let laser = createLaser()
-            self.parent?.addChild(laser)
-            let distance = laser.position.y > 0 ? laser.position.y + 750 : 750 - abs(laser.position.y)
-            let laserActionSequence = SKAction.sequence([SKAction.move(to: CGPoint(x: laser.position.x, y: -750), duration: TimeInterval(distance / 250)), SKAction.removeFromParent()])
-            laser.run(laserActionSequence, withKey: "laserShoot")
-        }
+    public init(imageNamed: String, animations: [SKTexture]) {
+        let texture = SKTexture(imageNamed: imageNamed)
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        createHealthBar()
+        physicsBody = SKPhysicsBody(texture: texture, size: size)
+        physicsBody?.affectedByGravity = false
+        physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyCat
+        physicsBody?.collisionBitMask = GamePhysicsDelegate.enemyMask
+        physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
+        physicsBody?.fieldBitMask = 0
+        run(SKAction.repeatForever(SKAction.animate(with: animations, timePerFrame: 0.1)))
+        
+        autoFire()
+    }
+    
+    public func startMoving() {
+        run(SKAction.sequence([SKAction.move(to: CGPoint(x: self.position.x, y: CGFloat(-750)), duration: 23),
+                               SKAction.removeFromParent()]), withKey: "enemyMove")
     }
     
 }

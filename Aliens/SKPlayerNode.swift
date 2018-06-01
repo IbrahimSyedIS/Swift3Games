@@ -16,11 +16,13 @@ class SKPlayerNode: SKCharacterNode {
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         moveSpeed = 625
         super.init(texture: texture, color: color, size: size)
+        self.fireRate = 0.5
     }
     
     public required init?(coder aDecoder: NSCoder) {
         moveSpeed = 625
         super.init(coder: aDecoder)
+        self.fireRate = 0.5
     }
     
     public func getMoveSpeed() -> Int {
@@ -49,14 +51,24 @@ class SKPlayerNode: SKCharacterNode {
         isPaused = true
     }
     
+    internal override func fireLaser() {
+        let laser = createLaser()
+        self.parent?.addChild(laser)
+        run(SKAction.playSoundFileNamed("Laser_Shoot.mp3", waitForCompletion: false))
+        laser.run(SKAction.sequence([SKAction.moveBy(x: CGFloat(0), y: CGFloat(1200), duration: 1),
+                                     SKAction.removeFromParent()]), withKey: "enemyMove")
+    }
+    
+    internal override func autoFire() {
+        timer = Timer.scheduledTimer(withTimeInterval: fireRate, repeats: true, block: { (nil) in
+            self.fireLaser()
+        })
+    }
+    
     internal override func createLaser() -> SKWeaponNode {
-        let laser: SKWeaponNode = SKWeaponNode(imageNamed: "Laser", damage: 25)
-        laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
-        laser.physicsBody?.affectedByGravity = false
-        laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.laserCat
-        laser.physicsBody?.collisionBitMask = GamePhysicsDelegate.laserMask
-        laser.physicsBody?.contactTestBitMask = GamePhysicsDelegate.laserMask
-        laser.physicsBody?.fieldBitMask = 0
+        let laser = super.createLaser()
+        laser.setDamage(to: 25)
+        laser.position = CGPoint(x: position.x, y: position.y + 100)
         return laser
     }
     

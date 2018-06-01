@@ -12,20 +12,17 @@ import SpriteKit
 // TODO Make the weapon node
 class SKWeaponNode: SKSpriteNode {
     
-    private var damage: Int
+    private var damage: Int = 0
     
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        damage = 25
         super.init(texture: texture, color: color, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        damage = 25
         super.init(coder: aDecoder)
     }
     
-    public init(imageNamed: String, damage: Int) {
-        self.damage = 25
+    public init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
     }

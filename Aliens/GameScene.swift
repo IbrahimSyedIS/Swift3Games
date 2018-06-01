@@ -27,7 +27,6 @@ import GameplayKit
 class GameScene: SKScene {
     
     var spaceship: SKPlayerNode!
-    var laserFireSound = SKAction.playSoundFileNamed("Laser_Shoot.mp3", waitForCompletion: false)
     var backgroundMusicNode: SKAudioNode!
     var starParticleEffect: SKEmitterNode!
     
@@ -90,7 +89,6 @@ class GameScene: SKScene {
         spaceship.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerMask | GamePhysicsDelegate.enemyCat
         spaceship.physicsBody?.allowsRotation = false
         spaceship.coinGravity()
-        spaceship.health -= 95
         
         // rockets at bottom of ship
         let spaceshipAnimations = [SKTexture(imageNamed: "Spaceship1.png"), SKTexture(imageNamed: "Spaceship2.png"),
@@ -195,39 +193,24 @@ class GameScene: SKScene {
         var enemyAnimations: [SKTexture]
         switch type {
         case 1:
-            enemy = SKEnemyNode(imageNamed: "enemy")
             enemyAnimations = [SKTexture(imageNamed: "enemy0"), SKTexture(imageNamed: "enemy1"),
                                SKTexture(imageNamed: "enemy2"), SKTexture(imageNamed: "enemy3"),
                                SKTexture(imageNamed: "enemy4"), SKTexture(imageNamed: "enemy5"),
                                SKTexture(imageNamed: "enemy6"), SKTexture(imageNamed: "enemy7"),
                                SKTexture(imageNamed: "enemy8")]
+            enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)
             enemy.xScale = 0.4
             enemy.yScale = 0.4
         case 2:
-            enemy = SKEnemyNode(imageNamed: "enemy")
             enemyAnimations = []
+            enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)
         default:
-            enemy = SKEnemyNode(imageNamed: "enemy")
             enemyAnimations = []
+            enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)
         }
-        enemy = prepareEnemy(enemy: enemy)
-        enemy.run(SKAction.repeatForever(SKAction.animate(with: enemyAnimations, timePerFrame: 0.1)))
         enemy.move(toParent: self)
         enemy.position = position
-        let enemyMove = SKAction.move(to: CGPoint(x: enemy.position.x, y: CGFloat(-750)), duration: 23)
-        enemy.run(SKAction.sequence([enemyMove, SKAction.removeFromParent()]), withKey: "enemyMove")
-        enemy.autoFire()
-    }
-    
-    private func prepareEnemy(enemy: SKEnemyNode) -> SKEnemyNode {
-        enemy.createHealthBar()
-        enemy.physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
-        enemy.physicsBody?.affectedByGravity = false
-        enemy.physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyCat
-        enemy.physicsBody?.collisionBitMask = GamePhysicsDelegate.enemyMask
-        enemy.physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
-        enemy.physicsBody?.fieldBitMask = 0
-        return enemy
+        enemy.startMoving()
     }
     
     public func pauseGame() {
@@ -236,8 +219,8 @@ class GameScene: SKScene {
         starParticleEffect.isPaused = true
         
         for child in children {
-            if let enemy = child as? SKEnemyNode {
-                enemy.pauseEnemy()
+            if let character = child as? SKCharacterNode {
+                character.pause()
             }
             if let action = child.action(forKey: "enemyMove") {
                 action.speed = 0
@@ -257,15 +240,5 @@ class GameScene: SKScene {
                 action.speed = 1
             }
         }
-    }
-    
-    public func spaceshipFire() {
-        let laser = spaceship.createLaser()
-        laser.move(toParent: self)
-        laser.position = CGPoint(x: spaceship.position.x, y: spaceship.position.y + 100)
-        run(laserFireSound)
-        let laserAction = SKAction.moveBy(x: CGFloat(0), y: CGFloat(1200), duration: 1)
-        let laserActions = SKAction.sequence([laserAction, SKAction.removeFromParent()])
-        laser.run(laserActions, withKey: "enemyMove")
     }
 }
