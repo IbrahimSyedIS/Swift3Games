@@ -11,7 +11,7 @@ import GameplayKit
 
 class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
     
-    /** BitShifted binary values that represent the categories of the physics bodies in \(UInt32) form **/
+    /** BitShifted binary values that represent the categories and masks of the physics bodies in \(UInt32) form **/
     
     public static let noCat: UInt32 = 0b1
     public static let playerCat: UInt32 = 0b1 << 1

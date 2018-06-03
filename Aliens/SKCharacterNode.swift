@@ -11,8 +11,8 @@ import SpriteKit
 
 class SKCharacterNode: SKSpriteNode {
     
-    public var health: Int = 100
-    private var healthBar: SKShapeNode!
+    public var health: Float = 100
+    private var healthBar: SKShapeNode?
     
     internal var timer: Timer!
     
@@ -27,30 +27,24 @@ class SKCharacterNode: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
-    public func createHealthBar() {
-        healthBar = SKShapeNode(rectOf: CGSize(width: 200, height: 10))
-        healthBar.fillColor = UIColor.green
-        healthBar.position = CGPoint(x: 0, y: -175)
-        addChild(healthBar)
-    }
-    
-    private func createHealthBar(width: Float) {
-        let newHealthBar = SKShapeNode(rectOf: CGSize(width: CGFloat(width), height: 10))
-        newHealthBar.fillColor = UIColor.green
-        newHealthBar.position = CGPoint(x: 0, y: -175)
-        healthBar.removeFromParent()
-        healthBar = newHealthBar
-        addChild(healthBar)
-    }
-    
-    public func takeDamage(_ damage: Int) {
-        health -= damage
-        if health <= 0 {
-            healthBar.removeFromParent()
-        } else {
-            let percent = Float(health) / 100.0
-            createHealthBar(width: 200.0 * percent)
+    /**
+     # Health Bar
+     
+     Creates a health bar of a size based on the current health value
+     */
+    public func updateHealthBar() {
+        healthBar?.removeFromParent()
+        if (health > 0) {
+            healthBar = SKShapeNode(rectOf: CGSize(width: CGFloat(2.0 * health), height: 10))
+            healthBar!.fillColor = UIColor.green
+            healthBar!.position = CGPoint(x: 0, y: -175)
+            addChild(healthBar!)
         }
+    }
+    
+    public func takeDamage(_ damage: Float) {
+        health -= damage
+        updateHealthBar()
     }
     
     internal func pause() {
@@ -73,7 +67,7 @@ class SKCharacterNode: SKSpriteNode {
         }
     }
     
-    public func getHealth() -> Int {
+    public func getHealth() -> Float {
         return health
     }
     

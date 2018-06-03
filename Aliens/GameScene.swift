@@ -79,7 +79,7 @@ class GameScene: SKScene {
     }
     
     private func prepareSpaceship() {
-        spaceship.createHealthBar()
+        spaceship.updateHealthBar()
         spaceship.physicsBody?.categoryBitMask = GamePhysicsDelegate.playerCat
         
         // Collision bitmask -> physically collides + interacts with

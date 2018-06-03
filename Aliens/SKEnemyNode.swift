@@ -26,21 +26,24 @@ class SKEnemyNode: SKCharacterNode {
     public init(imageNamed: String, animations: [SKTexture]) {
         let texture = SKTexture(imageNamed: imageNamed)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
-        createHealthBar()
-        physicsBody = SKPhysicsBody(texture: texture, size: size)
-        physicsBody?.affectedByGravity = false
-        physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyCat
-        physicsBody?.collisionBitMask = GamePhysicsDelegate.enemyMask
-        physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
-        physicsBody?.fieldBitMask = 0
+        updateHealthBar()
+        preparePhysicsBody(texture: texture)
         run(SKAction.repeatForever(SKAction.animate(with: animations, timePerFrame: 0.1)))
-        
         autoFire()
     }
     
     public func startMoving() {
         run(SKAction.sequence([SKAction.move(to: CGPoint(x: self.position.x, y: CGFloat(-750)), duration: 23),
                                SKAction.removeFromParent()]), withKey: "enemyMove")
+    }
+    
+    private func preparePhysicsBody(texture: SKTexture) {
+        physicsBody = SKPhysicsBody(texture: texture, size: size)
+        physicsBody?.affectedByGravity = false
+        physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyCat
+        physicsBody?.collisionBitMask = GamePhysicsDelegate.enemyMask
+        physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
+        physicsBody?.fieldBitMask = 0
     }
     
 }

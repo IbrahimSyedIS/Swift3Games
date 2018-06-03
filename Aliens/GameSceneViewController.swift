@@ -15,34 +15,32 @@ class GameSceneViewController: UIViewController {
     
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var pauseScoreLabel: UILabel!
+    @IBOutlet var moneyLabel: UILabel!
+    var gameOverLabel: UILabel!
+
     @IBOutlet var pauseButton: UIButton!
-    @IBOutlet var blurEffect: UIVisualEffectView!
     @IBOutlet var homeButton: UIButton!
+
     @IBOutlet var coinImage: UIImageView!
     @IBOutlet var coinXImage: UIImageView!
-    @IBOutlet var moneyLabel: UILabel!
+
+    @IBOutlet var blurEffect: UIVisualEffectView!
     
-    var gameOverLabel: UILabel!
-    var gameScene: SKScene? = nil
+    var gameScene: GameScene? = nil
+
     var mainView: SKView? = nil
+
     let userDefaults = UserDefaults.standard
+
     var highScore: Int!
-    private var fireRate = 0.4
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Global.gameSceneViewController = self
         highScore = userDefaults.integer(forKey: "highScore")
         scoreLabel.text = "Score: 0                                        High Score: \(highScore!)"
-        blurEffect.alpha = 0
-        pauseScoreLabel.isHidden = true
-        homeButton.isHidden = true
-        pauseButton.isHidden = false
-        scoreLabel.isHidden = false
-        coinImage.isHidden = false
-        coinXImage.isHidden = false
-        moneyLabel.isHidden = false
-        if let view = self.view as! SKView? {
+        startHiddens()
+        if let view = self.view as? SKView {
             self.mainView = view
             view.ignoresSiblingOrder = true
             view.showsNodeCount = true
@@ -50,27 +48,49 @@ class GameSceneViewController: UIViewController {
         }
     }
     
+    func startHiddens() {
+        pauseScoreLabel.isHidden = true
+        homeButton.isHidden = true
+        pauseButton.isHidden = false
+        scoreLabel.isHidden = false
+        coinImage.isHidden = false
+        coinXImage.isHidden = false
+        moneyLabel.isHidden = false
+        blurEffect.alpha = 0
+    }
+    
+    func endHiddens() {
+        homeButton.isHidden = false
+        pauseScoreLabel.isHidden = false
+        scoreLabel.isHidden = true
+        pauseButton.isHidden = true
+        coinImage.isHidden = true
+        coinXImage.isHidden = true
+        moneyLabel.isHidden = true
+    }
+    
     func presentScene(named fileName: String) {
-        if let scene = SKScene(fileNamed: fileName) {
-            scene.scaleMode = .aspectFit
-            self.mainView?.presentScene(scene)
-            self.gameScene = scene
-            if fileName == "GameScene" {
-                let newScene = scene as! GameScene
-                newScene.gameViewController = self
-                newScene.spaceship.autoFire()
-            }
+        let scene = SKScene(fileNamed: fileName)
+        scene?.scaleMode = .aspectFit
+        self.mainView?.presentScene(scene)
+        self.gameScene = scene as? GameScene
+        if fileName == "GameScene" {
+            let newScene = scene as! GameScene
+            newScene.gameViewController = self
+            newScene.spaceship.autoFire()
         }
     }
     
     func updateScoreLabel() {
-        let newScene = gameScene as! GameScene
-        if newScene.score > highScore {
-            highScore = newScene.score
-            userDefaults.set(newScene.score, forKey: "highScore")
+        guard let gameScene = gameScene else {
+            return
         }
-        scoreLabel.text = "Score: \(newScene.score)                                        High Score: \(highScore!)"
-        pauseScoreLabel.text = "Score: \(newScene.score)"
+        if gameScene.score > highScore {
+            highScore = gameScene.score
+            userDefaults.set(gameScene.score, forKey: "highScore")
+        }
+        scoreLabel.text = "Score: \(gameScene.score)                                        High Score: \(highScore!)"
+        pauseScoreLabel.text = "Score: \(gameScene.score)"
     }
     
     public func updateMoney(with add: Int) {
@@ -78,30 +98,26 @@ class GameSceneViewController: UIViewController {
     }
     
     public func gameOver() {
-        if let newGameScene = gameScene as? GameScene {
-            if (newGameScene.gamePaused) {
-                return
-            }
-            newGameScene.pauseGame()
-            homeButton.isHidden = false
-            pauseScoreLabel.isHidden = false
-            scoreLabel.isHidden = true
-            pauseButton.isHidden = true
-            coinImage.isHidden = true
-            coinXImage.isHidden = true
-            moneyLabel.isHidden = true
-            gameOverLabel = UILabel()
-            gameOverLabel.text = "Game Over"
-            gameOverLabel.font = UIFont(name: "kenvector_future.ttf", size: CGFloat(50))
-            gameOverLabel.textAlignment = .center
-            self.view.addSubview(gameOverLabel)
+        guard let gameScene = gameScene else {
+            return
         }
-        
+        if (gameScene.gamePaused) {
+            return
+        }
+        gameScene.pauseGame()
+        endHiddens()
+        gameOverLabel = UILabel()
+        gameOverLabel.text = "Game Over"
+        gameOverLabel.font = UIFont(name: "kenvector_future.ttf", size: CGFloat(50))
+        gameOverLabel.textAlignment = .center
+        self.view.addSubview(gameOverLabel)
     }
     
     @IBAction func homeButtonPressed(_ sender: Any) {
-        let newGameScene = gameScene as! GameScene
-        newGameScene.pauseGame()
+        guard let gameScene = gameScene else {
+            return
+        }
+        gameScene.pauseGame()
         dismiss(animated: true, completion: nil)
         let mainViewController = self.storyboard?.instantiateInitialViewController()
         let mainGameViewController = mainViewController as! GameViewController
@@ -109,8 +125,10 @@ class GameSceneViewController: UIViewController {
     }
     
     @IBAction func pauseButtonPressed(_ sender: Any) {
-        let newGameScene = gameScene as! GameScene
-        if (!newGameScene.gamePaused) {
+        guard let gameScene = gameScene else {
+            return
+        }
+        if (!gameScene.gamePaused) {
             UIView.animate(withDuration: 0.1, animations: {
                 self.blurEffect.alpha = 1
             }, completion: { (nil) in
@@ -122,21 +140,16 @@ class GameSceneViewController: UIViewController {
             coinImage.isHidden = true
             coinXImage.isHidden = true
             moneyLabel.isHidden = true
-            newGameScene.pauseGame()
-            pauseScoreLabel.text = "Score: \(newGameScene.score)"
+            gameScene.pauseGame()
+            pauseScoreLabel.text = "Score: \(gameScene.score)"
         } else {
             UIView.animate(withDuration: 0.2) {
                 self.blurEffect.alpha = 0
             }
             pauseButton.setImage(UIImage(named: "PauseButton.png"), for: .normal)
-            newGameScene.spaceship.autoFire()
-            newGameScene.resumeGame()
-            scoreLabel.isHidden = false
-            coinImage.isHidden = false
-            coinXImage.isHidden = false
-            moneyLabel.isHidden = false
-            homeButton.isHidden = true
-            pauseScoreLabel.isHidden = true
+            gameScene.spaceship.autoFire()
+            gameScene.resumeGame()
+            startHiddens()
         }
     }
     
