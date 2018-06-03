@@ -31,6 +31,8 @@ class SKCharacterNode: SKSpriteNode {
      # Health Bar
      
      Creates a health bar of a size based on the current health value
+     
+     - Postcondition: Health bar is added/updated to current size
      */
     public func updateHealthBar() {
         healthBar?.removeFromParent()
@@ -42,13 +44,33 @@ class SKCharacterNode: SKSpriteNode {
         }
     }
     
+    /**
+     # Take Damage
+     
+     Deducts from the character's health based on the given amount
+     
+     - Parameter damage: A Float value that is deducted from the health
+     
+     - Postcondition: Health is altered
+     */
     public func takeDamage(_ damage: Float) {
         health -= damage
         updateHealthBar()
     }
     
+    /**
+     # Pause
+     
+     Stops the autofire function of the character
+     
+     - Precondition: The character is active
+     
+     - Postcondition: The character is paused
+     */
     internal func pause() {
         timer.invalidate()
+        action(forKey: "enemyMove")?.speed = 0
+        children.first?.action(forKey: "enemyMove")?.speed = 0
     }
     
     internal func autoFire() {

@@ -217,17 +217,9 @@ class GameScene: SKScene {
         gamePaused = true
         backgroundMusicNode.run(SKAction.changeVolume(to: 0.0, duration: 0.3))
         starParticleEffect.isPaused = true
-        
-        for child in children {
-            if let character = child as? SKCharacterNode {
-                character.pause()
-            }
-            if let action = child.action(forKey: "enemyMove") {
-                action.speed = 0
-                if let subChild = child.children.first {
-                    subChild.action(forKey: "enemyMove")?.speed = 0
-                }
-            }
+        children.forEach { (child) in
+            (child as? SKCharacterNode)?.pause()
+            (child as? SKCoinNode)?.action(forKey: "enemyMove")?.speed = 0
         }
     }
     
@@ -235,10 +227,8 @@ class GameScene: SKScene {
         gamePaused = false
         backgroundMusicNode.run(SKAction.changeVolume(to: 5, duration: 0.3))
         starParticleEffect.isPaused = false
-        for child in self.children {
-            if let action = child.action(forKey: "enemyMove") {
-                action.speed = 1
-            }
+        children.forEach { (child) in
+            child.action(forKey: "enemyMove")?.speed = 1
         }
     }
 }

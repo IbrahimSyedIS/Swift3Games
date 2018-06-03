@@ -25,13 +25,18 @@ class SKCoinNode: SKSpriteNode {
     public init(imageNamed: String) {
         let texture = SKTexture(imageNamed: imageNamed)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
-        let coinAnimationTextures = [SKTexture(imageNamed: "Gold_21"), SKTexture(imageNamed: "Gold_22"), SKTexture(imageNamed: "Gold_23"),
-                                     SKTexture(imageNamed: "Gold_24"), SKTexture(imageNamed: "Gold_25"), SKTexture(imageNamed: "Gold_26"),
-                                     SKTexture(imageNamed: "Gold_27"), SKTexture(imageNamed: "Gold_28"), SKTexture(imageNamed: "Gold_29"),
-                                     SKTexture(imageNamed: "Gold_30")]
-        let coinAnimation = SKAction.repeatForever(SKAction.animate(with: coinAnimationTextures, timePerFrame: 0.1))
-        run(coinAnimation)
+        preparePhysicsBody()
+        run(SKAction.repeatForever(SKAction.animate(with: [getText("Gold_21"), getText("Gold_22"), getText("Gold_23"), getText("Gold_24"),
+                                                           getText("Gold_25"), getText("Gold_26"), getText("Gold_27"), getText("Gold_28"),
+                                                           getText("Gold_29"), getText("Gold_30")], timePerFrame: 0.1)))
         value = Int(arc4random_uniform(12))
+    }
+    
+    private func getText(_ name: String) -> SKTexture {
+        return SKTexture(imageNamed: name)
+    }
+    
+    private func preparePhysicsBody() {
         self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
