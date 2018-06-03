@@ -38,9 +38,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         let nodeB = contact.bodyB.node
         
         // Checking to make sure that both of the nodes are still in the scene
-        if (nodeA?.parent == nil || nodeB?.parent == nil) {
-            return
-        }
+        if (nodeA?.parent == nil || nodeB?.parent == nil) { return }
         
         // Handling a collision between an item and player
         if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.itemCat)) &&
@@ -84,9 +82,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      - Parameter otherNodeO: The character node
      */
     private func handleLaserCharacterCollision(laserNodeO: SKWeaponNode?, otherNodeO: SKCharacterNode?) {
-        guard let laserNode = laserNodeO, let otherNode = otherNodeO else {
-            return
-        }
+        guard let laserNode = laserNodeO, let otherNode = otherNodeO else { return }
         let laserHit = SKEmitterNode(fileNamed: "laserHit")!
         let laserHitSound = SKAction.playSoundFileNamed("laserBlast.mp3", waitForCompletion: false)
         gameScene.run(laserHitSound)
@@ -98,13 +94,11 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         laserNode.removeFromParent()
         otherNode.takeDamage(laserNode.getDamage())
         if otherNode.health <= 0 {
-            if let playerNode = otherNode as? SKPlayerNode {
-                playerNode.die()
+            if otherNode is SKPlayerNode {
                 Global.gameSceneViewController.gameOver()
-                Global.gameScene.pauseGame()
-            } else if let enemyNode = otherNode as? SKEnemyNode {
-                enemyNode.die()
-                let newCoin = createCoin(position: enemyNode.position)
+                gameScene.pauseGame()
+            } else if otherNode is SKEnemyNode {
+                let newCoin = createCoin(position: otherNode.position)
                 gameScene.addChild(newCoin)
                 let distance = abs(newCoin.position.y - (gameScene.childNode(withName: "spaceship")?.position.y)!)
                 let coinMove = SKAction.move(to: CGPoint(x: newCoin.position.x,
@@ -142,15 +136,12 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      - Parameter itemNodeO: The node representing the item
      */
     private func handleItemCollision(playerNodeO: SKPlayerNode?, itemNodeO: SKCoinNode?) {
-        guard let itemNode = itemNodeO, let playerNode = playerNodeO else {
-            return
-        }
+        guard let itemNode = itemNodeO, let playerNode = playerNodeO else { return }
         // Right now just assuming all the items are coins (since they are) -> Come back here and change this when more items are added
         let coinSound = SKAction.playSoundFileNamed("coinCollect.mp3", waitForCompletion: false)
         Global.money += itemNode.value
-        let gameScene = playerNode.parent as! GameScene
-        gameScene.updateMoney(with: itemNode.value)
-        gameScene.run(coinSound)
+        Global.gameSceneViewController.updateMoney(with: itemNode.value)
+        (playerNode.parent as! GameScene).run(coinSound)
         itemNode.removeFromParent()
     }
     
@@ -163,22 +154,14 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      - Parameter enemyNodeO: The enemy
      */
     private func handleEnemyPlayerCollision(playerNodeO: SKPlayerNode?, enemyNodeO: SKEnemyNode?) {
+        guard let enemyNode = enemyNodeO, let playerNode = playerNodeO else { return }
         let enemyDie = SKEmitterNode(fileNamed: "Explosion")!
-        guard let enemyNode = enemyNodeO, let playerNode = playerNodeO else {
-            return
-        }
         enemyNode.removeAllActions()
         enemyNode.removeFromParent()
         enemyDie.position = enemyNode.position
-        let emitterAction = SKAction.run({
-            self.gameScene.addChild(enemyDie)
-        })
-        let emitterDuration = CGFloat(enemyDie.numParticlesToEmit) * enemyDie.particleLifetime
-        let wait = SKAction.wait(forDuration: TimeInterval(emitterDuration))
-        let remove = SKAction.run({
-            enemyDie.removeFromParent()
-        })
-        let sequence = SKAction.sequence([emitterAction, wait, remove])
+        let sequence = SKAction.sequence([SKAction.run({ self.gameScene.addChild(enemyDie) }),
+                                          SKAction.wait(forDuration: TimeInterval(CGFloat(enemyDie.numParticlesToEmit) * enemyDie.particleLifetime)),
+                                          SKAction.run({ enemyDie.removeFromParent() })])
         gameScene.run(sequence)
         if playerNode.health > 0 {
             playerNode.takeDamage(10)

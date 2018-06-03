@@ -41,6 +41,8 @@ class SKCharacterNode: SKSpriteNode {
             healthBar!.fillColor = UIColor.green
             healthBar!.position = CGPoint(x: 0, y: -175)
             addChild(healthBar!)
+        } else {
+            die()
         }
     }
     

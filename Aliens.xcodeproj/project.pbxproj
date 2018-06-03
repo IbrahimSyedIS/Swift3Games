@@ -15,6 +15,9 @@
 		0F0E77DE1F2CC03600AAA248 /* laserBlast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */; };
 		0F0E77E01F2CC3CA00AAA248 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */; };
 		0F1E90591F33529800630A98 /* coinCollect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F1E90581F33529800630A98 /* coinCollect.mp3 */; };
+		0F441ACF20C3929400943B17 /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F441ACD20C3929400943B17 /* tiles.png */; };
+		0F441AD020C3929400943B17 /* tiled.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0F441ACE20C3929400943B17 /* tiled.tmx */; };
+		0F441AD220C3932200943B17 /* platformsTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F441AD120C3932200943B17 /* platformsTileSet.sks */; };
 		0F57C18720B8899E00631DE6 /* SKCharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */; };
 		0F7C714C20C0442200169780 /* SKWeaponNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7C714B20C0442200169780 /* SKWeaponNode.swift */; };
 		0F80BCE71F29C18D00C981E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */; };
@@ -68,6 +71,9 @@
 		0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laserBlast.mp3; sourceTree = "<group>"; };
 		0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		0F1E90581F33529800630A98 /* coinCollect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coinCollect.mp3; sourceTree = "<group>"; };
+		0F441ACD20C3929400943B17 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
+		0F441ACE20C3929400943B17 /* tiled.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tiled.tmx; sourceTree = "<group>"; };
+		0F441AD120C3932200943B17 /* platformsTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = platformsTileSet.sks; sourceTree = "<group>"; };
 		0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCharacterNode.swift; sourceTree = "<group>"; };
 		0F7C714B20C0442200169780 /* SKWeaponNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKWeaponNode.swift; sourceTree = "<group>"; };
 		0F80BCE31F29C18D00C981E1 /* Aliens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aliens.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +169,8 @@
 		0F80BCE51F29C18D00C981E1 /* Aliens */ = {
 			isa = PBXGroup;
 			children = (
+				0F441ACE20C3929400943B17 /* tiled.tmx */,
+				0F441ACD20C3929400943B17 /* tiles.png */,
 				0FED0FA51F35B96E00343DF9 /* Global */,
 				0FED0FA41F34A00F00343DF9 /* Scenes */,
 				0FED0FA11F349FB100343DF9 /* Effects */,
@@ -174,6 +182,7 @@
 				0FC4C2891F2C4488006D3BEC /* kenvector_future */,
 				0F80BCF31F29C18D00C981E1 /* Assets.xcassets */,
 				0F80BCF81F29C18D00C981E1 /* Info.plist */,
+				0F441AD120C3932200943B17 /* platformsTileSet.sks */,
 			);
 			path = Aliens;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 			files = (
 				0F0E77D61F2CAFDF00AAA248 /* laserHit.sks in Resources */,
 				0FC4C2881F2B5357006D3BEC /* Alchemy.wav in Resources */,
+				0F441AD020C3929400943B17 /* tiled.tmx in Resources */,
 				0F1E90591F33529800630A98 /* coinCollect.mp3 in Resources */,
 				0F0E77D91F2CBBB900AAA248 /* GalaxyForce.wav in Resources */,
 				0F9579301F31CF360032AE2B /* playerExplosion.sks in Resources */,
@@ -443,8 +453,10 @@
 				0FC4C28B1F2C4488006D3BEC /* kenvector_future.ttf in Resources */,
 				0FC4C2861F2B52BA006D3BEC /* Laser_Shoot.mp3 in Resources */,
 				0F80BCE91F29C18D00C981E1 /* GameScene.sks in Resources */,
+				0F441ACF20C3929400943B17 /* tiles.png in Resources */,
 				0F0E77DA1F2CBBB900AAA248 /* StealthMode.wav in Resources */,
 				0F80BCF41F29C18D00C981E1 /* Assets.xcassets in Resources */,
+				0F441AD220C3932200943B17 /* platformsTileSet.sks in Resources */,
 				0F80BCF71F29C18D00C981E1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

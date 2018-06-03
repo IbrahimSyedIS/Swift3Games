@@ -43,7 +43,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Global.gameViewController = self
         Global.currentWave = 0
         backgroundMusic?.play()
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)

@@ -32,15 +32,14 @@ class GameScene: SKScene {
     
     public var gameViewController: GameSceneViewController!
     public var timer: Timer!
-    var physicsContactDelegate: GamePhysicsDelegate!
     private var numSinceLastLevelPush: Int = 0
     
     /** BitMask values that represent what categories and object will physically collide with in \(UInt32) form **/
     
     // 2D Levels array represents all enemies as ints and each row is a level. [1, 1, 1] -> one level with three type 1 enemies
-    var levels: [[Int]] = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+    private var levels: [[Int]] = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
     //Test Level made until more streamlined 2D level system is made
     private var testLevel: [Int] = [1, 1, 1, 1, 1, 1]
@@ -50,21 +49,18 @@ class GameScene: SKScene {
     public var gamePaused: Bool = false
 
     override func didMove(to view: SKView) {
-        Global.gameScene = self
-        physicsContactDelegate = GamePhysicsDelegate()
+        let physicsContactDelegate = GamePhysicsDelegate()
         physicsContactDelegate.gameScene = self
         self.physicsWorld.contactDelegate = physicsContactDelegate
-        
-        // Modifying masks to control what collides with what e.g. laserMask = enemyCat | playerCat -> lasers collide with enemies and players
-        
         spaceship = self.childNode(withName: "spaceship") as! SKPlayerNode
         prepareSpaceship()
         playerSpeed = spaceship.getMoveSpeed()
         starParticleEffect = self.childNode(withName: "Stars") as! SKEmitterNode
-        
         backgroundMusicNode = getBackgroundMusic(fileName: "GalaxyForce.wav")
         backgroundMusicNode.run(SKAction.changeVolume(to: 5, duration: 0))
         self.addChild(backgroundMusicNode)
+        
+        print("Loading a tile set")
         
         // Beginning the game
         if (enemiesLeft() == 0) {
@@ -143,19 +139,13 @@ class GameScene: SKScene {
         return count
     }
     
-    public func updateMoney(with add: Int) {
-        gameViewController.updateMoney(with: add)
-    }
-    
     // Beginning the game, will be revamped later
     func beginGame() {
         nextLevel()
     }
     
     private func nextLevel() {
-        if (testLevel.count <= 0) {
-            return
-        }
+        if (testLevel.count <= 0) { return }
         Global.currentWave += 1
         let waveLabel = createWaveLabel(wave: Global.currentWave)
         let fadeIn = SKAction.fadeIn(withDuration: 1)
