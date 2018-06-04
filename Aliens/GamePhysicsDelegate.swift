@@ -26,6 +26,10 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
     // Represents the SKScene that the game is being played in
     public var gameScene: GameScene!
     
+    public init(to scene: GameScene) {
+        gameScene = scene
+    }
+    
     /**
      # Collisions
      
@@ -36,6 +40,8 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         
         let nodeA = contact.bodyA.node
         let nodeB = contact.bodyB.node
+        
+        print("Handling collision between \(nodeA?.description) and \(nodeB?.description)")
         
         // Checking to make sure that both of the nodes are still in the scene
         if (nodeA?.parent == nil || nodeB?.parent == nil) { return }
@@ -49,6 +55,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         // Handling a collision between a laser and a character
         if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.laserCat)) &&
            (nodeA is SKCharacterNode || nodeB is SKCharacterNode) {
+            print("Handling Collision between laser and character")
             handleLaserCharacterCollision(laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat ? nodeA as? SKWeaponNode : nodeB as? SKWeaponNode, otherNodeO: nodeA is SKCharacterNode ? nodeA as? SKCharacterNode: nodeB as? SKCharacterNode)
         }
         
@@ -83,6 +90,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      */
     private func handleLaserCharacterCollision(laserNodeO: SKWeaponNode?, otherNodeO: SKCharacterNode?) {
         guard let laserNode = laserNodeO, let otherNode = otherNodeO else { return }
+//        print("Handling collsion between laser and a character")
         let laserHit = SKEmitterNode(fileNamed: "laserHit")!
         let laserHitSound = SKAction.playSoundFileNamed("laserBlast.mp3", waitForCompletion: false)
         gameScene.run(laserHitSound)

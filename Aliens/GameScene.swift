@@ -49,8 +49,7 @@ class GameScene: SKScene {
     public var gamePaused: Bool = false
 
     override func didMove(to view: SKView) {
-        let physicsContactDelegate = GamePhysicsDelegate()
-        physicsContactDelegate.gameScene = self
+        let physicsContactDelegate = GamePhysicsDelegate(to: self)
         self.physicsWorld.contactDelegate = physicsContactDelegate
         spaceship = self.childNode(withName: "spaceship") as! SKPlayerNode
         prepareSpaceship()
@@ -79,7 +78,7 @@ class GameScene: SKScene {
         spaceship.physicsBody?.categoryBitMask = GamePhysicsDelegate.playerCat
         
         // Collision bitmask -> physically collides + interacts with
-        spaceship.physicsBody?.collisionBitMask = GamePhysicsDelegate.playerMask | GamePhysicsDelegate.enemyCat
+        spaceship.physicsBody?.collisionBitMask = GamePhysicsDelegate.playerMask
         
         // Contact bitmask -> Calls collision method on contact
         spaceship.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerMask | GamePhysicsDelegate.enemyCat

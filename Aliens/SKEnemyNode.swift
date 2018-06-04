@@ -38,12 +38,12 @@ class SKEnemyNode: SKCharacterNode {
     }
     
     private func preparePhysicsBody(texture: SKTexture) {
-        physicsBody = SKPhysicsBody(texture: texture, size: size)
-        physicsBody?.affectedByGravity = false
-        physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyCat
-        physicsBody?.collisionBitMask = GamePhysicsDelegate.enemyMask
-        physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
-        physicsBody?.fieldBitMask = 0
+        self.physicsBody = SKPhysicsBody(texture: texture, size: size)
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.categoryBitMask = GamePhysicsDelegate.enemyCat
+        self.physicsBody?.collisionBitMask = GamePhysicsDelegate.enemyMask
+        self.physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
+        self.physicsBody?.fieldBitMask = 0
     }
     
 }

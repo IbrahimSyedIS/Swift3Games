@@ -86,7 +86,8 @@ class SKCharacterNode: SKSpriteNode {
             let laser = createLaser(imageNamed: "LaserDown")
             self.parent?.addChild(laser)
             let distance = laser.position.y > 0 ? laser.position.y + 750 : 750 - abs(laser.position.y)
-            let laserActionSequence = SKAction.sequence([SKAction.move(to: CGPoint(x: laser.position.x, y: -750), duration: TimeInterval(distance / 250)), SKAction.removeFromParent()])
+            let laserActionSequence = SKAction.sequence([SKAction.move(to: CGPoint(x: laser.position.x, y: -750), duration: TimeInterval(distance / 250)),
+                                                         SKAction.removeFromParent()])
             laser.run(laserActionSequence, withKey: "laserShoot")
         }
     }
@@ -100,12 +101,13 @@ class SKCharacterNode: SKSpriteNode {
         laser.setDamage(to: 2)
         laser.position = CGPoint(x: position.x, y: position.y - 100)
         laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
-        laser.physicsBody?.affectedByGravity = false
-        laser.physicsBody?.allowsRotation = false
-        laser.physicsBody?.categoryBitMask = GamePhysicsDelegate.laserCat
-        laser.physicsBody?.collisionBitMask = 0
-        laser.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerCat
-        laser.physicsBody?.fieldBitMask = 0
+        laser.physicsBody!.affectedByGravity = false
+        laser.physicsBody!.allowsRotation = false
+        laser.physicsBody!.categoryBitMask = GamePhysicsDelegate.laserCat
+        laser.physicsBody!.collisionBitMask = GamePhysicsDelegate.laserMask
+        laser.physicsBody!.contactTestBitMask = GamePhysicsDelegate.laserMask
+        laser.physicsBody!.fieldBitMask = 0
+        print("created laser")
         return laser
     }
     
