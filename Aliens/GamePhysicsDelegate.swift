@@ -42,6 +42,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         let nodeB = contact.bodyB.node
         
         print("Handling collision between \(nodeA?.description) and \(nodeB?.description)")
+        print("Potato")
         
         // Checking to make sure that both of the nodes are still in the scene
         if (nodeA?.parent == nil || nodeB?.parent == nil) { return }

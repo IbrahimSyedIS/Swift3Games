@@ -34,6 +34,8 @@ class GameScene: SKScene {
     public var timer: Timer!
     private var numSinceLastLevelPush: Int = 0
     
+    private var physicsContactDelegate: GamePhysicsDelegate!
+    
     /** BitMask values that represent what categories and object will physically collide with in \(UInt32) form **/
     
     // 2D Levels array represents all enemies as ints and each row is a level. [1, 1, 1] -> one level with three type 1 enemies
@@ -49,7 +51,7 @@ class GameScene: SKScene {
     public var gamePaused: Bool = false
 
     override func didMove(to view: SKView) {
-        let physicsContactDelegate = GamePhysicsDelegate(to: self)
+        physicsContactDelegate = GamePhysicsDelegate(to: self)
         self.physicsWorld.contactDelegate = physicsContactDelegate
         spaceship = self.childNode(withName: "spaceship") as! SKPlayerNode
         prepareSpaceship()

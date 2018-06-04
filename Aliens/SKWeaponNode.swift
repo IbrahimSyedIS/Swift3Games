@@ -22,6 +22,11 @@ class SKWeaponNode: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
+    public init(imageNamed: String) {
+        let texture = SKTexture(imageNamed: imageNamed)
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+    }
+    
     public func setDamage(to dam: Float) {
         damage = dam
     }
