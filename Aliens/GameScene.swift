@@ -173,6 +173,10 @@ class GameScene: SKScene {
         return waveLabel
     }
     
+    private func startDialogue() {
+        
+    }
+    
     private func endlessMode() {
         // TODO
     }

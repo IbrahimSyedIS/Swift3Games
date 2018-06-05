@@ -18,7 +18,6 @@ class SKCharacterNode: SKSpriteNode {
     
     internal var fireRate = Double(arc4random_uniform(17) + 15) / Double(10)
     
-    // Required by Swift
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
