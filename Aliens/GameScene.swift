@@ -62,8 +62,9 @@ class GameScene: SKScene {
         self.addChild(backgroundMusicNode)
         
         // Beginning the game
+        startDialogue()
         if (enemiesLeft() == 0) {
-            beginGame()
+//            beginGame()
         }
     }
     
@@ -114,7 +115,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         numSinceLastLevelPush += 1
         if (enemiesLeft() == 0 && numSinceLastLevelPush >= 25 && !self.gamePaused) {
-            nextLevel()
+//            nextLevel()
             numSinceLastLevelPush = 0
         }
     }
@@ -174,7 +175,10 @@ class GameScene: SKScene {
     }
     
     private func startDialogue() {
-        
+        let texture = SKTexture(imageNamed: "buttonBlue")
+        let dNode = SKDialogueNode(texture: texture, size: CGSize(width: 680, height: 140), dialogue: "Welcome!")
+        self.addChild(dNode)
+        dNode.showDialogue()
     }
     
     private func endlessMode() {
