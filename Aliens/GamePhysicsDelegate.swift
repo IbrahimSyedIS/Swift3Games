@@ -41,9 +41,6 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         let nodeA = contact.bodyA.node
         let nodeB = contact.bodyB.node
         
-        print("Handling collision between \(nodeA?.description) and \(nodeB?.description)")
-        print("Potato")
-        
         // Checking to make sure that both of the nodes are still in the scene
         if (nodeA?.parent == nil || nodeB?.parent == nil) { return }
         
@@ -104,7 +101,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         otherNode.takeDamage(laserNode.getDamage())
         if otherNode.health <= 0 {
             if otherNode is SKPlayerNode {
-                Global.gameSceneViewController.gameOver()
+                Global.spaceViewController.gameOver()
                 gameScene.pauseGame()
             } else if otherNode is SKEnemyNode {
                 let newCoin = createCoin(position: otherNode.position)
@@ -149,7 +146,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         // Right now just assuming all the items are coins (since they are) -> Come back here and change this when more items are added
         let coinSound = SKAction.playSoundFileNamed("coinCollect.mp3", waitForCompletion: false)
         Global.money += itemNode.value
-        Global.gameSceneViewController.updateMoney(with: itemNode.value)
+        Global.spaceViewController.updateMoney(with: itemNode.value)
         (playerNode.parent as! GameScene).run(coinSound)
         itemNode.removeFromParent()
     }
@@ -176,7 +173,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
             playerNode.takeDamage(10)
         } else {
             playerNode.die()
-            Global.gameSceneViewController.gameOver()
+            Global.spaceViewController.gameOver()
             self.gameScene.pauseGame()
         }
     }

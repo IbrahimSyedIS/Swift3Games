@@ -1,5 +1,5 @@
 //
-//  GameSceneViewController.swift
+//  SpaceViewController.swift
 //  Aliens
 //
 //  Created by Ibrahim Syed on 7/30/17.
@@ -11,7 +11,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class GameSceneViewController: UIViewController {
+class SpaceViewController: UIViewController {
     
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var pauseScoreLabel: UILabel!
@@ -36,7 +36,7 @@ class GameSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Global.gameSceneViewController = self
+        Global.spaceViewController = self
         highScore = userDefaults.integer(forKey: "highScore")
         scoreLabel.text = "Score: 0                                        High Score: \(highScore!)"
         startHiddens()
@@ -120,7 +120,7 @@ class GameSceneViewController: UIViewController {
         gameScene.pauseGame()
         dismiss(animated: true, completion: nil)
         let mainViewController = self.storyboard?.instantiateInitialViewController()
-        let mainGameViewController = mainViewController as! GameViewController
+        let mainGameViewController = mainViewController as! MainMenuViewController
         mainGameViewController.reStartBackgroundMusic()
     }
     

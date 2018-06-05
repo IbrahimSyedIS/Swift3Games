@@ -15,15 +15,12 @@
 		0F0E77DE1F2CC03600AAA248 /* laserBlast.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */; };
 		0F0E77E01F2CC3CA00AAA248 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */; };
 		0F1E90591F33529800630A98 /* coinCollect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F1E90581F33529800630A98 /* coinCollect.mp3 */; };
-		0F441ACF20C3929400943B17 /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F441ACD20C3929400943B17 /* tiles.png */; };
-		0F441AD020C3929400943B17 /* tiled.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0F441ACE20C3929400943B17 /* tiled.tmx */; };
-		0F441AD220C3932200943B17 /* platformsTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F441AD120C3932200943B17 /* platformsTileSet.sks */; };
 		0F57C18720B8899E00631DE6 /* SKCharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */; };
 		0F7C714C20C0442200169780 /* SKWeaponNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7C714B20C0442200169780 /* SKWeaponNode.swift */; };
 		0F80BCE71F29C18D00C981E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */; };
 		0F80BCE91F29C18D00C981E1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCE81F29C18D00C981E1 /* GameScene.sks */; };
 		0F80BCED1F29C18D00C981E1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCEC1F29C18D00C981E1 /* GameScene.swift */; };
-		0F80BCEF1F29C18D00C981E1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */; };
+		0F80BCEF1F29C18D00C981E1 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCEE1F29C18D00C981E1 /* MainMenuViewController.swift */; };
 		0F80BCF21F29C18D00C981E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCF01F29C18D00C981E1 /* Main.storyboard */; };
 		0F80BCF41F29C18D00C981E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCF31F29C18D00C981E1 /* Assets.xcassets */; };
 		0F80BCF71F29C18D00C981E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCF51F29C18D00C981E1 /* LaunchScreen.storyboard */; };
@@ -40,7 +37,9 @@
 		0FDBE1531F2F361A00627783 /* UpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */; };
 		0FDBE1551F2F393200627783 /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBE1541F2F393200627783 /* CreditsViewController.swift */; };
 		0FDBE1571F2F49D700627783 /* SKCoinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBE1561F2F49D700627783 /* SKCoinNode.swift */; };
-		0FFC17EC1F2E112900342E8A /* GameSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */; };
+		0FEC63EE20C56F5E0087A331 /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0FEC63ED20C56F5E0087A331 /* TODO.txt */; };
+		0FEC63F020C575370087A331 /* AliensLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC63EF20C575370087A331 /* AliensLevel.swift */; };
+		0FFC17EC1F2E112900342E8A /* SpaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC17EB1F2E112900342E8A /* SpaceViewController.swift */; };
 		0FFC17EE1F2E20D400342E8A /* GamePhysicsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC17ED1F2E20D400342E8A /* GamePhysicsDelegate.swift */; };
 		67520AB55096923433DB8459 /* Pods_AliensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F090B8056BF8BD31A6D41B6D /* Pods_AliensTests.framework */; };
 		EE664524F323FD208FB43259 /* Pods_AliensUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D266BA4A60BBEFF5CC693910 /* Pods_AliensUITests.framework */; };
@@ -71,16 +70,13 @@
 		0F0E77DD1F2CC03600AAA248 /* laserBlast.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laserBlast.mp3; sourceTree = "<group>"; };
 		0F0E77DF1F2CC3CA00AAA248 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		0F1E90581F33529800630A98 /* coinCollect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coinCollect.mp3; sourceTree = "<group>"; };
-		0F441ACD20C3929400943B17 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
-		0F441ACE20C3929400943B17 /* tiled.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tiled.tmx; sourceTree = "<group>"; };
-		0F441AD120C3932200943B17 /* platformsTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = platformsTileSet.sks; sourceTree = "<group>"; };
 		0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCharacterNode.swift; sourceTree = "<group>"; };
 		0F7C714B20C0442200169780 /* SKWeaponNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKWeaponNode.swift; sourceTree = "<group>"; };
 		0F80BCE31F29C18D00C981E1 /* Aliens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aliens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F80BCE81F29C18D00C981E1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		0F80BCEC1F29C18D00C981E1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		0F80BCEE1F29C18D00C981E1 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		0F80BCF11F29C18D00C981E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F80BCF31F29C18D00C981E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F80BCF61F29C18D00C981E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,7 +98,9 @@
 		0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeViewController.swift; sourceTree = "<group>"; };
 		0FDBE1541F2F393200627783 /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		0FDBE1561F2F49D700627783 /* SKCoinNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKCoinNode.swift; sourceTree = "<group>"; };
-		0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneViewController.swift; sourceTree = "<group>"; };
+		0FEC63ED20C56F5E0087A331 /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		0FEC63EF20C575370087A331 /* AliensLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliensLevel.swift; sourceTree = "<group>"; };
+		0FFC17EB1F2E112900342E8A /* SpaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceViewController.swift; sourceTree = "<group>"; };
 		0FFC17ED1F2E20D400342E8A /* GamePhysicsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePhysicsDelegate.swift; sourceTree = "<group>"; };
 		2E584B4A39FE0D172DB3EE69 /* Pods-AliensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AliensTests/Pods-AliensTests.debug.xcconfig"; sourceTree = "<group>"; };
 		524E7B15439ABD71D04FB0D3 /* Pods-Aliens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aliens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aliens/Pods-Aliens.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,8 +167,6 @@
 		0F80BCE51F29C18D00C981E1 /* Aliens */ = {
 			isa = PBXGroup;
 			children = (
-				0F441ACE20C3929400943B17 /* tiled.tmx */,
-				0F441ACD20C3929400943B17 /* tiles.png */,
 				0FED0FA51F35B96E00343DF9 /* Global */,
 				0FED0FA41F34A00F00343DF9 /* Scenes */,
 				0FED0FA11F349FB100343DF9 /* Effects */,
@@ -182,7 +178,6 @@
 				0FC4C2891F2C4488006D3BEC /* kenvector_future */,
 				0F80BCF31F29C18D00C981E1 /* Assets.xcassets */,
 				0F80BCF81F29C18D00C981E1 /* Info.plist */,
-				0F441AD120C3932200943B17 /* platformsTileSet.sks */,
 			);
 			path = Aliens;
 			sourceTree = "<group>";
@@ -244,6 +239,7 @@
 				0FDBE1561F2F49D700627783 /* SKCoinNode.swift */,
 				0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */,
 				0F7C714B20C0442200169780 /* SKWeaponNode.swift */,
+				0FEC63EF20C575370087A331 /* AliensLevel.swift */,
 			);
 			name = SKNodes;
 			sourceTree = "<group>";
@@ -261,8 +257,8 @@
 		0FED0FA21F349FE300343DF9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0FFC17EB1F2E112900342E8A /* GameSceneViewController.swift */,
-				0F80BCEE1F29C18D00C981E1 /* GameViewController.swift */,
+				0FFC17EB1F2E112900342E8A /* SpaceViewController.swift */,
+				0F80BCEE1F29C18D00C981E1 /* MainMenuViewController.swift */,
 				0FDBE1521F2F361A00627783 /* UpgradeViewController.swift */,
 				0FDBE1541F2F393200627783 /* CreditsViewController.swift */,
 			);
@@ -291,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				0F95792B1F31A2950032AE2B /* Global.swift */,
+				0FEC63ED20C56F5E0087A331 /* TODO.txt */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -443,20 +440,18 @@
 			files = (
 				0F0E77D61F2CAFDF00AAA248 /* laserHit.sks in Resources */,
 				0FC4C2881F2B5357006D3BEC /* Alchemy.wav in Resources */,
-				0F441AD020C3929400943B17 /* tiled.tmx in Resources */,
 				0F1E90591F33529800630A98 /* coinCollect.mp3 in Resources */,
 				0F0E77D91F2CBBB900AAA248 /* GalaxyForce.wav in Resources */,
 				0F9579301F31CF360032AE2B /* playerExplosion.sks in Resources */,
+				0FEC63EE20C56F5E0087A331 /* TODO.txt in Resources */,
 				0F80BCF21F29C18D00C981E1 /* Main.storyboard in Resources */,
 				0F0E77E01F2CC3CA00AAA248 /* Explosion.sks in Resources */,
 				0F0E77DE1F2CC03600AAA248 /* laserBlast.mp3 in Resources */,
 				0FC4C28B1F2C4488006D3BEC /* kenvector_future.ttf in Resources */,
 				0FC4C2861F2B52BA006D3BEC /* Laser_Shoot.mp3 in Resources */,
 				0F80BCE91F29C18D00C981E1 /* GameScene.sks in Resources */,
-				0F441ACF20C3929400943B17 /* tiles.png in Resources */,
 				0F0E77DA1F2CBBB900AAA248 /* StealthMode.wav in Resources */,
 				0F80BCF41F29C18D00C981E1 /* Assets.xcassets in Resources */,
-				0F441AD220C3932200943B17 /* platformsTileSet.sks in Resources */,
 				0F80BCF71F29C18D00C981E1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,14 +618,15 @@
 				0F57C18720B8899E00631DE6 /* SKCharacterNode.swift in Sources */,
 				0FDBE1571F2F49D700627783 /* SKCoinNode.swift in Sources */,
 				0F80BCED1F29C18D00C981E1 /* GameScene.swift in Sources */,
-				0F80BCEF1F29C18D00C981E1 /* GameViewController.swift in Sources */,
+				0F80BCEF1F29C18D00C981E1 /* MainMenuViewController.swift in Sources */,
 				0F95792E1F31CD2A0032AE2B /* SKPlayerNode.swift in Sources */,
+				0FEC63F020C575370087A331 /* AliensLevel.swift in Sources */,
 				0F95792C1F31A2950032AE2B /* Global.swift in Sources */,
 				0FC0BB811F2F0B7200AEA135 /* BannerADViewDelegate.swift in Sources */,
 				0F0E77DC1F2CBE0F00AAA248 /* SKEnemyNode.swift in Sources */,
 				0FDBE1551F2F393200627783 /* CreditsViewController.swift in Sources */,
 				0F7C714C20C0442200169780 /* SKWeaponNode.swift in Sources */,
-				0FFC17EC1F2E112900342E8A /* GameSceneViewController.swift in Sources */,
+				0FFC17EC1F2E112900342E8A /* SpaceViewController.swift in Sources */,
 				0FDBE1531F2F361A00627783 /* UpgradeViewController.swift in Sources */,
 				0FFC17EE1F2E20D400342E8A /* GamePhysicsDelegate.swift in Sources */,
 				0F80BCE71F29C18D00C981E1 /* AppDelegate.swift in Sources */,

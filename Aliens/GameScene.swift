@@ -15,7 +15,7 @@
   Files:
   [GameScene.sks, laserHit.sks, SKEnemyNode.swift, SKCoinNode.swift,
   AppDelegate.swift, GamePhysicsDelegate.swift, BannerADViewDelegate.swift,
-  GameScene.swift, GameSceneViewController.swift, GameViewController.swift,
+  GameScene.swift, SpaceViewController.swift, GameViewController.swift,
   UpgradeViewController.swift, CreditsViewController.swift, Main.storyboard,
   LaunchScreen.storyboard, Assets.xcassets, Info.plist, Sounds, kenvector_future]
 
@@ -30,7 +30,7 @@ class GameScene: SKScene {
     var backgroundMusicNode: SKAudioNode!
     var starParticleEffect: SKEmitterNode!
     
-    public var gameViewController: GameSceneViewController!
+    public var gameViewController: SpaceViewController!
     public var timer: Timer!
     private var numSinceLastLevelPush: Int = 0
     
@@ -60,8 +60,6 @@ class GameScene: SKScene {
         backgroundMusicNode = getBackgroundMusic(fileName: "GalaxyForce.wav")
         backgroundMusicNode.run(SKAction.changeVolume(to: 5, duration: 0))
         self.addChild(backgroundMusicNode)
-        
-        print("Loading a tile set")
         
         // Beginning the game
         if (enemiesLeft() == 0) {

@@ -1,6 +1,6 @@
 /*
  
-  GameViewController.swift
+  MainMenuViewController.swift
   Aliens
 
   Created by Ibrahim Syed on 7/27/17.
@@ -14,7 +14,7 @@ import GameplayKit
 import AVFoundation
 import GoogleMobileAds
 
-class GameViewController: UIViewController {
+class MainMenuViewController: UIViewController {
     @IBOutlet var titleText: UILabel!
     @IBOutlet var playButton: UIButton!
     @IBOutlet var settingsButton: UIButton!

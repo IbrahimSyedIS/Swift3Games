@@ -107,7 +107,6 @@ class SKCharacterNode: SKSpriteNode {
         laser.physicsBody!.collisionBitMask = GamePhysicsDelegate.laserMask
         laser.physicsBody!.contactTestBitMask = GamePhysicsDelegate.laserMask
         laser.physicsBody!.fieldBitMask = 0
-        print("created laser")
         return laser
     }
     

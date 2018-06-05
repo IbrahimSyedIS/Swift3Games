@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--gameViewController-->
+        <!--mainMenuViewController-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController storyboardIdentifier="Main View" title="gameViewController" id="BV1-FR-VrT" customClass="GameViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main View" title="mainMenuViewController" id="BV1-FR-VrT" customClass="MainMenuViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
@@ -169,7 +169,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMING SOON" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDw-h1-9j7">
-                                <rect key="frame" x="8" y="244" width="358" height="178"/>
+                                <rect key="frame" x="8.5" y="244" width="358" height="178"/>
                                 <fontDescription key="fontDescription" name="KenVector-Future" family="KenVector Future" pointSize="43"/>
                                 <color key="textColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -218,12 +218,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mw7-HT-FgV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1257" y="-105"/>
+            <point key="canvasLocation" x="972" y="112"/>
         </scene>
-        <!--gameSceneViewController-->
+        <!--spaceViewController-->
         <scene sceneID="nfX-Ia-kSc">
             <objects>
-                <viewController title="gameSceneViewController" modalTransitionStyle="crossDissolve" id="SY1-uW-4OO" customClass="GameSceneViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="spaceViewController" modalTransitionStyle="crossDissolve" id="SY1-uW-4OO" customClass="SpaceViewController" customModule="Aliens" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b4f-g2-OVl"/>
                         <viewControllerLayoutGuide type="bottom" id="07T-HG-dyk"/>
@@ -339,7 +339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rE0-HP-a8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973" y="-909"/>
+            <point key="canvasLocation" x="972" y="-656"/>
         </scene>
         <!--Credits View Controller-->
         <scene sceneID="XVy-Yi-OkR">
@@ -395,7 +395,7 @@ Licensed under Creative Commons By Attribution 4.0</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HyA-lo-UaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="786"/>
+            <point key="canvasLocation" x="972" y="914"/>
         </scene>
     </scenes>
     <resources>

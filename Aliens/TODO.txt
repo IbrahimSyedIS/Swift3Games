@@ -1,0 +1,7 @@
+TODO:
+
+1. Better level system -> Level class
+2. Dialogue System
+3. Minibosses as opposed to constant stream of enemies
+4. Make current mode -> endless mode
+5. Space legs
