@@ -11,22 +11,20 @@ import GameplayKit
 
 class SKPlayerNode: SKCharacterNode {
     
-    private var moveSpeed: Int
-    
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        moveSpeed = 625
         super.init(texture: texture, color: color, size: size)
-        self.fireRate = 0.5
+        setFireRate(to: 0.5)
+        setSpeed(to: 625)
+        setHealth(to: 100)
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        moveSpeed = 625
         super.init(coder: aDecoder)
-        self.fireRate = 0.5
-    }
-    
-    public func getMoveSpeed() -> Int {
-        return moveSpeed
+        setFireRate(to: 0.5)
+        setSpeed(to: 625)
+        setHealth(to: 100)
+        
+        
     }
     
     public func coinGravity() {
@@ -60,7 +58,7 @@ class SKPlayerNode: SKCharacterNode {
     }
     
     internal override func autoFire() {
-        timer = Timer.scheduledTimer(withTimeInterval: fireRate, repeats: true, block: { (nil) in
+        timer = Timer.scheduledTimer(withTimeInterval: getFireRate(), repeats: true, block: { (nil) in
             self.fireLaser()
         })
     }

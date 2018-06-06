@@ -17,6 +17,7 @@
 		0F1E90591F33529800630A98 /* coinCollect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0F1E90581F33529800630A98 /* coinCollect.mp3 */; };
 		0F57C18720B8899E00631DE6 /* SKCharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */; };
 		0F77502620C6EDE500A671C4 /* SKDialogueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F77502520C6EDE500A671C4 /* SKDialogueNode.swift */; };
+		0F77502820C8448700A671C4 /* SKBossNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F77502720C8448700A671C4 /* SKBossNode.swift */; };
 		0F7C714C20C0442200169780 /* SKWeaponNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7C714B20C0442200169780 /* SKWeaponNode.swift */; };
 		0F80BCE71F29C18D00C981E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */; };
 		0F80BCE91F29C18D00C981E1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0F80BCE81F29C18D00C981E1 /* GameScene.sks */; };
@@ -73,6 +74,7 @@
 		0F1E90581F33529800630A98 /* coinCollect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coinCollect.mp3; sourceTree = "<group>"; };
 		0F57C18620B8899E00631DE6 /* SKCharacterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKCharacterNode.swift; sourceTree = "<group>"; };
 		0F77502520C6EDE500A671C4 /* SKDialogueNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKDialogueNode.swift; sourceTree = "<group>"; };
+		0F77502720C8448700A671C4 /* SKBossNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKBossNode.swift; sourceTree = "<group>"; };
 		0F7C714B20C0442200169780 /* SKWeaponNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKWeaponNode.swift; sourceTree = "<group>"; };
 		0F80BCE31F29C18D00C981E1 /* Aliens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aliens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F80BCE61F29C18D00C981E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				0F7C714B20C0442200169780 /* SKWeaponNode.swift */,
 				0FEC63EF20C575370087A331 /* AliensLevel.swift */,
 				0F77502520C6EDE500A671C4 /* SKDialogueNode.swift */,
+				0F77502720C8448700A671C4 /* SKBossNode.swift */,
 			);
 			name = SKNodes;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				0F57C18720B8899E00631DE6 /* SKCharacterNode.swift in Sources */,
 				0FDBE1571F2F49D700627783 /* SKCoinNode.swift in Sources */,
 				0F80BCED1F29C18D00C981E1 /* GameScene.swift in Sources */,
+				0F77502820C8448700A671C4 /* SKBossNode.swift in Sources */,
 				0F80BCEF1F29C18D00C981E1 /* MainMenuViewController.swift in Sources */,
 				0F95792E1F31CD2A0032AE2B /* SKPlayerNode.swift in Sources */,
 				0FEC63F020C575370087A331 /* AliensLevel.swift in Sources */,

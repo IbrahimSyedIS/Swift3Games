@@ -62,9 +62,9 @@ class GameScene: SKScene {
         self.addChild(backgroundMusicNode)
         
         // Beginning the game
-        startDialogue()
+//        startDialogue()
         if (enemiesLeft() == 0) {
-//            beginGame()
+            beginGame()
         }
     }
     
@@ -175,8 +175,7 @@ class GameScene: SKScene {
     }
     
     private func startDialogue() {
-        let texture = SKTexture(imageNamed: "buttonBlue")
-        let dNode = SKDialogueNode(texture: texture, size: CGSize(width: 680, height: 140), dialogue: "Welcome!")
+        let dNode = SKDialogueNode(texture: SKTexture(imageNamed: "buttonBlue"), size: CGSize(width: 680, height: 140), dialogue: "Welcome!")
         self.addChild(dNode)
         dNode.showDialogue()
     }
@@ -196,8 +195,8 @@ class GameScene: SKScene {
                                SKTexture(imageNamed: "enemy6"), SKTexture(imageNamed: "enemy7"),
                                SKTexture(imageNamed: "enemy8")]
             enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)
-            enemy.xScale = 0.4
-            enemy.yScale = 0.4
+            enemy.xScale = 0.15
+            enemy.yScale = 0.15
         case 2:
             enemyAnimations = []
             enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)

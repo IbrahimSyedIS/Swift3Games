@@ -11,19 +11,49 @@ import SpriteKit
 
 class SKCharacterNode: SKSpriteNode {
     
-    public var health: Float = 100
+    private var health: Float!
     private var healthBar: SKShapeNode?
+    private var moveSpeed: Int!
+    private var fireRate: Double!
     
     internal var timer: Timer!
     
-    internal var fireRate = Double(arc4random_uniform(17) + 15) / Double(10)
-    
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
+        setSpeed(to: 0)
+        setHealth(to: 100)
+        setFireRate(to: Double(arc4random_uniform(17) + 15) / Double(10))
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setSpeed(to: 0)
+        setHealth(to: 100)
+        setFireRate(to: Double(arc4random_uniform(17) + 15) / Double(10))
+    }
+    
+    public func setFireRate(to rate: Double) {
+        fireRate = rate
+    }
+    
+    public func getFireRate() -> Double {
+        return fireRate
+    }
+    
+    public func setSpeed(to speed: Int) {
+        moveSpeed = speed
+    }
+    
+    public func getMoveSpeed() -> Int {
+        return moveSpeed
+    }
+    
+    public func setHealth(to hp: Float) {
+        health = hp
+    }
+    
+    public func getHealth() -> Float {
+        return health
     }
     
     /**
@@ -35,8 +65,8 @@ class SKCharacterNode: SKSpriteNode {
      */
     public func updateHealthBar() {
         healthBar?.removeFromParent()
-        if (health > 0) {
-            healthBar = SKShapeNode(rectOf: CGSize(width: CGFloat(2.0 * health), height: 10))
+        if (getHealth() > 0) {
+            healthBar = SKShapeNode(rectOf: CGSize(width: CGFloat(2.0 * getHealth()), height: 10))
             healthBar!.fillColor = UIColor.green
             healthBar!.position = CGPoint(x: 0, y: -175)
             addChild(healthBar!)
@@ -55,7 +85,7 @@ class SKCharacterNode: SKSpriteNode {
      - Postcondition: Health is altered
      */
     public func takeDamage(_ damage: Float) {
-        health -= damage
+        setHealth(to: getHealth() - damage)
         updateHealthBar()
     }
     
@@ -75,24 +105,22 @@ class SKCharacterNode: SKSpriteNode {
     }
     
     internal func autoFire() {
-        timer = Timer.scheduledTimer(withTimeInterval: fireRate, repeats: true, block: { (nil) in
+        timer = Timer.scheduledTimer(withTimeInterval: getFireRate(), repeats: true, block: { (nil) in
             self.fireLaser()
         })
     }
     
     internal func fireLaser() {
-        if self.parent != nil && self.health > 0 {
+        if self.parent != nil && getHealth() > 0 {
             let laser = createLaser(imageNamed: "LaserDown")
+            laser.xScale = 0.5
+            laser.yScale = 0.5
             self.parent?.addChild(laser)
             let distance = laser.position.y > 0 ? laser.position.y + 750 : 750 - abs(laser.position.y)
             let laserActionSequence = SKAction.sequence([SKAction.move(to: CGPoint(x: laser.position.x, y: -750), duration: TimeInterval(distance / 250)),
                                                          SKAction.removeFromParent()])
             laser.run(laserActionSequence, withKey: "laserShoot")
         }
-    }
-    
-    public func getHealth() -> Float {
-        return health
     }
     
     internal func createLaser(imageNamed: String) -> SKWeaponNode {

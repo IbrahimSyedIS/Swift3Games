@@ -36,7 +36,7 @@ class SKCoinNode: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = GamePhysicsDelegate.itemCat
-        self.physicsBody?.collisionBitMask = GamePhysicsDelegate.playerCat
+        self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.contactTestBitMask = GamePhysicsDelegate.playerCat
         self.physicsBody?.fieldBitMask = 0b1 << 6
     }

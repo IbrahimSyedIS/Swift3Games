@@ -28,6 +28,15 @@ class SKDialogueNode: SKSpriteNode {
         let moveUp = SKAction.move(to: CGPoint(x: 0, y: CGFloat(-565)), duration: 0.4)
         moveUp.timingMode = SKActionTimingMode.easeOut
         run(SKAction.sequence([moveUp, SKAction.move(to: CGPoint(x: 0, y: -590), duration: 0.1)]))
+        addText()
+    }
+    
+    private func addText() {
+        let label = SKLabelNode(text: self.dialogue)
+        label.fontColor = UIColor.black
+        label.fontName = "KenVector Future"
+        label.position = CGPoint(x: -220, y: 25)
+        addChild(label)
     }
     
 }

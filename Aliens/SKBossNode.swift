@@ -1,17 +1,15 @@
-/*
- 
-  SKEnemyNode.swift
-  Aliens
+//
+//  SKBossNode.swift
+//  Aliens
+//
+//  Created by Ibrahim Syed on 6/6/18.
+//  Copyright © 2018 Ibrahim Syed. All rights reserved.
+//
 
-  Created by Ibrahim Syed on 7/29/17.
-  Copyright © 2017 Ibrahim Syed. All rights reserved.
- 
-*/
-
+import Foundation
 import SpriteKit
-import simd
 
-class SKEnemyNode: SKCharacterNode {
+class SKBossNode: SKCharacterNode {
     
     public override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -27,12 +25,11 @@ class SKEnemyNode: SKCharacterNode {
         updateHealthBar()
         preparePhysicsBody(texture: texture)
         run(SKAction.repeatForever(SKAction.animate(with: animations, timePerFrame: 0.1)))
-        autoFire()
+//        autoFire()
     }
     
-    public func startMoving() {
-        run(SKAction.sequence([SKAction.move(to: CGPoint(x: self.position.x, y: CGFloat(-750)), duration: 23),
-                               SKAction.removeFromParent()]), withKey: "enemyMove")
+    public override func autoFire() {
+        print("Autofiring")
     }
     
     private func preparePhysicsBody(texture: SKTexture) {
@@ -43,5 +40,4 @@ class SKEnemyNode: SKCharacterNode {
         self.physicsBody?.contactTestBitMask = GamePhysicsDelegate.enemyMask
         self.physicsBody?.fieldBitMask = 0
     }
-    
 }

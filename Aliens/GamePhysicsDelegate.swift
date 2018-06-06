@@ -19,12 +19,13 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
     public static let laserCat: UInt32 = 0b1 << 3
     public static let itemCat: UInt32 = 0b1 << 4
     
-    public static let playerMask: UInt32 = GamePhysicsDelegate.itemCat
+    public static let gravityCat: UInt32 = 0b1 << 6
+    
+    public static let playerMask: UInt32 = GamePhysicsDelegate.enemyCat
     public static let laserMask: UInt32 = GamePhysicsDelegate.enemyCat | GamePhysicsDelegate.playerCat
     public static let enemyMask: UInt32 = GamePhysicsDelegate.laserCat | GamePhysicsDelegate.enemyCat
     
-    // Represents the SKScene that the game is being played in
-    public var gameScene: GameScene!
+    private var gameScene: GameScene
     
     public init(to scene: GameScene) {
         gameScene = scene
@@ -53,7 +54,6 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         // Handling a collision between a laser and a character
         if (containsCatMask(contact: contact, mask: GamePhysicsDelegate.laserCat)) &&
            (nodeA is SKCharacterNode || nodeB is SKCharacterNode) {
-            print("Handling Collision between laser and character")
             handleLaserCharacterCollision(laserNodeO: contact.bodyA.categoryBitMask == GamePhysicsDelegate.laserCat ? nodeA as? SKWeaponNode : nodeB as? SKWeaponNode, otherNodeO: nodeA is SKCharacterNode ? nodeA as? SKCharacterNode: nodeB as? SKCharacterNode)
         }
         
@@ -88,18 +88,20 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      */
     private func handleLaserCharacterCollision(laserNodeO: SKWeaponNode?, otherNodeO: SKCharacterNode?) {
         guard let laserNode = laserNodeO, let otherNode = otherNodeO else { return }
-//        print("Handling collsion between laser and a character")
         let laserHit = SKEmitterNode(fileNamed: "laserHit")!
         let laserHitSound = SKAction.playSoundFileNamed("laserBlast.mp3", waitForCompletion: false)
         gameScene.run(laserHitSound)
         laserHit.position = laserNode.position
-        let laserSequence = SKAction.sequence([SKAction.run({ self.gameScene.addChild(laserHit) }),
-                                               SKAction.wait(forDuration: TimeInterval(CGFloat(laserHit.numParticlesToEmit) * laserHit.particleLifetime)),
-                                               SKAction.run({ laserHit.removeFromParent() })])
-        gameScene.run(laserSequence)
+        laserHit.particleColorSequence?.setKeyframeValue(SKColor(red: CGFloat(drand48()),
+                                                                 green: CGFloat(drand48()),
+                                                                 blue: CGFloat(drand48()),
+                                                                 alpha: CGFloat(drand48())), for: 1)
+        gameScene.run(SKAction.sequence([SKAction.run({ otherNode.parent?.addChild(laserHit) }),
+                                         SKAction.wait(forDuration: TimeInterval(CGFloat(laserHit.numParticlesToEmit) * laserHit.particleLifetime)),
+                                         SKAction.run({ laserHit.removeFromParent() })]))
         laserNode.removeFromParent()
         otherNode.takeDamage(laserNode.getDamage())
-        if otherNode.health <= 0 {
+        if otherNode.getHealth() <= 0 {
             if otherNode is SKPlayerNode {
                 Global.spaceViewController.gameOver()
                 gameScene.pauseGame()
@@ -146,6 +148,7 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         // Right now just assuming all the items are coins (since they are) -> Come back here and change this when more items are added
         let coinSound = SKAction.playSoundFileNamed("coinCollect.mp3", waitForCompletion: false)
         Global.money += itemNode.value
+        print((playerNode.inputView?.window?.rootViewController as? SpaceViewController)?.highScore)
         Global.spaceViewController.updateMoney(with: itemNode.value)
         (playerNode.parent as! GameScene).run(coinSound)
         itemNode.removeFromParent()
@@ -161,20 +164,21 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
      */
     private func handleEnemyPlayerCollision(playerNodeO: SKPlayerNode?, enemyNodeO: SKEnemyNode?) {
         guard let enemyNode = enemyNodeO, let playerNode = playerNodeO else { return }
+        let gameScene = playerNode.scene as! GameScene
         let enemyDie = SKEmitterNode(fileNamed: "Explosion")!
         enemyNode.removeAllActions()
         enemyNode.removeFromParent()
         enemyDie.position = enemyNode.position
-        let sequence = SKAction.sequence([SKAction.run({ self.gameScene.addChild(enemyDie) }),
+        let sequence = SKAction.sequence([SKAction.run({ playerNode.scene?.addChild(enemyDie) }),
                                           SKAction.wait(forDuration: TimeInterval(CGFloat(enemyDie.numParticlesToEmit) * enemyDie.particleLifetime)),
                                           SKAction.run({ enemyDie.removeFromParent() })])
-        gameScene.run(sequence)
-        if playerNode.health > 0 {
+        playerNode.scene?.run(sequence)
+        if playerNode.getHealth() > 0 {
             playerNode.takeDamage(10)
         } else {
             playerNode.die()
             Global.spaceViewController.gameOver()
-            self.gameScene.pauseGame()
+            gameScene.pauseGame()
         }
     }
     
