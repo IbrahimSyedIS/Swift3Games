@@ -11,13 +11,6 @@
   Major TODO: Items(Power Ups), Levels, Rewards + Upgrades, Different Enemy Ships (Bosses?)
  
   Minor TODO: Player Health, More backdrops
- 
-  Files:
-  [GameScene.sks, laserHit.sks, SKEnemyNode.swift, SKCoinNode.swift,
-  AppDelegate.swift, GamePhysicsDelegate.swift, BannerADViewDelegate.swift,
-  GameScene.swift, SpaceViewController.swift, GameViewController.swift,
-  UpgradeViewController.swift, CreditsViewController.swift, Main.storyboard,
-  LaunchScreen.storyboard, Assets.xcassets, Info.plist, Sounds, kenvector_future]
 
 */
 
@@ -116,6 +109,7 @@ class GameScene: SKScene {
         numSinceLastLevelPush += 1
         if (enemiesLeft() == 0 && numSinceLastLevelPush >= 25 && !self.gamePaused) {
 //            nextLevel()
+            // TODO: CHANGE THIS BACK WHEN YOU ARE DONE TESTING SKDIALOGUENODE + SKBOSSNODE
             numSinceLastLevelPush = 0
         }
     }

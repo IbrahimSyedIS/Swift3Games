@@ -148,7 +148,6 @@ class GamePhysicsDelegate: NSObject, SKPhysicsContactDelegate {
         // Right now just assuming all the items are coins (since they are) -> Come back here and change this when more items are added
         let coinSound = SKAction.playSoundFileNamed("coinCollect.mp3", waitForCompletion: false)
         Global.money += itemNode.value
-        print((playerNode.inputView?.window?.rootViewController as? SpaceViewController)?.highScore)
         Global.spaceViewController.updateMoney(with: itemNode.value)
         (playerNode.parent as! GameScene).run(coinSound)
         itemNode.removeFromParent()

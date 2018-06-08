@@ -138,7 +138,9 @@ class SKCharacterNode: SKSpriteNode {
     }
     
     public func die() {
-        
+        guard let gameScene = self.scene as! GameScene? else {
+            return
+        }
         // Make an explosion
         let explosion = SKEmitterNode(fileNamed: "Explosion")!
         explosion.position = position
@@ -151,12 +153,8 @@ class SKCharacterNode: SKSpriteNode {
         removeAllActions()
         removeFromParent()
         
-        // Make sure its a game scene
-        if let gameScene = self.parent as? GameScene {
-            
-            // Update score
-            gameScene.score += 100
-            gameScene.gameViewController.updateScoreLabel()
-        }
+        // Update score
+        gameScene.score += 100
+        gameScene.gameViewController.updateScoreLabel()
     }
 }

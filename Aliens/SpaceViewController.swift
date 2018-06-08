@@ -28,7 +28,7 @@ class SpaceViewController: UIViewController {
     
     var gameScene: GameScene? = nil
 
-    var mainView: SKView? = nil
+    var mainView: SKView!
 
     let userDefaults = UserDefaults.standard
 
@@ -38,14 +38,13 @@ class SpaceViewController: UIViewController {
         super.viewDidLoad()
         Global.spaceViewController = self
         highScore = userDefaults.integer(forKey: "highScore")
-        scoreLabel.text = "Score: 0                                        High Score: \(highScore!)"
+        scoreLabel.numberOfLines = 2
+        scoreLabel.text = "Score: 0\nHigh Score: \(highScore!)"
         startHiddens()
-        if let view = self.view as? SKView {
-            self.mainView = view
-            view.ignoresSiblingOrder = true
-            view.showsNodeCount = true
-            presentScene(named: "GameScene")
-        }
+        mainView = self.view as! SKView
+        mainView.ignoresSiblingOrder = true
+        mainView.showsNodeCount = true
+        presentScene(named: "GameScene")
     }
     
     func startHiddens() {
@@ -89,7 +88,7 @@ class SpaceViewController: UIViewController {
             highScore = gameScene.score
             userDefaults.set(gameScene.score, forKey: "highScore")
         }
-        scoreLabel.text = "Score: \(gameScene.score)                                        High Score: \(highScore!)"
+        scoreLabel.text = "Score: \(gameScene.score)\nHigh Score: \(highScore!)"
         pauseScoreLabel.text = "Score: \(gameScene.score)"
     }
     
