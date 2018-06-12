@@ -66,6 +66,8 @@ class SKPlayerNode: SKCharacterNode {
     internal override func createLaser(imageNamed: String) -> SKWeaponNode {
         let laser = super.createLaser(imageNamed: imageNamed)
         laser.setDamage(to: 25)
+        laser.xScale = 1
+        laser.yScale = 1
         laser.position = CGPoint(x: position.x, y: position.y + 100)
         return laser
     }

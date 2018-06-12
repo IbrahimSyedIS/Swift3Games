@@ -68,7 +68,7 @@ class SKCharacterNode: SKSpriteNode {
         if (getHealth() > 0) {
             healthBar = SKShapeNode(rectOf: CGSize(width: CGFloat(2.0 * getHealth()), height: 10))
             healthBar!.fillColor = UIColor.green
-            healthBar!.position = CGPoint(x: 0, y: -175)
+            healthBar!.position = CGPoint(x: 0, y: -size.height / 2)
             addChild(healthBar!)
         } else {
             die()
@@ -126,6 +126,8 @@ class SKCharacterNode: SKSpriteNode {
     internal func createLaser(imageNamed: String) -> SKWeaponNode {
         let laser = SKWeaponNode(imageNamed: imageNamed)
         laser.setDamage(to: 2)
+        laser.xScale = 0.5
+        laser.yScale = 0.5
         laser.position = CGPoint(x: position.x, y: position.y - 100)
         laser.physicsBody = SKPhysicsBody(texture: laser.texture!, size: laser.size)
         laser.physicsBody!.affectedByGravity = false

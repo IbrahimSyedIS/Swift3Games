@@ -26,7 +26,7 @@ class SKEnemyNode: SKCharacterNode {
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         updateHealthBar()
         preparePhysicsBody(texture: texture)
-        run(SKAction.repeatForever(SKAction.animate(with: animations, timePerFrame: 0.1)))
+        if animations.count > 0 { run(SKAction.repeatForever(SKAction.animate(with: animations, timePerFrame: 0.1))) }
         autoFire()
     }
     

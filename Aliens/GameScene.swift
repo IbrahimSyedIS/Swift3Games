@@ -37,7 +37,7 @@ class GameScene: SKScene {
                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
     //Test Level made until more streamlined 2D level system is made
-    private var testLevel: [Int] = [1, 1, 1, 1, 1, 1]
+    private var testLevel: [Int] = [1, 2, 1, 1, 2, 1]
     
     private var playerSpeed: Int = 0
     public var score: Int = 0
@@ -108,7 +108,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         numSinceLastLevelPush += 1
         if (enemiesLeft() == 0 && numSinceLastLevelPush >= 25 && !self.gamePaused) {
-//            nextLevel()
+            nextLevel()
             // TODO: CHANGE THIS BACK WHEN YOU ARE DONE TESTING SKDIALOGUENODE + SKBOSSNODE
             numSinceLastLevelPush = 0
         }
@@ -164,7 +164,7 @@ class GameScene: SKScene {
         waveLabel.position = CGPoint(x: 0, y: 450)
         waveLabel.fontSize = 50
         waveLabel.alpha = 0
-        waveLabel.fontName = "kenvector_future"
+        waveLabel.fontName = "KenVector Future"
         return waveLabel
     }
     
@@ -180,23 +180,21 @@ class GameScene: SKScene {
     
     func spawnEnemy(at position: CGPoint, ofType type: Int) {
         var enemy: SKEnemyNode
-        var enemyAnimations: [SKTexture]
         switch type {
         case 1:
-            enemyAnimations = [SKTexture(imageNamed: "enemy0"), SKTexture(imageNamed: "enemy1"),
-                               SKTexture(imageNamed: "enemy2"), SKTexture(imageNamed: "enemy3"),
-                               SKTexture(imageNamed: "enemy4"), SKTexture(imageNamed: "enemy5"),
-                               SKTexture(imageNamed: "enemy6"), SKTexture(imageNamed: "enemy7"),
-                               SKTexture(imageNamed: "enemy8")]
-            enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)
+//            enemyAnimations = [SKTexture(imageNamed: "enemy0"), SKTexture(imageNamed: "enemy1"),
+//                               SKTexture(imageNamed: "enemy2"), SKTexture(imageNamed: "enemy3"),
+//                               SKTexture(imageNamed: "enemy4"), SKTexture(imageNamed: "enemy5"),
+//                               SKTexture(imageNamed: "enemy6"), SKTexture(imageNamed: "enemy7"),
+//                               SKTexture(imageNamed: "enemy8")]
+            enemy = SKEnemyNode(imageNamed: "enemy", animations: [])
             enemy.xScale = 0.15
             enemy.yScale = 0.15
         case 2:
-            enemyAnimations = []
-            enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)
+            enemy = SKEnemyNode(imageNamed: "blackship1", animations: [])
+            enemy.normalTexture = SKTexture(imageNamed: "blackship1normal")
         default:
-            enemyAnimations = []
-            enemy = SKEnemyNode(imageNamed: "enemy", animations: enemyAnimations)
+            enemy = SKEnemyNode(imageNamed: "enemy", animations: [])
         }
         enemy.move(toParent: self)
         enemy.position = position
