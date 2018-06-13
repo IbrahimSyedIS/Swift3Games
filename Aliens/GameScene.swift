@@ -37,7 +37,7 @@ class GameScene: SKScene {
                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
     //Test Level made until more streamlined 2D level system is made
-    private var testLevel: [Int] = [1, 2, 1, 1, 2, 1]
+    private var testLevel: [Int] = [1, 2, 1, 1, 2, 1, 3]
     
     private var playerSpeed: Int = 0
     public var score: Int = 0
@@ -142,11 +142,10 @@ class GameScene: SKScene {
         if (testLevel.count <= 0) { return }
         Global.currentWave += 1
         let waveLabel = createWaveLabel(wave: Global.currentWave)
-        let fadeIn = SKAction.fadeIn(withDuration: 1)
-        let wait = SKAction.wait(forDuration: 4)
-        let fadeOut = SKAction.fadeOut(withDuration: 1)
-        let disappear = SKAction.removeFromParent()
-        let labelSequence = SKAction.sequence([fadeIn, wait, fadeOut, disappear])
+        let labelSequence = SKAction.sequence([SKAction.fadeIn(withDuration: 1),
+                                               SKAction.wait(forDuration: 4),
+                                               SKAction.fadeOut(withDuration: 1),
+                                               SKAction.removeFromParent()])
         waveLabel.move(toParent: self)
         waveLabel.run(labelSequence) {
             waveLabel.removeFromParent()
@@ -193,6 +192,9 @@ class GameScene: SKScene {
         case 2:
             enemy = SKEnemyNode(imageNamed: "blackship1", animations: [])
             enemy.normalTexture = SKTexture(imageNamed: "blackship1normal")
+        case 3:
+            enemy = SKEnemyNode(imageNamed: "blackship2", animations: [])
+            enemy.normalTexture = SKTexture(imageNamed: "blackship2normal")
         default:
             enemy = SKEnemyNode(imageNamed: "enemy", animations: [])
         }
