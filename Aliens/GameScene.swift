@@ -37,7 +37,7 @@ class GameScene: SKScene {
                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
     //Test Level made until more streamlined 2D level system is made
-    private var testLevel: [Int] = [1, 2, 1, 1, 2, 1, 3]
+    private var testLevel: [Int] = [1, 2, 1, 1, 2, 1, 2, 3, 2]
     
     private var playerSpeed: Int = 0
     public var score: Int = 0
@@ -139,7 +139,10 @@ class GameScene: SKScene {
     }
     
     private func nextLevel() {
-        if (testLevel.count <= 0) { return }
+        if (testLevel.count <= 0) {
+            endlessMode()
+            return
+        }
         Global.currentWave += 1
         let waveLabel = createWaveLabel(wave: Global.currentWave)
         let labelSequence = SKAction.sequence([SKAction.fadeIn(withDuration: 1),
@@ -174,7 +177,14 @@ class GameScene: SKScene {
     }
     
     private func endlessMode() {
-        // TODO
+        // TODO: Do This
+        Global.currentWave += 1
+        let sep = self.size.width / CGFloat(4)
+        let firstX = 0 - (self.size.width / CGFloat(3))
+        for enemy in 0..<4 {
+            self.spawnEnemy(at: CGPoint(x: firstX + (sep * CGFloat(enemy)), y: 750), ofType: Int(arc4random_uniform(3) + 1))
+            Global.currentMaxScore += 100
+        }
     }
     
     func spawnEnemy(at position: CGPoint, ofType type: Int) {

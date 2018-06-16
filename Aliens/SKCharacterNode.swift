@@ -125,7 +125,7 @@ class SKCharacterNode: SKSpriteNode {
     
     internal func createLaser(imageNamed: String) -> SKWeaponNode {
         let laser = SKWeaponNode(imageNamed: imageNamed)
-        laser.setDamage(to: 2)
+        laser.setDamage(to: 15)
         laser.xScale = 0.5
         laser.yScale = 0.5
         laser.position = CGPoint(x: position.x, y: position.y - 100)
